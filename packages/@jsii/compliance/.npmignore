@@ -1,0 +1,9 @@
+# Don't include original .ts files when doing `npm pack`
+*.ts
+!*.d.ts
+
+# Don't include various configuration & state information
+coverage
+.eslintrc.*
+tsconfig.json
+*.tsbuildinfo

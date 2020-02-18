@@ -1,0 +1,25 @@
+#!/usr/bin/env node
+
+const { blue } = require('chalk');
+const { readFile } = require('fs-extra');
+const { resolve, relative } = require('path');
+const { cwd, exit } = require('process');
+const { parseTestSuite } = require('../lib');
+
+async function main() {
+  const sourcePath = resolve(__dirname, '..', '..', '..', '..', 'docs', 'specifications', '4-standard-compliance-suite.md');
+  console.log(`Source: ${blue(relative(cwd(), sourcePath))}`);
+
+  const source = await readFile(sourcePath, { encoding: 'utf-8' });
+
+  const testSuite = parseTestSuite(source);
+  console.log(JSON.stringify(testSuite, null, 2));
+}
+
+main().then(
+  () => exit(0),
+  err => {
+    console.error(err);
+    exit(-1);
+  },
+);

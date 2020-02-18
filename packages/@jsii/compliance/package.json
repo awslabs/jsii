@@ -1,0 +1,70 @@
+{
+  "name": "@jsii/compliance",
+  "version": "0.22.0",
+  "description": "Tools to assert compliance to the jsii specification",
+  "license": "Apache-2.0",
+  "author": {
+    "name": "Amazon Web Services",
+    "url": "https://aws.amazon.com"
+  },
+  "homepage": "https://github.com/aws/jsii",
+  "bugs": {
+    "url": "https://github.com/aws/jsii/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/aws/jsii.git",
+    "directory": "packages/@jsii/compliance"
+  },
+  "engines": {
+    "node": ">= 10.3.0"
+  },
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "bin": {
+    "jsii-compliance": "bin/jsii-compliance"
+  },
+  "scripts": {
+    "build": "tsc --build && chmod a+x bin/jsii-compliance",
+    "watch": "tsc --build --watch",
+    "lint": "eslint . --ext .js,.ts --ignore-path=.gitignore",
+    "test": "jest",
+    "test:update": "jest -u",
+    "package": "package-js"
+  },
+  "dependencies": {
+    "@jsii/markdown-utils": "^0.22.0",
+    "chalk": "^3.0.0",
+    "fs-extra": "^8.1.0"
+  },
+  "devDependencies": {
+    "@types/chalk": "^2.2.0",
+    "@types/fs-extra": "^8.0.1",
+    "@types/jest": "^24.0.25",
+    "@types/node": "^10.17.13",
+    "jest": "^24.9.0",
+    "jsii-build-tools": "^0.22.0",
+    "typescript": "~3.7.4"
+  },
+  "jest": {
+    "collectCoverage": true,
+    "collectCoverageFrom": [
+      "**/lib/**/*.js"
+    ],
+    "coverageReporters": [
+      "lcov",
+      "text"
+    ],
+    "coverageThreshold": {
+      "global": {
+        "branches": 0,
+        "statements": 0
+      }
+    },
+    "errorOnDeprecated": true,
+    "testEnvironment": "node",
+    "testMatch": [
+      "**/?(*.)+(spec|test).js"
+    ]
+  }
+}

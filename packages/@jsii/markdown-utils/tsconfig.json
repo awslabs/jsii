@@ -1,0 +1,7 @@
+{
+  "extends": "../../../tsconfig-base",
+  "compilerOptions": {
+    "stripInternal": true
+  },
+  "include": ["**/*.ts"]
+}

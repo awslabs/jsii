@@ -1,0 +1,1278 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Document parse with an empty document 1`] = `
+Object {
+  "document": Object {
+    "children": Array [],
+  },
+}
+`;
+
+exports[`Document parse with everything 1`] = `
+Object {
+  "document": Object {
+    "children": Array [
+      Object {
+        "heading": Object {
+          "children": Array [
+            Object {
+              "text": Object {
+                "text": "H1",
+              },
+            },
+          ],
+          "depth": 1,
+        },
+      },
+      Object {
+        "heading": Object {
+          "children": Array [
+            Object {
+              "text": Object {
+                "text": "H2",
+              },
+            },
+          ],
+          "depth": 2,
+        },
+      },
+      Object {
+        "heading": Object {
+          "children": Array [
+            Object {
+              "text": Object {
+                "text": "H3",
+              },
+            },
+          ],
+          "depth": 3,
+        },
+      },
+      Object {
+        "heading": Object {
+          "children": Array [
+            Object {
+              "text": Object {
+                "text": "H4",
+              },
+            },
+          ],
+          "depth": 4,
+        },
+      },
+      Object {
+        "heading": Object {
+          "children": Array [
+            Object {
+              "text": Object {
+                "text": "H5",
+              },
+            },
+          ],
+          "depth": 5,
+        },
+      },
+      Object {
+        "heading": Object {
+          "children": Array [
+            Object {
+              "text": Object {
+                "text": "H6",
+              },
+            },
+          ],
+          "depth": 6,
+        },
+      },
+      Object {
+        "parapgraph": Object {
+          "children": Array [
+            Object {
+              "text": Object {
+                "text": "Alternatively, for H1 and H2, an underline-ish style:",
+              },
+            },
+          ],
+        },
+      },
+      Object {
+        "heading": Object {
+          "children": Array [
+            Object {
+              "text": Object {
+                "text": "Alt-H1",
+              },
+            },
+          ],
+          "depth": 1,
+        },
+      },
+      Object {
+        "heading": Object {
+          "children": Array [
+            Object {
+              "text": Object {
+                "text": "Alt-H2",
+              },
+            },
+          ],
+          "depth": 2,
+        },
+      },
+      Object {
+        "parapgraph": Object {
+          "children": Array [
+            Object {
+              "text": Object {
+                "text": "Emphasis, aka italics, with ",
+              },
+            },
+            Object {
+              "emph": Object {
+                "children": Array [
+                  Object {
+                    "text": Object {
+                      "text": "asterisks",
+                    },
+                  },
+                ],
+              },
+            },
+            Object {
+              "text": Object {
+                "text": " or ",
+              },
+            },
+            Object {
+              "emph": Object {
+                "children": Array [
+                  Object {
+                    "text": Object {
+                      "text": "underscores",
+                    },
+                  },
+                ],
+              },
+            },
+            Object {
+              "text": Object {
+                "text": ".",
+              },
+            },
+          ],
+        },
+      },
+      Object {
+        "parapgraph": Object {
+          "children": Array [
+            Object {
+              "text": Object {
+                "text": "Strong emphasis, aka bold, with ",
+              },
+            },
+            Object {
+              "strong": Object {
+                "children": Array [
+                  Object {
+                    "text": Object {
+                      "text": "asterisks",
+                    },
+                  },
+                ],
+              },
+            },
+            Object {
+              "text": Object {
+                "text": " or ",
+              },
+            },
+            Object {
+              "strong": Object {
+                "children": Array [
+                  Object {
+                    "text": Object {
+                      "text": "underscores",
+                    },
+                  },
+                ],
+              },
+            },
+            Object {
+              "text": Object {
+                "text": ".",
+              },
+            },
+          ],
+        },
+      },
+      Object {
+        "parapgraph": Object {
+          "children": Array [
+            Object {
+              "text": Object {
+                "text": "Combined emphasis with ",
+              },
+            },
+            Object {
+              "strong": Object {
+                "children": Array [
+                  Object {
+                    "text": Object {
+                      "text": "asterisks and ",
+                    },
+                  },
+                  Object {
+                    "emph": Object {
+                      "children": Array [
+                        Object {
+                          "text": Object {
+                            "text": "underscores",
+                          },
+                        },
+                      ],
+                    },
+                  },
+                ],
+              },
+            },
+            Object {
+              "text": Object {
+                "text": ".",
+              },
+            },
+          ],
+        },
+      },
+      Object {
+        "parapgraph": Object {
+          "children": Array [
+            Object {
+              "text": Object {
+                "text": "Strikethrough uses two tildes. ~~Scratch this.~~",
+              },
+            },
+          ],
+        },
+      },
+      Object {
+        "list": Object {
+          "children": Array [
+            Object {
+              "item": Object {
+                "children": Array [
+                  Object {
+                    "parapgraph": Object {
+                      "children": Array [
+                        Object {
+                          "text": Object {
+                            "text": "First ordered list item",
+                          },
+                        },
+                      ],
+                    },
+                  },
+                ],
+                "ordered": true,
+              },
+            },
+            Object {
+              "item": Object {
+                "children": Array [
+                  Object {
+                    "parapgraph": Object {
+                      "children": Array [
+                        Object {
+                          "text": Object {
+                            "text": "Another item",
+                          },
+                        },
+                      ],
+                    },
+                  },
+                ],
+                "ordered": true,
+              },
+            },
+          ],
+        },
+      },
+      Object {
+        "list": Object {
+          "children": Array [
+            Object {
+              "item": Object {
+                "children": Array [
+                  Object {
+                    "parapgraph": Object {
+                      "children": Array [
+                        Object {
+                          "text": Object {
+                            "text": "Unordered sub-list.",
+                          },
+                        },
+                      ],
+                    },
+                  },
+                ],
+                "ordered": false,
+              },
+            },
+          ],
+        },
+      },
+      Object {
+        "list": Object {
+          "children": Array [
+            Object {
+              "item": Object {
+                "children": Array [
+                  Object {
+                    "parapgraph": Object {
+                      "children": Array [
+                        Object {
+                          "text": Object {
+                            "text": "Actual numbers don",
+                          },
+                        },
+                        Object {
+                          "text": Object {
+                            "text": "'",
+                          },
+                        },
+                        Object {
+                          "text": Object {
+                            "text": "t matter, just that it",
+                          },
+                        },
+                        Object {
+                          "text": Object {
+                            "text": "'",
+                          },
+                        },
+                        Object {
+                          "text": Object {
+                            "text": "s a number",
+                          },
+                        },
+                      ],
+                    },
+                  },
+                ],
+                "ordered": true,
+              },
+            },
+            Object {
+              "item": Object {
+                "children": Array [
+                  Object {
+                    "parapgraph": Object {
+                      "children": Array [
+                        Object {
+                          "text": Object {
+                            "text": "Ordered sub-list",
+                          },
+                        },
+                      ],
+                    },
+                  },
+                ],
+                "ordered": true,
+              },
+            },
+            Object {
+              "item": Object {
+                "children": Array [
+                  Object {
+                    "parapgraph": Object {
+                      "children": Array [
+                        Object {
+                          "text": Object {
+                            "text": "And another item.",
+                          },
+                        },
+                      ],
+                    },
+                  },
+                  Object {
+                    "parapgraph": Object {
+                      "children": Array [
+                        Object {
+                          "text": Object {
+                            "text": "You can have properly indented paragraphs within list items. Notice the blank line above, and the leading spaces (at least one, but we",
+                          },
+                        },
+                        Object {
+                          "text": Object {
+                            "text": "'",
+                          },
+                        },
+                        Object {
+                          "text": Object {
+                            "text": "ll use three here to also align the raw Markdown).",
+                          },
+                        },
+                      ],
+                    },
+                  },
+                  Object {
+                    "parapgraph": Object {
+                      "children": Array [
+                        Object {
+                          "text": Object {
+                            "text": "To have a line break without a paragraph, you will need to use a trailing slash.",
+                          },
+                        },
+                        Object {
+                          "lineBreak": Object {},
+                        },
+                        Object {
+                          "text": Object {
+                            "text": "Note that this line is separate, but within the same paragraph.",
+                          },
+                        },
+                        Object {
+                          "lineBreak": Object {},
+                        },
+                        Object {
+                          "text": Object {
+                            "text": "(This is contrary to the typical GFM line break behaviour, where trailing spaces are not required.)",
+                          },
+                        },
+                      ],
+                    },
+                  },
+                ],
+                "ordered": true,
+              },
+            },
+          ],
+        },
+      },
+      Object {
+        "list": Object {
+          "children": Array [
+            Object {
+              "item": Object {
+                "children": Array [
+                  Object {
+                    "parapgraph": Object {
+                      "children": Array [
+                        Object {
+                          "text": Object {
+                            "text": "Unordered list can use asterisks",
+                          },
+                        },
+                      ],
+                    },
+                  },
+                ],
+                "ordered": false,
+              },
+            },
+          ],
+        },
+      },
+      Object {
+        "list": Object {
+          "children": Array [
+            Object {
+              "item": Object {
+                "children": Array [
+                  Object {
+                    "parapgraph": Object {
+                      "children": Array [
+                        Object {
+                          "text": Object {
+                            "text": "Or minuses",
+                          },
+                        },
+                      ],
+                    },
+                  },
+                ],
+                "ordered": false,
+              },
+            },
+          ],
+        },
+      },
+      Object {
+        "list": Object {
+          "children": Array [
+            Object {
+              "item": Object {
+                "children": Array [
+                  Object {
+                    "parapgraph": Object {
+                      "children": Array [
+                        Object {
+                          "text": Object {
+                            "text": "Or pluses",
+                          },
+                        },
+                      ],
+                    },
+                  },
+                ],
+                "ordered": false,
+              },
+            },
+          ],
+        },
+      },
+      Object {
+        "parapgraph": Object {
+          "children": Array [
+            Object {
+              "link": Object {
+                "children": Array [
+                  Object {
+                    "text": Object {
+                      "text": "I",
+                    },
+                  },
+                  Object {
+                    "text": Object {
+                      "text": "'",
+                    },
+                  },
+                  Object {
+                    "text": Object {
+                      "text": "m an inline-style link",
+                    },
+                  },
+                ],
+                "destination": "https://www.google.com",
+              },
+            },
+          ],
+        },
+      },
+      Object {
+        "parapgraph": Object {
+          "children": Array [
+            Object {
+              "link": Object {
+                "children": Array [
+                  Object {
+                    "text": Object {
+                      "text": "I",
+                    },
+                  },
+                  Object {
+                    "text": Object {
+                      "text": "'",
+                    },
+                  },
+                  Object {
+                    "text": Object {
+                      "text": "m an inline-style link with title",
+                    },
+                  },
+                ],
+                "destination": "https://www.google.com",
+              },
+            },
+          ],
+        },
+      },
+      Object {
+        "parapgraph": Object {
+          "children": Array [
+            Object {
+              "link": Object {
+                "children": Array [
+                  Object {
+                    "text": Object {
+                      "text": "I",
+                    },
+                  },
+                  Object {
+                    "text": Object {
+                      "text": "'",
+                    },
+                  },
+                  Object {
+                    "text": Object {
+                      "text": "m a reference-style link",
+                    },
+                  },
+                ],
+                "destination": "https://www.mozilla.org",
+              },
+            },
+          ],
+        },
+      },
+      Object {
+        "parapgraph": Object {
+          "children": Array [
+            Object {
+              "link": Object {
+                "children": Array [
+                  Object {
+                    "text": Object {
+                      "text": "I",
+                    },
+                  },
+                  Object {
+                    "text": Object {
+                      "text": "'",
+                    },
+                  },
+                  Object {
+                    "text": Object {
+                      "text": "m a relative reference to a repository file",
+                    },
+                  },
+                ],
+                "destination": "../blob/master/LICENSE",
+              },
+            },
+          ],
+        },
+      },
+      Object {
+        "parapgraph": Object {
+          "children": Array [
+            Object {
+              "link": Object {
+                "children": Array [
+                  Object {
+                    "text": Object {
+                      "text": "You can use numbers for reference-style link definitions",
+                    },
+                  },
+                ],
+                "destination": "http://slashdot.org",
+              },
+            },
+          ],
+        },
+      },
+      Object {
+        "parapgraph": Object {
+          "children": Array [
+            Object {
+              "text": Object {
+                "text": "Or leave it empty and use the ",
+              },
+            },
+            Object {
+              "link": Object {
+                "children": Array [
+                  Object {
+                    "text": Object {
+                      "text": "link text itself",
+                    },
+                  },
+                ],
+                "destination": "http://www.reddit.com",
+              },
+            },
+            Object {
+              "text": Object {
+                "text": ".",
+              },
+            },
+          ],
+        },
+      },
+      Object {
+        "parapgraph": Object {
+          "children": Array [
+            Object {
+              "text": Object {
+                "text": "URLs and URLs in angle brackets will automatically get turned into links.",
+              },
+            },
+            Object {
+              "softBreak": Object {},
+            },
+            Object {
+              "text": Object {
+                "text": "http://www.example.com or ",
+              },
+            },
+            Object {
+              "link": Object {
+                "children": Array [
+                  Object {
+                    "text": Object {
+                      "text": "http://www.example.com",
+                    },
+                  },
+                ],
+                "destination": "http://www.example.com",
+              },
+            },
+            Object {
+              "text": Object {
+                "text": " and sometimes",
+              },
+            },
+            Object {
+              "softBreak": Object {},
+            },
+            Object {
+              "text": Object {
+                "text": "example.com (but not on Github, for example).",
+              },
+            },
+          ],
+        },
+      },
+      Object {
+        "parapgraph": Object {
+          "children": Array [
+            Object {
+              "text": Object {
+                "text": "Some text to show that the reference links can follow later.",
+              },
+            },
+          ],
+        },
+      },
+      Object {
+        "parapgraph": Object {
+          "children": Array [
+            Object {
+              "text": Object {
+                "text": "Here",
+              },
+            },
+            Object {
+              "text": Object {
+                "text": "'",
+              },
+            },
+            Object {
+              "text": Object {
+                "text": "s our logo (hover to see the title text):",
+              },
+            },
+          ],
+        },
+      },
+      Object {
+        "parapgraph": Object {
+          "children": Array [
+            Object {
+              "text": Object {
+                "text": "Inline-style:",
+              },
+            },
+            Object {
+              "softBreak": Object {},
+            },
+            Object {
+              "image": Object {
+                "children": Array [
+                  Object {
+                    "text": Object {
+                      "text": "alt text",
+                    },
+                  },
+                ],
+                "url": "https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png",
+              },
+            },
+          ],
+        },
+      },
+      Object {
+        "parapgraph": Object {
+          "children": Array [
+            Object {
+              "text": Object {
+                "text": "Reference-style:",
+              },
+            },
+            Object {
+              "softBreak": Object {},
+            },
+            Object {
+              "image": Object {
+                "children": Array [
+                  Object {
+                    "text": Object {
+                      "text": "alt text",
+                    },
+                  },
+                ],
+                "url": "https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png",
+              },
+            },
+          ],
+        },
+      },
+      Object {
+        "parapgraph": Object {
+          "children": Array [
+            Object {
+              "text": Object {
+                "text": "Inline ",
+              },
+            },
+            Object {
+              "code": Object {
+                "text": "code",
+              },
+            },
+            Object {
+              "text": Object {
+                "text": " has ",
+              },
+            },
+            Object {
+              "code": Object {
+                "text": "back-ticks around",
+              },
+            },
+            Object {
+              "text": Object {
+                "text": " it.",
+              },
+            },
+          ],
+        },
+      },
+      Object {
+        "codeBlock": Object {
+          "language": "javascript",
+          "text": [Function],
+        },
+      },
+      Object {
+        "codeBlock": Object {
+          "language": "python",
+          "text": [Function],
+        },
+      },
+      Object {
+        "codeBlock": Object {
+          "language": "",
+          "text": [Function],
+        },
+      },
+      Object {
+        "blockQuote": Object {
+          "children": Array [
+            Object {
+              "parapgraph": Object {
+                "children": Array [
+                  Object {
+                    "text": Object {
+                      "text": "Blockquotes are very handy in email to emulate reply text.",
+                    },
+                  },
+                  Object {
+                    "softBreak": Object {},
+                  },
+                  Object {
+                    "text": Object {
+                      "text": "This line is part of the same quote.",
+                    },
+                  },
+                ],
+              },
+            },
+          ],
+        },
+      },
+      Object {
+        "parapgraph": Object {
+          "children": Array [
+            Object {
+              "text": Object {
+                "text": "Quote break.",
+              },
+            },
+          ],
+        },
+      },
+      Object {
+        "blockQuote": Object {
+          "children": Array [
+            Object {
+              "parapgraph": Object {
+                "children": Array [
+                  Object {
+                    "text": Object {
+                      "text": "This is a very long line that will still be quoted properly when it wraps. Oh boy let",
+                    },
+                  },
+                  Object {
+                    "text": Object {
+                      "text": "'",
+                    },
+                  },
+                  Object {
+                    "text": Object {
+                      "text": "s keep writing to make sure this is long enough to actually wrap for everyone. Oh, you can ",
+                    },
+                  },
+                  Object {
+                    "emph": Object {
+                      "children": Array [
+                        Object {
+                          "text": Object {
+                            "text": "put",
+                          },
+                        },
+                      ],
+                    },
+                  },
+                  Object {
+                    "text": Object {
+                      "text": " ",
+                    },
+                  },
+                  Object {
+                    "strong": Object {
+                      "children": Array [
+                        Object {
+                          "text": Object {
+                            "text": "Markdown",
+                          },
+                        },
+                      ],
+                    },
+                  },
+                  Object {
+                    "text": Object {
+                      "text": " into a blockquote.",
+                    },
+                  },
+                ],
+              },
+            },
+          ],
+        },
+      },
+      Object {
+        "htmlBlock": Object {
+          "text": "<dl>
+  <dt>Definition list</dt>
+  <dd>Is something people use sometimes.</dd>",
+        },
+      },
+      Object {
+        "htmlBlock": Object {
+          "text": "  <dt>Markdown in HTML</dt>
+  <dd>Does *not* work **very** well. Use HTML <em>tags</em>.</dd>
+</dl>",
+        },
+      },
+      Object {
+        "parapgraph": Object {
+          "children": Array [
+            Object {
+              "text": Object {
+                "text": "Three or more...",
+              },
+            },
+          ],
+        },
+      },
+      Object {
+        "thematicBreak": Object {},
+      },
+      Object {
+        "parapgraph": Object {
+          "children": Array [
+            Object {
+              "text": Object {
+                "text": "Hyphens",
+              },
+            },
+          ],
+        },
+      },
+      Object {
+        "thematicBreak": Object {},
+      },
+      Object {
+        "parapgraph": Object {
+          "children": Array [
+            Object {
+              "text": Object {
+                "text": "Asterisks",
+              },
+            },
+          ],
+        },
+      },
+      Object {
+        "thematicBreak": Object {},
+      },
+      Object {
+        "parapgraph": Object {
+          "children": Array [
+            Object {
+              "text": Object {
+                "text": "Underscores",
+              },
+            },
+          ],
+        },
+      },
+      Object {
+        "parapgraph": Object {
+          "children": Array [
+            Object {
+              "text": Object {
+                "text": "Here",
+              },
+            },
+            Object {
+              "text": Object {
+                "text": "'",
+              },
+            },
+            Object {
+              "text": Object {
+                "text": "s a line for us to start with.",
+              },
+            },
+          ],
+        },
+      },
+      Object {
+        "parapgraph": Object {
+          "children": Array [
+            Object {
+              "text": Object {
+                "text": "This line is separated from the one above by two newlines, so it will be a ",
+              },
+            },
+            Object {
+              "emph": Object {
+                "children": Array [
+                  Object {
+                    "text": Object {
+                      "text": "separate paragraph",
+                    },
+                  },
+                ],
+              },
+            },
+            Object {
+              "text": Object {
+                "text": ".",
+              },
+            },
+          ],
+        },
+      },
+      Object {
+        "parapgraph": Object {
+          "children": Array [
+            Object {
+              "text": Object {
+                "text": "This line is also a separate paragraph, but...",
+              },
+            },
+            Object {
+              "softBreak": Object {},
+            },
+            Object {
+              "text": Object {
+                "text": "This line is only separated by a single newline, so it",
+              },
+            },
+            Object {
+              "text": Object {
+                "text": "'",
+              },
+            },
+            Object {
+              "text": Object {
+                "text": "s a separate line in the ",
+              },
+            },
+            Object {
+              "emph": Object {
+                "children": Array [
+                  Object {
+                    "text": Object {
+                      "text": "same paragraph",
+                    },
+                  },
+                ],
+              },
+            },
+            Object {
+              "text": Object {
+                "text": ".",
+              },
+            },
+          ],
+        },
+      },
+    ],
+  },
+}
+`;
+
+exports[`Document parse with nested lists 1`] = `
+Object {
+  "document": Object {
+    "children": Array [
+      Object {
+        "list": Object {
+          "children": Array [
+            Object {
+              "item": Object {
+                "children": Array [
+                  Object {
+                    "parapgraph": Object {
+                      "children": Array [
+                        Object {
+                          "text": Object {
+                            "text": "List item one.",
+                          },
+                        },
+                      ],
+                    },
+                  },
+                  Object {
+                    "parapgraph": Object {
+                      "children": Array [
+                        Object {
+                          "text": Object {
+                            "text": "List item one continued with a second paragraph followed by an",
+                          },
+                        },
+                        Object {
+                          "softBreak": Object {},
+                        },
+                        Object {
+                          "text": Object {
+                            "text": "Indented block.",
+                          },
+                        },
+                      ],
+                    },
+                  },
+                  Object {
+                    "codeBlock": Object {
+                      "language": null,
+                      "text": [Function],
+                    },
+                  },
+                  Object {
+                    "parapgraph": Object {
+                      "children": Array [
+                        Object {
+                          "text": Object {
+                            "text": "List item continued with a third paragraph.",
+                          },
+                        },
+                      ],
+                    },
+                  },
+                ],
+                "ordered": true,
+              },
+            },
+            Object {
+              "item": Object {
+                "children": Array [
+                  Object {
+                    "parapgraph": Object {
+                      "children": Array [
+                        Object {
+                          "text": Object {
+                            "text": "List item two continued with an open block.",
+                          },
+                        },
+                      ],
+                    },
+                  },
+                  Object {
+                    "parapgraph": Object {
+                      "children": Array [
+                        Object {
+                          "text": Object {
+                            "text": "This paragraph is part of the preceding list item.",
+                          },
+                        },
+                      ],
+                    },
+                  },
+                  Object {
+                    "list": Object {
+                      "children": Array [
+                        Object {
+                          "item": Object {
+                            "children": Array [
+                              Object {
+                                "parapgraph": Object {
+                                  "children": Array [
+                                    Object {
+                                      "text": Object {
+                                        "text": "This list is nested and does not require explicit item continuation.",
+                                      },
+                                    },
+                                  ],
+                                },
+                              },
+                              Object {
+                                "parapgraph": Object {
+                                  "children": Array [
+                                    Object {
+                                      "text": Object {
+                                        "text": "This paragraph is part of the preceding list item.",
+                                      },
+                                    },
+                                  ],
+                                },
+                              },
+                            ],
+                            "ordered": true,
+                          },
+                        },
+                        Object {
+                          "item": Object {
+                            "children": Array [
+                              Object {
+                                "parapgraph": Object {
+                                  "children": Array [
+                                    Object {
+                                      "text": Object {
+                                        "text": "List item b.",
+                                      },
+                                    },
+                                  ],
+                                },
+                              },
+                            ],
+                            "ordered": true,
+                          },
+                        },
+                      ],
+                    },
+                  },
+                  Object {
+                    "parapgraph": Object {
+                      "children": Array [
+                        Object {
+                          "text": Object {
+                            "text": "This paragraph belongs to item two of the outer list.",
+                          },
+                        },
+                      ],
+                    },
+                  },
+                ],
+                "ordered": true,
+              },
+            },
+          ],
+        },
+      },
+    ],
+  },
+}
+`;

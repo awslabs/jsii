@@ -1,0 +1,28 @@
+#!/usr/bin/env node
+
+const { readFile } = require('fs-extra');
+const { argv, exit } = require('process');
+const { ConsoleRenderer, Document } = require('../lib');
+
+async function main() {
+  const [, , ...files] = argv;
+
+  if (files.length === 0) {
+    files.push('-');
+  }
+
+  for (const file of files) {
+    const pathOrFd = file === '-' ? 0 : file;
+    const source = await readFile(pathOrFd, { encoding: 'utf-8' });
+
+    console.log(Document.parse(source).render(new ConsoleRenderer()).trim());
+  }
+}
+
+main().then(
+  () => process.exit(0),
+  err => {
+    console.error(err);
+    exit(-1);
+  },
+);
