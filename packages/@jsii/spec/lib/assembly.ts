@@ -506,6 +506,7 @@ export interface NamedTypeReference {
    */
   fqn: FQN;
 }
+
 export function isNamedTypeReference(
   ref: TypeReference | undefined,
 ): ref is NamedTypeReference {
@@ -746,7 +747,8 @@ export function isMethod(callable: Callable): callable is Method {
 /**
  * Represents a type definition (not a type reference).
  */
-export type Type = TypeBase & (ClassType | EnumType | InterfaceType);
+export type Type = TypeBase &
+  (ClassType | EnumType | InterfaceType | NamedUnionType);
 
 /**
  * Common attributes of a type definition.
@@ -795,6 +797,7 @@ export enum TypeKind {
   Class = 'class',
   Enum = 'enum',
   Interface = 'interface',
+  NamedUnion = 'union',
 }
 
 /**
@@ -916,6 +919,24 @@ export interface EnumType extends TypeBase {
 
 export function isEnumType(type: Type | undefined): type is EnumType {
   return type?.kind === TypeKind.Enum;
+}
+
+/**
+ * Represents a named type union.
+ */
+export interface NamedUnionType extends TypeBase {
+  kind: TypeKind.NamedUnion;
+
+  /**
+   * Candidate types for the union.
+   */
+  types: TypeReference[];
+}
+
+export function isNamedUnionType(
+  type: Type | undefined,
+): type is NamedUnionType {
+  return type?.kind === TypeKind.NamedUnion;
 }
 
 /**

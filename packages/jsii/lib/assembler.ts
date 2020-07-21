@@ -383,7 +383,11 @@ export class Assembler implements Emitter {
   private async _getFQN(type: ts.Type): Promise<string> {
     const singleValuedEnum = isSingleValuedEnum(type, this._typeChecker);
 
-    const tsFullName = this._typeChecker.getFullyQualifiedName(type.symbol);
+    const symbol = type.isUnion()
+      ? type.aliasSymbol ?? type.symbol
+      : type.symbol;
+
+    const tsFullName = this._typeChecker.getFullyQualifiedName(symbol);
     const tsName = singleValuedEnum
       ? // If it's a single-valued enum, we need to remove the last qualifier to get back to the enum.
         tsFullName.replace(/\.[^.]+$/, '')
@@ -391,10 +395,10 @@ export class Assembler implements Emitter {
 
     let node = singleValuedEnum
       ? // If it's a single-valued enum, we need to move to the parent to have the enum declaration
-        type.symbol.valueDeclaration.parent
-      : type.symbol.valueDeclaration;
-    if (!node && type.symbol.declarations.length > 0) {
-      node = type.symbol.declarations[0];
+        symbol.valueDeclaration.parent
+      : symbol.valueDeclaration;
+    if (!node && symbol.declarations.length > 0) {
+      node = symbol.declarations[0];
     }
 
     const groups = /^"([^"]+)"\.(.*)$/.exec(tsName);
@@ -417,7 +421,7 @@ export class Assembler implements Emitter {
       return `unknown.${typeName}`;
     }
 
-    const submodule = this._submoduleMap.get(type.symbol);
+    const submodule = this._submoduleMap.get(symbol);
     if (submodule != null) {
       const submoduleNs = this._submodules.get(submodule)!.fqnResolutionPrefix;
       return `${submoduleNs}.${typeName}`;
@@ -426,7 +430,7 @@ export class Assembler implements Emitter {
     const fqn = `${pkg.name}.${typeName}`;
     if (
       pkg.name !== this.projectInfo.name &&
-      !this._dereference({ fqn }, type.symbol.valueDeclaration)
+      !this._dereference({ fqn }, symbol.valueDeclaration)
     ) {
       this._diagnostic(
         node,
@@ -808,6 +812,12 @@ export class Assembler implements Emitter {
         );
       }
       return allTypes;
+    } else if (ts.isTypeAliasDeclaration(node)) {
+      // export type name = ...;
+      jsiiType = await this._visitTypeAlias(
+        this._typeChecker.getTypeAtLocation(node),
+        context,
+      );
     } else {
       this._diagnostic(
         node,
@@ -870,7 +880,7 @@ export class Assembler implements Emitter {
     jsiiType.locationInModule = this.declarationLocation(node);
 
     const type = this._typeChecker.getTypeAtLocation(node);
-    if (type.symbol.exports) {
+    if ((type.aliasSymbol ?? type.symbol).exports) {
       const nestedContext = context.appendNamespace(type.symbol.name);
       const visitedNodes = this._typeChecker
         .getExportsOfModule(type.symbol)
@@ -1545,6 +1555,36 @@ export class Assembler implements Emitter {
     return Promise.resolve(jsiiType);
   }
 
+  private async _visitTypeAlias(
+    type: ts.Type,
+    ctx: EmitContext,
+  ): Promise<spec.NamedUnionType | undefined> {
+    if (!type.isUnion()) {
+      this._diagnostic(
+        type.symbol.declarations[0],
+        ts.DiagnosticCategory.Message,
+        `Ignoring type alias declaration (only type union aliases are supported)`,
+      );
+      return Promise.resolve(undefined);
+    }
+    const symbol = type.aliasSymbol ?? type.symbol;
+    return {
+      assembly: this.projectInfo.name,
+      fqn: `${[this.projectInfo.name, ...ctx.namespace].join('.')}.${
+        symbol.name
+      }`,
+      kind: spec.TypeKind.NamedUnion,
+      types: await Promise.all(
+        type.types.map((type) =>
+          this._typeReference(type, symbol.declarations[0]),
+        ),
+      ),
+      name: symbol.name,
+      namespace: ctx.namespace.length > 0 ? ctx.namespace.join('.') : undefined,
+      docs: this._visitDocumentation(symbol, ctx),
+    };
+  }
+
   /**
    * Return docs for a symbol
    */
@@ -1931,6 +1971,7 @@ export class Assembler implements Emitter {
         )}`,
       );
     }
+
     if (isProhibitedMemberName(symbol.name)) {
       this._diagnostic(
         symbol.valueDeclaration,
@@ -1949,7 +1990,7 @@ export class Assembler implements Emitter {
       | ts.ParameterPropertyDeclaration;
     const property: spec.Property = {
       ...(await this._optionalValue(
-        this._typeChecker.getTypeOfSymbolAtLocation(symbol, signature),
+        this._typeChecker.getTypeAtLocation(signature.type ?? signature),
         signature,
       )),
       abstract: _isAbstract(symbol, type) || undefined,
@@ -2014,7 +2055,9 @@ export class Assembler implements Emitter {
 
     const parameter: spec.Parameter = {
       ...(await this._optionalValue(
-        this._typeChecker.getTypeAtLocation(paramSymbol.valueDeclaration),
+        this._typeChecker.getTypeAtLocation(
+          paramDeclaration.type ?? paramDeclaration,
+        ),
         paramSymbol.valueDeclaration,
       )),
       name: paramSymbol.name,
@@ -2067,11 +2110,15 @@ export class Assembler implements Emitter {
       return { type: primitiveType };
     }
 
-    if (type.isUnion() && !_isEnumLike(type)) {
+    if (type.isUnion() && type.aliasSymbol == null && !_isEnumLike(type)) {
       return _unionType.call(this);
     }
 
-    if (!type.symbol) {
+    const symbol = type.isUnion()
+      ? type.aliasSymbol ?? type.symbol
+      : type.symbol;
+
+    if (!symbol) {
       this._diagnostic(
         declaration,
         ts.DiagnosticCategory.Error,
@@ -2080,15 +2127,15 @@ export class Assembler implements Emitter {
       return { type: spec.CANONICAL_ANY };
     }
 
-    if (type.symbol.name === 'Array') {
+    if (symbol.name === 'Array') {
       return { type: await _arrayType.call(this) };
     }
 
-    if (type.symbol.name === '__type' && type.symbol.members) {
+    if (symbol.name === '__type' && symbol.members) {
       return { type: await _mapType.call(this) };
     }
 
-    if (type.symbol.escapedName === 'Promise') {
+    if (symbol.escapedName === 'Promise') {
       const typeRef = type as ts.TypeReference;
       if (!typeRef.typeArguments || typeRef.typeArguments.length !== 1) {
         this._diagnostic(

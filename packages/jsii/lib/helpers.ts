@@ -33,6 +33,8 @@ export async function sourceToAssemblyHelper(
     });
     const emitResult = await compiler.emit();
 
+    expect(emitResult.emitSkipped).toBeFalsy();
+
     const errors = emitResult.diagnostics.filter(
       (d) => d.category === DiagnosticCategory.Error,
     );

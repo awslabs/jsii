@@ -1020,7 +1020,7 @@ export class NodeStandardLibrary {
     /**
      * Returns the current os.platform() from the "os" node module.
      */
-    public get osPlatform() {
+    public get osPlatform(): string {
         return os.platform();
     }
 

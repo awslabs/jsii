@@ -221,7 +221,7 @@ export class Assembly extends ModuleLike {
             break;
 
           default:
-            throw new Error('Unknown type kind');
+            throw new Error(`Unsupported type kind: ${typeSpec.kind}`);
         }
 
         if (submodule != null) {
