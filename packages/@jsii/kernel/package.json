@@ -51,7 +51,7 @@
     "jsii-calc": "^0.0.0",
     "prettier": "^2.1.2",
     "ts-jest": "^26.3.0",
-    "typescript": "~3.9.7"
+    "typescript": "~4.0.2"
   },
   "jest": {
     "collectCoverage": true,

@@ -43,6 +43,6 @@
     "@types/semver": "^7.3.4",
     "jsii-build-tools": "^0.0.0",
     "semver": "^7.3.2",
-    "typescript": "~3.9.7"
+    "typescript": "~4.0.2"
   }
 }

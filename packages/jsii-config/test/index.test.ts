@@ -257,11 +257,11 @@ describe('jsii-config', () => {
 
     it('returns new config with empty values removed', async () => {
       const subject = await jsiiConfig('./package.json');
-      const expected = { ...configAnswers };
-      delete expected.jsii.targets.dotnet.iconUrl;
-      delete expected.jsii.targets.dotnet.signAssembly;
-      delete expected.jsii.targets.dotnet.versionSuffix;
-      delete expected.jsii.targets.java.maven.versionSuffix;
+      const expected: DeepPartial<typeof configAnswers> = { ...configAnswers };
+      delete expected.jsii?.targets?.dotnet?.iconUrl;
+      delete expected.jsii?.targets?.dotnet?.signAssembly;
+      delete expected.jsii?.targets?.dotnet?.versionSuffix;
+      delete expected.jsii?.targets?.java?.maven?.versionSuffix;
 
       expect(subject).toEqual({
         ...packageJsonObject,
@@ -459,3 +459,11 @@ describe('jsii-config', () => {
     });
   });
 });
+
+type DeepPartial<T> = {
+  [P in keyof T]?: T[P] extends Array<infer U>
+    ? Array<DeepPartial<U>>
+    : T[P] extends object // eslint-disable-line @typescript-eslint/ban-types
+    ? DeepPartial<T[P]>
+    : T[P];
+};

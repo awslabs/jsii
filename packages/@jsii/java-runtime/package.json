@@ -35,6 +35,6 @@
     "@jsii/runtime": "^0.0.0",
     "@types/node": "^10.17.35",
     "jsii-build-tools": "^0.0.0",
-    "typescript": "~3.9.7"
+    "typescript": "~4.0.2"
   }
 }

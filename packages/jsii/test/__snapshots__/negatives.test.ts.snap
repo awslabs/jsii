@@ -467,12 +467,12 @@ neg.omit.1.ts:7:33 - error JSII3004: Illegal extends clause for an exported API:
 7 export interface BarBaz extends Omit<FooBar, 'foo'> {
                                   ~~~~~~~~~~~~~~~~~~~
 
-  ../../../../node_modules/typescript/lib/lib.es5.d.ts:1462:35
-    1462 type Pick<T, K extends keyof T> = {
+  ../../../../node_modules/typescript/lib/lib.es5.d.ts:1480:35
+    1480 type Pick<T, K extends keyof T> = {
                                            ~
-    1463     [P in K]: T[P];
+    1481     [P in K]: T[P];
          ~~~~~~~~~~~~~~~~~~~
-    1464 };
+    1482 };
          ~
     The invalid super type is declared here.
 
@@ -484,12 +484,12 @@ neg.omit.2.ts:7:32 - error JSII3004: Illegal implements clause for an exported A
 7 export class BarBaz implements Omit<FooBar, 'foo'> {
                                  ~~~~~~~~~~~~~~~~~~~
 
-  ../../../../node_modules/typescript/lib/lib.es5.d.ts:1462:35
-    1462 type Pick<T, K extends keyof T> = {
+  ../../../../node_modules/typescript/lib/lib.es5.d.ts:1480:35
+    1480 type Pick<T, K extends keyof T> = {
                                            ~
-    1463     [P in K]: T[P];
+    1481     [P in K]: T[P];
          ~~~~~~~~~~~~~~~~~~~
-    1464 };
+    1482 };
          ~
     The invalid super type is declared here.
 

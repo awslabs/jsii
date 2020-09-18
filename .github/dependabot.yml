@@ -10,12 +10,12 @@ updates:
       - dependencies
     versioning-strategy: increase
     ignore:
-      - dependency-name: typescript
-        versions:
-          - ">= 3.10.a"
       - dependency-name: "@types/node"
         versions:
           - ">= 11.a"
+      - dependency-name: typescript
+        versions:
+          - ">= 4.1.a"
 
   - package-ecosystem: nuget
     directory: "/packages/@jsii/dotnet-runtime/src"
@@ -43,7 +43,7 @@ updates:
     labels:
       - dependencies
       - language/python
-    
+
   - package-ecosystem: github-actions
     directory: "/"
     schedule:
