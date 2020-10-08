@@ -1,0 +1,7 @@
+#!/usr/bin/env node
+
+require('@oclif/command').run()
+  .then(
+    require('@oclif/command/flush'),
+    require('@oclif/errors/handle')
+  )

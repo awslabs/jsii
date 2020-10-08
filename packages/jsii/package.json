@@ -22,10 +22,10 @@
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "bin": {
-    "jsii": "bin/jsii"
+    "jsii": "bin/run"
   },
   "scripts": {
-    "build": "cp ../../README.md . && bash ./generate.sh && tsc --build && npm run lint",
+    "build": "cp ../../README.md . && bash ./generate.sh && oclif-dev manifest && tsc --build && npm run lint",
     "watch": "bash ./generate.sh && tsc --build -w",
     "lint": "eslint . --ext .js,.ts --ignore-path=.gitignore --ignore-pattern=test/negatives/*",
     "lint:fix": "yarn lint --fix",
@@ -35,6 +35,9 @@
   },
   "dependencies": {
     "@jsii/spec": "^0.0.0",
+    "@oclif/command": "^1.8.0",
+    "@oclif/errors": "^1.3.3",
+    "@oclif/plugin-help": "^3.2.0",
     "case": "^1.6.3",
     "colors": "^1.4.0",
     "deep-equal": "^2.0.4",
@@ -44,10 +47,12 @@
     "semver-intersect": "^1.4.0",
     "sort-json": "^2.0.0",
     "spdx-license-list": "^6.3.0",
+    "tslib": "^2.0.1",
     "typescript": "~3.9.7",
     "yargs": "^16.0.3"
   },
   "devDependencies": {
+    "@oclif/dev-cli": "^1.22.2",
     "@types/clone": "^2.1.0",
     "@types/deep-equal": "^1.0.1",
     "@types/fs-extra": "^8.1.1",
@@ -63,6 +68,26 @@
     "jsii-build-tools": "^0.0.0",
     "prettier": "^2.1.2",
     "ts-jest": "^26.4.1"
+  },
+  "files": [
+    "/bin/run",
+    "/bin/run.cmd",
+    "/bin/**/*.d.ts",
+    "/bin/**/*.js",
+    "/lib/**/*.d.ts",
+    "/lib/**/*.js",
+    "/vendor/**/*.d.ts",
+    "/oclif.manifest.json",
+    "/LICENSE",
+    "/NOTICE",
+    "/README.md"
+  ],
+  "oclif": {
+    "commands": "./bin/commands",
+    "bin": "jsii",
+    "plugins": [
+      "@oclif/plugin-help"
+    ]
   },
   "jest": {
     "collectCoverage": true,

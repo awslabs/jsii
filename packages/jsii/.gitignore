@@ -1,5 +1,6 @@
 *.js
 *.d.ts
+oclif.manifest.json
 node_modules/
 .nyc_output/
 coverage/
