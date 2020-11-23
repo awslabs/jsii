@@ -3,7 +3,7 @@ import * as fs from 'fs-extra';
 import * as path from 'path';
 import * as xmlbuilder from 'xmlbuilder';
 
-import { TargetBuilder, BuildOptions } from '../builder';
+import { BuildOptions } from '../builder';
 import * as logging from '../logging';
 import { JsiiModule } from '../packaging';
 import {
@@ -12,7 +12,8 @@ import {
   TargetOptions,
   findLocalBuildDirs,
 } from '../target';
-import { shell, Scratch, setExtend, filterAsync } from '../util';
+import { shell, Scratch, setExtend, filterAsync, slugify } from '../util';
+import { AggregateBuilder, TemporaryPackage } from './aggregatebuilder';
 import { DotNetGenerator } from './dotnet/dotnetgenerator';
 import { toReleaseVersion } from './version-utils';
 
@@ -23,74 +24,34 @@ export const TARGET_FRAMEWORK = 'netcoreapp3.1';
 /**
  * Build .NET packages all together, by generating an aggregate solution file
  */
-export class DotnetBuilder implements TargetBuilder {
-  private readonly targetName = 'dotnet';
-
-  public constructor(
-    private readonly modules: readonly JsiiModule[],
-    private readonly options: BuildOptions,
-  ) {}
-
-  public async buildModules(): Promise<void> {
-    if (this.modules.length === 0) {
-      return;
-    }
-
-    if (this.options.codeOnly) {
-      // Simple, just generate code to respective output dirs
-      await Promise.all(
-        this.modules.map((module) =>
-          this.generateModuleCode(
-            module,
-            this.outputDir(module.outputDirectory),
-          ),
-        ),
-      );
-      return;
-    }
-
-    // Otherwise make a single tempdir to hold all sources, build them together and copy them back out
-    const scratchDirs: Array<Scratch<any>> = [];
-    try {
-      const tempSourceDir = await this.generateAggregateSourceDir(this.modules);
-      scratchDirs.push(tempSourceDir);
-
-      // Build solution
-      logging.debug('Building .NET');
-      await shell(
-        'dotnet',
-        ['build', '--force', '--configuration', 'Release'],
-        {
-          cwd: tempSourceDir.directory,
-          retry: { maxAttempts: 5 },
-        },
-      );
-
-      await this.copyOutArtifacts(tempSourceDir.object);
-      if (this.options.clean) {
-        await Scratch.cleanupAll(scratchDirs);
-      }
-    } catch (e) {
-      logging.warn(
-        `Exception occurred, not cleaning up ${scratchDirs
-          .map((s) => s.directory)
-          .join(', ')}`,
-      );
-      throw e;
-    }
+export class DotnetBuilder extends AggregateBuilder {
+  public constructor(modules: readonly JsiiModule[], options: BuildOptions) {
+    super('dotnet', modules, options);
   }
 
-  private async generateAggregateSourceDir(
-    modules: readonly JsiiModule[],
-  ): Promise<Scratch<TemporaryDotnetPackage[]>> {
+  protected async invokeBuild(
+    tempSourceDir: Scratch<TemporaryPackage[]>,
+    _scratchDirs: Array<Scratch<any>>,
+  ): Promise<void> {
+    logging.debug('Building .NET');
+    await shell('dotnet', ['build', '--force', '--configuration', 'Release'], {
+      cwd: tempSourceDir.directory,
+      retry: { maxAttempts: 5 },
+    });
+    await this.copyOutArtifacts(tempSourceDir.object);
+  }
+
+  protected async generateAggregateSourceDir(): Promise<
+    Scratch<TemporaryPackage[]>
+  > {
     return Scratch.make(async (tmpDir: string) => {
       logging.debug(`Generating aggregate .NET source dir at ${tmpDir}`);
 
       const csProjs = [];
-      const ret: TemporaryDotnetPackage[] = [];
+      const ret: TemporaryPackage[] = [];
 
       // Code generator will make its own subdirectory
-      const generatedModules = modules.map((mod) =>
+      const generatedModules = this.modules.map((mod) =>
         this.generateModuleCode(mod, tmpDir).then(() => mod),
       );
 
@@ -98,8 +59,15 @@ export class DotnetBuilder implements TargetBuilder {
         const loc = projectLocation(mod);
         csProjs.push(loc.projectFile);
         ret.push({
+          module: mod,
+          relativeSourceDir: slugify(mod.name),
+          relativeArtifactsDir: path.join(
+            tmpDir,
+            loc.projectDir,
+            'bin',
+            'Release',
+          ),
           outputTargetDirectory: mod.outputDirectory,
-          artifactsDir: path.join(tmpDir, loc.projectDir, 'bin', 'Release'),
         });
       }
 
@@ -111,45 +79,6 @@ export class DotnetBuilder implements TargetBuilder {
 
       return ret;
     });
-  }
-
-  private async copyOutArtifacts(packages: TemporaryDotnetPackage[]) {
-    logging.debug('Copying out .NET artifacts');
-
-    await Promise.all(packages.map(copyOutIndividualArtifacts.bind(this)));
-
-    async function copyOutIndividualArtifacts(
-      this: DotnetBuilder,
-      pkg: TemporaryDotnetPackage,
-    ) {
-      const targetDirectory = this.outputDir(pkg.outputTargetDirectory);
-
-      await fs.mkdirp(targetDirectory);
-      await fs.copy(pkg.artifactsDir, targetDirectory, {
-        recursive: true,
-        filter: (_, dst) => {
-          return dst !== path.join(targetDirectory, TARGET_FRAMEWORK);
-        },
-      });
-    }
-  }
-
-  private async generateModuleCode(
-    module: JsiiModule,
-    where: string,
-  ): Promise<void> {
-    const target = this.makeTarget(module);
-    logging.debug(`Generating ${this.targetName} code into ${where}`);
-    await target.generateCode(where, module.tarball);
-  }
-
-  /**
-   * Decide whether or not to append 'dotnet' to the given output directory
-   */
-  private outputDir(declaredDir: string) {
-    return this.options.languageSubdirectory
-      ? path.join(declaredDir, this.targetName)
-      : declaredDir;
   }
 
   /**
@@ -237,32 +166,37 @@ export class DotnetBuilder implements TargetBuilder {
     await fs.writeFile(filePath, xml);
   }
 
-  private makeTarget(module: JsiiModule): Dotnet {
+  protected makeTarget(options: TargetOptions): Target {
     return new Dotnet(
-      {
-        targetName: this.targetName,
-        packageDir: module.moduleDirectory,
-        assembly: module.assembly,
-        fingerprint: this.options.fingerprint,
-        force: this.options.force,
-        arguments: this.options.arguments,
-        rosetta: this.options.rosetta,
-      },
+      options,
       this.modules.map((m) => m.name),
     );
   }
-}
 
-interface TemporaryDotnetPackage {
-  /**
-   * Where the artifacts will be stored after build (relative to build dir)
-   */
-  artifactsDir: string;
+  private async copyOutArtifacts(
+    packages: readonly TemporaryPackage[],
+  ): Promise<void> {
+    logging.debug('Copying out .NET artifacts');
 
-  /**
-   * Where the artifacts ought to go for this particular module
-   */
-  outputTargetDirectory: string;
+    return Promise.all(
+      packages.map(copyOutIndividualArtifacts.bind(this)),
+    ).then(() => void null);
+
+    async function copyOutIndividualArtifacts(
+      this: DotnetBuilder,
+      pkg: TemporaryPackage,
+    ) {
+      const targetDirectory = this.outputDir(pkg.outputTargetDirectory);
+
+      await fs.mkdirp(targetDirectory);
+      return fs.copy(pkg.relativeArtifactsDir, targetDirectory, {
+        recursive: true,
+        filter: (_, dst) => {
+          return dst !== path.join(targetDirectory, TARGET_FRAMEWORK);
+        },
+      });
+    }
+  }
 }
 
 function projectLocation(module: JsiiModule) {

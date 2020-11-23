@@ -49,6 +49,13 @@
           "artifactId": "calculator-base-of-base"
         }
       },
+      "kotlin": {
+        "package": "software.amazon.jsii.tests.kotlin.calculator.baseofbase",
+        "maven": {
+          "groupId": "software.amazon.jsii.tests.kotlin",
+          "artifactId": "calculator-base-of-base"
+        }
+      },
       "dotnet": {
         "namespace": "Amazon.JSII.Tests.CalculatorNamespace.BaseOfBaseNamespace",
         "packageId": "Amazon.JSII.Tests.CalculatorPackageId.BaseOfBasePackageId"

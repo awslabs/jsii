@@ -59,6 +59,14 @@
           "versionSuffix": ".DEVPREVIEW"
         }
       },
+      "kotlin": {
+        "package": "software.amazon.jsii.tests.kotlin.calculator.lib",
+        "maven": {
+          "groupId": "software.amazon.jsii.tests.kotlin",
+          "artifactId": "calculator-lib",
+          "versionSuffix": ".DEVPREVIEW"
+        }
+      },
       "dotnet": {
         "namespace": "Amazon.JSII.Tests.CalculatorNamespace.LibNamespace",
         "packageId": "Amazon.JSII.Tests.CalculatorPackageId.LibPackageId",

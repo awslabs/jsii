@@ -236,6 +236,30 @@ The resulting artifact is a **Maven** package that can be deployed to [Maven Cen
 [maven central]: https://search.maven.org
 [nexus-staging-maven-plugin]: https://mvnrepository.com/artifact/org.sonatype.plugins/nexus-staging-maven-plugin
 
+#### Configuring `Kotlin/JVM`
+
+Kotlin/JVM target configuration is [similar to Java](#configuring-java).
+* `maven` – `groupId`, `artifactId` and optional `versionSuffix`, as in Java.
+* `package` – the containing Kotlin qualified package name.
+
+Example:
+```js
+{
+  "jsii": {
+    "kotlin-jvm": {
+      "package": "acme.jsii.hello",   // Required
+      "maven": {
+        "groupId": "acme",            // Required
+        "artifactId": "jsii-hello",   // Required
+        "versionSuffix": ".PREVIEW"   // Optional
+      }
+    },
+    // ...
+  },
+  // ...
+}
+````
+
 #### Configuring `.NET`
 
 The `dotnet` target requires the following configuration:

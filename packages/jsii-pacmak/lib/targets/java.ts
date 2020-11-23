@@ -12,19 +12,17 @@ import {
 import * as path from 'path';
 import * as xmlbuilder from 'xmlbuilder';
 
-import { TargetBuilder, BuildOptions } from '../builder';
+import { BuildOptions } from '../builder';
 import { Generator } from '../generator';
 import * as logging from '../logging';
 import { JsiiModule } from '../packaging';
-import {
-  PackageInfo,
-  Target,
-  findLocalBuildDirs,
-  TargetOptions,
-} from '../target';
-import { shell, Scratch, slugify, setExtend } from '../util';
+import { PackageInfo, Target, TargetOptions } from '../target';
+import { shell, Scratch } from '../util';
 import { VERSION, VERSION_DESC } from '../version';
 import { stabilityPrefixFor, renderSummary } from './_utils';
+import { TemporaryPackage } from './aggregatebuilder';
+import { JvmAggregateBuilder } from './jvm/jvmaggregatebuilder';
+import { getJvmPackageInfos } from './jvm/mavenutils';
 import { toMavenVersionRange, toReleaseVersion } from './version-utils';
 
 import {
@@ -51,117 +49,36 @@ const ANN_INTERNAL = '@software.amazon.jsii.Internal';
  * POM there, and then copying the artifacts back into the respective output
  * directories.
  */
-export class JavaBuilder implements TargetBuilder {
-  private readonly targetName = 'java';
-
-  public constructor(
-    private readonly modules: readonly JsiiModule[],
-    private readonly options: BuildOptions,
-  ) {}
-
-  public async buildModules(): Promise<void> {
-    if (this.modules.length === 0) {
-      return;
-    }
-
-    if (this.options.codeOnly) {
-      // Simple, just generate code to respective output dirs
-      await Promise.all(
-        this.modules.map((module) =>
-          this.generateModuleCode(
-            module,
-            this.options,
-            this.outputDir(module.outputDirectory),
-          ),
-        ),
-      );
-      return;
-    }
-
-    // Otherwise make a single tempdir to hold all sources, build them together and copy them back out
-    const scratchDirs: Array<Scratch<any>> = [];
-    try {
-      const tempSourceDir = await this.generateAggregateSourceDir(
-        this.modules,
-        this.options,
-      );
-      scratchDirs.push(tempSourceDir);
-
-      // Need any old module object to make a target to be able to invoke build, though none of its settings
-      // will be used.
-      const target = this.makeTarget(this.modules[0], this.options);
-      const tempOutputDir = await Scratch.make(async (dir) => {
-        logging.debug(`Building Java code to ${dir}`);
-        await target.build(tempSourceDir.directory, dir);
-      });
-      scratchDirs.push(tempOutputDir);
-
-      await this.copyOutArtifacts(
-        tempOutputDir.directory,
-        tempSourceDir.object,
-      );
-
-      if (this.options.clean) {
-        await Scratch.cleanupAll(scratchDirs);
-      }
-    } catch (e) {
-      logging.warn(
-        `Exception occurred, not cleaning up ${scratchDirs
-          .map((s) => s.directory)
-          .join(', ')}`,
-      );
-      throw e;
-    }
+export class JavaBuilder extends JvmAggregateBuilder {
+  public constructor(modules: readonly JsiiModule[], options: BuildOptions) {
+    super('java', modules, options);
   }
 
-  private async generateModuleCode(
-    module: JsiiModule,
-    options: BuildOptions,
-    where: string,
+  protected async invokeBuild(
+    tempSourceDir: Scratch<TemporaryPackage[]>,
+    scratchDirs: Array<Scratch<any>>,
   ): Promise<void> {
-    const target = this.makeTarget(module, options);
-    logging.debug(`Generating Java code into ${where}`);
-    await target.generateCode(where, module.tarball);
+    // Need any old module object to make a target to be able to invoke build, though none of its settings
+    // will be used.
+    const target = this.makeTargetForModule(this.modules[0]);
+    const tempOutputDir = await Scratch.make((dir) => {
+      logging.debug(`Building Java code to ${dir}`);
+      return target.build(tempSourceDir.directory, dir);
+    });
+    scratchDirs.push(tempOutputDir);
+
+    return this.copyOutArtifacts(tempOutputDir.directory, tempSourceDir.object);
   }
 
-  private async generateAggregateSourceDir(
-    modules: readonly JsiiModule[],
-    options: BuildOptions,
-  ): Promise<Scratch<TemporaryJavaPackage[]>> {
-    return Scratch.make(async (tmpDir: string) => {
-      logging.debug(`Generating aggregate Java source dir at ${tmpDir}`);
-      const ret: TemporaryJavaPackage[] = [];
-
-      const generatedModules = modules
-        .map((module) => ({ module, relativeName: slugify(module.name) }))
-        .map(({ module, relativeName }) => ({
-          module,
-          relativeName,
-          sourceDir: path.join(tmpDir, relativeName),
-        }))
-        .map(({ module, relativeName, sourceDir }) =>
-          this.generateModuleCode(module, options, sourceDir).then(() => ({
-            module,
-            relativeName,
-          })),
-        );
-
-      for await (const { module, relativeName } of generatedModules) {
-        ret.push({
-          relativeSourceDir: relativeName,
-          relativeArtifactsDir: moduleArtifactsSubdir(module),
-          outputTargetDirectory: module.outputDirectory,
-        });
-      }
-
-      await this.generateAggregatePom(
-        tmpDir,
-        ret.map((m) => m.relativeSourceDir),
-      );
-      await this.generateMavenSettingsForLocalDeps(tmpDir);
-
-      return ret;
-    });
+  protected async generateAdditionalAggregateFiles(
+    tmpDir: string,
+    ret: readonly TemporaryPackage[],
+  ): Promise<void> {
+    await this.generateAggregatePom(
+      tmpDir,
+      ret.map((m) => m.relativeSourceDir),
+    );
+    return this.generateMavenSettingsForLocalDeps(tmpDir).then(() => void null);
   }
 
   private async generateAggregatePom(where: string, moduleNames: string[]) {
@@ -194,47 +111,7 @@ export class JavaBuilder implements TargetBuilder {
       .end({ pretty: true });
 
     logging.debug(`Generated ${where}/pom.xml`);
-    await fs.writeFile(path.join(where, 'pom.xml'), aggregatePom);
-  }
-
-  private async copyOutArtifacts(
-    artifactsRoot: string,
-    packages: TemporaryJavaPackage[],
-  ) {
-    logging.debug('Copying out Java artifacts');
-    // The artifacts directory looks like this:
-    //  /tmp/XXX/software/amazon/awscdk/something/v1.2.3
-    //                                 /else/v1.2.3
-    //                                 /entirely/v1.2.3
-    //
-    // We get the 'software/amazon/awscdk/something' path from the package, identifying
-    // the files we need to copy, including Maven metadata. But we need to recreate
-    // the whole path in the target directory.
-
-    await Promise.all(
-      packages.map(async (pkg) => {
-        const artifactsSource = path.join(
-          artifactsRoot,
-          pkg.relativeArtifactsDir,
-        );
-        const artifactsDest = path.join(
-          this.outputDir(pkg.outputTargetDirectory),
-          pkg.relativeArtifactsDir,
-        );
-
-        await fs.mkdirp(artifactsDest);
-        await fs.copy(artifactsSource, artifactsDest, { recursive: true });
-      }),
-    );
-  }
-
-  /**
-   * Decide whether or not to append 'java' to the given output directory
-   */
-  private outputDir(declaredDir: string) {
-    return this.options.languageSubdirectory
-      ? path.join(declaredDir, this.targetName)
-      : declaredDir;
+    return fs.writeFile(path.join(where, 'pom.xml'), aggregatePom);
   }
 
   /**
@@ -244,42 +121,7 @@ export class JavaBuilder implements TargetBuilder {
    */
   private async generateMavenSettingsForLocalDeps(where: string) {
     const filePath = path.join(where, 'user.xml');
-
-    // traverse the dep graph of this module and find all modules that have
-    // an <outdir>/java directory. we will add those as local maven
-    // repositories which will resolve instead of Maven Central for those
-    // module. this enables building against local modules (i.e. in lerna
-    // repositories or linked modules).
-    const allDepsOutputDirs = new Set<string>();
-
-    const resolvedModules = this.modules.map(async (mod) => ({
-      module: mod,
-      localBuildDirs: await findLocalBuildDirs(
-        mod.moduleDirectory,
-        this.targetName,
-      ),
-    }));
-    for await (const { module, localBuildDirs } of resolvedModules) {
-      setExtend(allDepsOutputDirs, localBuildDirs);
-
-      // Also include output directory where we're building to, in case we build multiple packages into
-      // the same output directory.
-      allDepsOutputDirs.add(
-        path.join(
-          module.outputDirectory,
-          this.options.languageSubdirectory ? this.targetName : '',
-        ),
-      );
-    }
-
-    const localRepos = Array.from(allDepsOutputDirs);
-
-    // if java-runtime is checked-out and we can find a local repository,
-    // add it to the list.
-    const localJavaRuntime = await findJavaRuntimeLocalRepository();
-    if (localJavaRuntime) {
-      localRepos.push(localJavaRuntime);
-    }
+    const localRepos = await this.collectLocalRepos();
 
     logging.debug('local maven repos:', localRepos);
 
@@ -325,43 +167,9 @@ export class JavaBuilder implements TargetBuilder {
     return filePath;
   }
 
-  private makeTarget(module: JsiiModule, options: BuildOptions): Target {
-    return new Java({
-      targetName: this.targetName,
-      packageDir: module.moduleDirectory,
-      assembly: module.assembly,
-      fingerprint: options.fingerprint,
-      force: options.force,
-      arguments: options.arguments,
-      rosetta: options.rosetta,
-    });
+  protected makeTarget(options: TargetOptions): Target {
+    return new Java(options);
   }
-}
-
-interface TemporaryJavaPackage {
-  /**
-   * Where the sources are (relative to the source root)
-   */
-  relativeSourceDir: string;
-
-  /**
-   * Where the artifacts will be stored after build (relative to build dir)
-   */
-  relativeArtifactsDir: string;
-
-  /**
-   * Where the artifacts ought to go for this particular module
-   */
-  outputTargetDirectory: string;
-}
-
-/**
- * Return the subdirectory of the output directory where the artifacts for this particular package are produced
- */
-function moduleArtifactsSubdir(module: JsiiModule) {
-  const groupId = module.assembly.targets!.java!.maven.groupId;
-  const artifactId = module.assembly.targets!.java!.maven.artifactId;
-  return `${groupId.replace(/\./g, '/')}/${artifactId}`;
 }
 
 export default class Java extends Target {
@@ -370,44 +178,8 @@ export default class Java extends Target {
   ): { [language: string]: PackageInfo } {
     const groupId = assm.targets!.java!.maven.groupId;
     const artifactId = assm.targets!.java!.maven.artifactId;
-    const releaseVersion = toReleaseVersion(assm.version, TargetName.JAVA);
-    const url = `https://repo1.maven.org/maven2/${groupId.replace(
-      /\./g,
-      '/',
-    )}/${artifactId}/${assm.version}/`;
-    return {
-      java: {
-        repository: 'Maven Central',
-        url,
-        usage: {
-          'Apache Maven': {
-            language: 'xml',
-            code: xmlbuilder
-              .create({
-                dependency: { groupId, artifactId, version: releaseVersion },
-              })
-              .end({ pretty: true })
-              .replace(/<\?\s*xml(\s[^>]+)?>\s*/m, ''),
-          },
-          'Apache Buildr': `'${groupId}:${artifactId}:jar:${releaseVersion}'`,
-          'Apache Ivy': {
-            language: 'xml',
-            code: xmlbuilder
-              .create({
-                dependency: {
-                  '@groupId': groupId,
-                  '@name': artifactId,
-                  '@rev': releaseVersion,
-                },
-              })
-              .end({ pretty: true })
-              .replace(/<\?\s*xml(\s[^>]+)?>\s*/m, ''),
-          },
-          'Groovy Grape': `@Grapes(\n@Grab(group='${groupId}', module='${artifactId}', version='${releaseVersion}')\n)`,
-          'Gradle / Grails': `compile '${groupId}:${artifactId}:${releaseVersion}'`,
-        },
-      },
-    };
+    const version = assm.version;
+    return getJvmPackageInfos('java', groupId, artifactId, version);
   }
 
   public static toNativeReference(type: spec.Type, options: any) {
@@ -2913,25 +2685,6 @@ interface MavenDependency {
   optional?: boolean;
 
   '#comment'?: string;
-}
-
-/**
- * Looks up the `@jsii/java-runtime` package from the local repository.
- * If it contains a "maven-repo" directory, it will be added as a local maven repo
- * so when we build locally, we build against it and not against the one published
- * to Maven Central.
- */
-function findJavaRuntimeLocalRepository() {
-  try {
-    // eslint-disable-next-line @typescript-eslint/no-var-requires,@typescript-eslint/no-require-imports,import/no-extraneous-dependencies
-    const javaRuntime = require('@jsii/java-runtime');
-    logging.info(
-      `Using local version of the Java jsii runtime package at: ${javaRuntime.repository}`,
-    );
-    return javaRuntime.repository;
-  } catch {
-    return undefined;
-  }
 }
 
 function isNullable(optionalValue: spec.OptionalValue | undefined): boolean {

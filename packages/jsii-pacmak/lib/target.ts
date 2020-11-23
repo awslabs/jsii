@@ -35,7 +35,7 @@ export abstract class Target {
    * @param outDir the directory where the generated source will be placed.
    */
   public async generateCode(outDir: string, tarball: string): Promise<void> {
-    await this.generator.load(this.packageDir, this.assembly);
+    this.generator.load(this.packageDir, this.assembly);
 
     if (this.force || !(await this.generator.upToDate(outDir))) {
       this.generator.generate(this.fingerprint);

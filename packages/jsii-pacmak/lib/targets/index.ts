@@ -4,6 +4,7 @@ import { DotnetBuilder } from './dotnet';
 import { Golang } from './go';
 import { JavaBuilder } from './java';
 import JavaScript from './js';
+import { KotlinBuilder } from './kotlin';
 import Python from './python';
 
 export enum TargetName {
@@ -11,6 +12,7 @@ export enum TargetName {
   GO = 'go',
   JAVA = 'java',
   JAVASCRIPT = 'js',
+  KOTLIN = 'kotlin',
   PYTHON = 'python',
 }
 
@@ -24,6 +26,7 @@ export const ALL_BUILDERS: { [key in TargetName]: BuilderFactory } = {
   go: (ms, o) => new OneByOneBuilder(TargetName.GO, Golang, ms, o),
   java: (ms, o) => new JavaBuilder(ms, o),
   js: (ms, o) => new OneByOneBuilder(TargetName.JAVASCRIPT, JavaScript, ms, o),
+  kotlin: (ms, o) => new KotlinBuilder(ms, o),
   python: (ms, o) => new OneByOneBuilder(TargetName.PYTHON, Python, ms, o),
 };
 

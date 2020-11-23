@@ -113,6 +113,7 @@ describe(toReleaseVersion, () => {
       go: '1.2.3',
       java: '1.2.3',
       js: '1.2.3',
+      kotlin: '1.2.3',
       python: '1.2.3',
     },
     '1.2.3-pre': {
@@ -120,6 +121,7 @@ describe(toReleaseVersion, () => {
       go: '1.2.3-pre',
       java: '1.2.3-pre',
       js: '1.2.3-pre',
+      kotlin: '1.2.3-pre',
       python: /Unable to map prerelease identifier \(in: 1\.2\.3-pre\) components to python: \[ 'pre' \]/,
     },
     '1.2.3-alpha.1337': {
@@ -127,6 +129,7 @@ describe(toReleaseVersion, () => {
       go: '1.2.3-alpha.1337',
       java: '1.2.3-alpha.1337',
       js: '1.2.3-alpha.1337',
+      kotlin: '1.2.3-alpha.1337',
       python: '1.2.3.a1337',
     },
     '1.2.3-beta.42': {
@@ -134,6 +137,7 @@ describe(toReleaseVersion, () => {
       go: '1.2.3-beta.42',
       java: '1.2.3-beta.42',
       js: '1.2.3-beta.42',
+      kotlin: '1.2.3-beta.42',
       python: '1.2.3.b42',
     },
     '1.2.3-rc.9': {
@@ -141,6 +145,7 @@ describe(toReleaseVersion, () => {
       go: '1.2.3-rc.9',
       java: '1.2.3-rc.9',
       js: '1.2.3-rc.9',
+      kotlin: '1.2.3-rc.9',
       python: '1.2.3.rc9',
     },
   };

@@ -42,7 +42,7 @@ export interface IGenerator {
    * Load a module into the generator.
    * @param packageDir is the root directory of the module.
    */
-  load(packageDir: string, assembly: reflect.Assembly): Promise<void>;
+  load(packageDir: string, assembly: reflect.Assembly): void;
 
   /**
    * Determine if the generated artifacts for this generator are already up-to-date.
@@ -53,18 +53,54 @@ export interface IGenerator {
   save(outdir: string, tarball: string): Promise<any>;
 }
 
+export abstract class GeneratorBase implements IGenerator {
+  public constructor(protected readonly options: GeneratorOptions = {}) {}
+
+  public abstract generate(fingerprint: boolean): void;
+  public abstract load(packageDir: string, assembly: reflect.Assembly): void;
+  public abstract async upToDate(outDir: string): Promise<boolean>;
+  public abstract async save(outdir: string, tarball: string): Promise<any>;
+
+  protected calculateFingerprint(assembly: reflect.Assembly): string {
+    return crypto
+      .createHash('sha256')
+      .update(VERSION_DESC)
+      .update('\0')
+      .update(assembly.fingerprint)
+      .digest('base64');
+  }
+
+  /**
+   * Returns the file name of the assembly resource as it is going to be saved.
+   */
+  protected getAssemblyArchiveFileName(assembly: reflect.Assembly): string {
+    let name = assembly.name;
+    const parts = name.split('/');
+
+    if (parts.length === 1) {
+      name = parts[0];
+    } else if (parts.length === 2 && parts[0].startsWith('@')) {
+      name = parts[1];
+    } else {
+      throw new Error(
+        'Malformed assembly name. Expecting either <name> or @<scope>/<name>',
+      );
+    }
+
+    return `${name}@${assembly.version}.jsii.tgz`;
+  }
+}
+
 /**
  * Abstract base class for jsii package generators.
  * Given a jsii module, it will invoke "events" to emit various elements.
  */
-export abstract class Generator implements IGenerator {
+export abstract class Generator extends GeneratorBase {
   private readonly excludeTypes = new Array<string>();
   protected readonly code = new CodeMaker();
   private _assembly?: spec.Assembly;
   protected _reflectAssembly?: reflect.Assembly;
   private fingerprint?: string;
-
-  public constructor(private readonly options: GeneratorOptions = {}) {}
 
   protected get assembly(): spec.Assembly {
     if (!this._assembly) {
@@ -86,22 +122,12 @@ export abstract class Generator implements IGenerator {
     return { fingerprint: this.fingerprint };
   }
 
-  public async load(
-    _packageRoot: string,
-    assembly: reflect.Assembly,
-  ): Promise<void> {
+  public load(_packageRoot: string, assembly: reflect.Assembly): void {
     this._reflectAssembly = assembly;
     this._assembly = assembly.spec;
 
     // Including the version of jsii-pacmak in the fingerprint, as a new version may imply different code generation.
-    this.fingerprint = crypto
-      .createHash('sha256')
-      .update(VERSION_DESC)
-      .update('\0')
-      .update(this.assembly.fingerprint)
-      .digest('base64');
-
-    return Promise.resolve();
+    this.fingerprint = this.calculateFingerprint(assembly);
   }
 
   /**
@@ -113,28 +139,15 @@ export abstract class Generator implements IGenerator {
     this.onEndAssembly(this.assembly, fingerprint);
   }
 
-  public async upToDate(_: string): Promise<boolean> {
+  public async upToDate(_outDir: string): Promise<boolean> {
     return Promise.resolve(false);
   }
 
   /**
    * Returns the file name of the assembly resource as it is going to be saved.
    */
-  protected getAssemblyFileName() {
-    let name = this.assembly.name;
-    const parts = name.split('/');
-
-    if (parts.length === 1) {
-      name = parts[0];
-    } else if (parts.length === 2 && parts[0].startsWith('@')) {
-      name = parts[1];
-    } else {
-      throw new Error(
-        'Malformed assembly name. Expecting either <name> or @<scope>/<name>',
-      );
-    }
-
-    return `${name}@${this.assembly.version}.jsii.tgz`;
+  protected getAssemblyFileName(): string {
+    return this.getAssemblyArchiveFileName(this.reflectAssembly);
   }
 
   /**
