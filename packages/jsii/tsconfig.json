@@ -1,13 +1,6 @@
 {
   "extends": "../../tsconfig-base",
-  "include": [
-    "**/*.ts"
-  ],
-  "exclude": [
-    "test/negatives/*",
-    "jest.config.ts",
-  ],
-  "references": [
-    { "path": "../@jsii/spec" },
-  ],
+  "include": ["**/*.ts"],
+  "exclude": ["test/negatives/*", "jest.config.ts"],
+  "references": [{ "path": "../@jsii/config" }, { "path": "../@jsii/spec" }]
 }

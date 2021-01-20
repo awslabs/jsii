@@ -1,3 +1,4 @@
+import { load as loadJsiiConfig } from '@jsii/config';
 import * as spec from '@jsii/spec';
 import * as fs from 'fs-extra';
 import * as path from 'path';
@@ -37,8 +38,10 @@ export async function findJsiiModules(
     } // Already visited
     visited.add(realPath);
 
-    const pkg = await fs.readJson(path.join(realPath, 'package.json'));
-    if (!pkg.jsii?.outdir || !pkg.jsii?.targets) {
+    const jsiiConfig = loadJsiiConfig(realPath, {
+      nonJsiiHandling: 'return-undefined',
+    });
+    if (jsiiConfig == null) {
       if (isRoot) {
         throw new Error(
           `Invalid "jsii" section in ${realPath}. Expecting "outdir" and "targets"`,
@@ -47,6 +50,8 @@ export async function findJsiiModules(
         return; // just move on, this is not a jsii package
       }
     }
+
+    const pkg = await fs.readJson(path.join(realPath, 'package.json'));
 
     if (!pkg.name) {
       throw new Error(
@@ -70,9 +75,8 @@ export async function findJsiiModules(
     }
 
     // outdir is either by package.json/jsii.outdir (relative to package root) or via command line (relative to cwd)
-    const outputDirectory =
-      pkg.jsii.outdir && path.resolve(realPath, pkg.jsii.outdir);
-    const targets = [...Object.keys(pkg.jsii.targets), 'js']; // "js" is an implicit target.
+    const outputDirectory = path.resolve(realPath, jsiiConfig.outdir);
+    const targets = Object.keys(jsiiConfig.targets);
 
     ret.push(
       new JsiiModule({

@@ -65,11 +65,11 @@ rules:
   '@typescript-eslint/member-ordering':
     - error
     - default:
-      - static-field
-      - static-method
-      - instance-field
-      - constructor
-      - instance-method
+        - static-field
+        - static-method
+        - instance-field
+        - constructor
+        - instance-method
 
   '@typescript-eslint/no-empty-function':
     - error
@@ -160,9 +160,11 @@ rules:
 
   'import/no-extraneous-dependencies':
     - error
-    - devDependencies: ['**/test/**'] # Only allow importing devDependencies from tests
-      optionalDependencies: false     # Disallow importing optional dependencies (those shouldn't be used here)
-      peerDependencies: false         # Disallow importing peer dependencies (those shouldn't be used here)
+    - devDependencies: # Only allow importing devDependencies from tests
+        - '**/test/**'
+        - '**/*.test.*'
+      optionalDependencies: false # Disallow importing optional dependencies (those shouldn't be used here)
+      peerDependencies: false # Disallow importing peer dependencies (those shouldn't be used here)
 
   'import/no-unresolved':
     - error

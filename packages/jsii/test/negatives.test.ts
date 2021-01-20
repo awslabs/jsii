@@ -99,5 +99,6 @@ function _makeProjectInfo(types: string): ProjectInfo {
     bundleDependencies: {},
     targets: {},
     excludeTypescript: [],
+    managedTsconfig: true,
   };
 }

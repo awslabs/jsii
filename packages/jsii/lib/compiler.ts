@@ -11,13 +11,12 @@ import { JsiiDiagnostic } from './jsii-diagnostic';
 import { ProjectInfo } from './project-info';
 import * as utils from './utils';
 
-const BASE_COMPILER_OPTIONS: ts.CompilerOptions = {
+export const BASE_COMPILER_OPTIONS: ts.CompilerOptions = {
   alwaysStrict: true,
   charset: 'utf8',
   declaration: true,
   experimentalDecorators: true,
   inlineSourceMap: true,
-  inlineSources: true,
   lib: ['lib.es2018.d.ts'],
   module: ts.ModuleKind.CommonJS,
   newLine: ts.NewLineKind.LineFeed,
@@ -178,7 +177,9 @@ export class Compiler implements Emitter {
    */
   private async _prepareForBuild(...files: string[]) {
     await this.buildTypeScriptConfig();
-    await this.writeTypeScriptConfig();
+    if (this.options.projectInfo.managedTsconfig) {
+      await this.writeTypeScriptConfig();
+    }
     this.rootFiles = this.determineSources(files);
   }
 
@@ -287,43 +288,87 @@ export class Compiler implements Emitter {
    * This is the object that will be written to disk.
    */
   private async buildTypeScriptConfig() {
-    let references: string[] | undefined;
-    let composite: boolean | undefined;
-    let incremental: boolean | undefined;
-    if (this.projectReferences) {
-      references = await this.findProjectReferences();
-      composite = true;
-      incremental = true;
-    }
-
     const pi = this.options.projectInfo;
 
+    if (pi.managedTsconfig) {
+      let composite: boolean | undefined;
+      let incremental: boolean | undefined;
+      let references: string[] | undefined;
+
+      if (this.projectReferences) {
+        references = await this.findProjectReferences();
+        composite = true;
+        incremental = true;
+      }
+
+      this.typescriptConfig = {
+        compilerOptions: {
+          ...pi.tsc,
+          ...BASE_COMPILER_OPTIONS,
+          composite,
+          incremental,
+          // When incremental, configure a tsbuildinfo file
+          tsBuildInfoFile: incremental ? './tsconfig.tsbuildinfo' : undefined,
+        },
+        include: [
+          pi.tsc?.rootDir != null
+            ? path.join(pi.tsc.rootDir, '**', '*.ts')
+            : path.join('**', '*.ts'),
+        ],
+        exclude: [
+          'node_modules',
+          ...pi.excludeTypescript,
+          ...(pi.tsc?.outDir != null
+            ? [path.join(pi.tsc.outDir, '**', '*.ts')]
+            : []),
+        ],
+        // Change the references a little. We write 'originalpath' to the
+        // file under the 'path' key, which is the same as what the
+        // TypeScript compiler does. Make it relative so that the files are
+        // movable. Not strictly required but looks better.
+        references: references?.map((p) => ({ path: p })),
+      };
+      return;
+    }
+    const tsconfigFile = path.join(pi.projectRoot, 'tsconfig.json');
+    const { config, error } = ts.parseConfigFileTextToJson(
+      tsconfigFile,
+      await fs.readFile(tsconfigFile, { encoding: 'utf-8' }),
+    );
+
+    if (error != null) {
+      throw new Error(utils.formatDiagnostic(error, pi.projectRoot));
+    }
+
+    const parsedCommandLine = ts.parseJsonConfigFileContent(
+      config,
+      ts.sys,
+      pi.projectRoot,
+    );
+
+    if (parsedCommandLine.errors.length > 0) {
+      throw new Error(
+        parsedCommandLine.errors
+          .map((diag) => utils.formatDiagnostic(diag, pi.projectRoot))
+          .join('\n'),
+      );
+    }
+
+    const compilerOptions = parsedCommandLine.options;
+
+    const { exclude, include, references } = config;
     this.typescriptConfig = {
       compilerOptions: {
-        ...pi.tsc,
         ...BASE_COMPILER_OPTIONS,
-        composite,
-        incremental,
-        // When incremental, configure a tsbuildinfo file
-        tsBuildInfoFile: incremental ? './tsconfig.tsbuildinfo' : undefined,
+        ...compilerOptions,
+        // When incremental, configure a tsbuildinfo file (it is required for certain kinds of usage)
+        tsBuildInfoFile: compilerOptions.incremental
+          ? './tsconfig.tsbuildinfo'
+          : undefined,
       },
-      include: [
-        pi.tsc?.rootDir != null
-          ? path.join(pi.tsc.rootDir, '**', '*.ts')
-          : path.join('**', '*.ts'),
-      ],
-      exclude: [
-        'node_modules',
-        ...pi.excludeTypescript,
-        ...(pi.tsc?.outDir != null
-          ? [path.join(pi.tsc.outDir, '**', '*.ts')]
-          : []),
-      ],
-      // Change the references a little. We write 'originalpath' to the
-      // file under the 'path' key, which is the same as what the
-      // TypeScript compiler does. Make it relative so that the files are
-      // movable. Not strictly required but looks better.
-      references: references?.map((p) => ({ path: p })),
+      exclude,
+      include,
+      references,
     };
   }
 

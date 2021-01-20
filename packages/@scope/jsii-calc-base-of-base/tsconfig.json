@@ -1,0 +1,58 @@
+{
+  "compilerOptions": {
+    "alwaysStrict": true,
+    "charset": "utf8",
+    "declaration": true,
+    "experimentalDecorators": true,
+    "inlineSourceMap": true,
+    "lib": ["es2018"],
+    "noEmitOnError": true,
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitAny": true,
+    "noImplicitReturns": true,
+    "noImplicitThis": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "resolveJsonModule": true,
+    "strict": true,
+    "strictNullChecks": true,
+    "strictPropertyInitialization": true,
+    "stripInternal": false,
+    "composite": true,
+    "incremental": true
+  },
+  "include": ["**/*.ts"],
+  "exclude": ["node_modules"],
+  // The JSII configuration
+  "x-jsii": {
+    "outdir": "dist",
+    "targets": {
+      "go": {
+        "moduleName": "github.com/aws-cdk/jsii/jsii-calc/go"
+      },
+      "java": {
+        "package": "software.amazon.jsii.tests.calculator.baseofbase",
+        "maven": {
+          "groupId": "software.amazon.jsii.tests",
+          "artifactId": "calculator-base-of-base"
+        }
+      },
+      "dotnet": {
+        "namespace": "Amazon.JSII.Tests.CalculatorNamespace.BaseOfBaseNamespace",
+        "packageId": "Amazon.JSII.Tests.CalculatorPackageId.BaseOfBasePackageId"
+      },
+      "python": {
+        "distName": "scope.jsii-calc-base-of-base",
+        "module": "scope.jsii_calc_base_of_base"
+      }
+    },
+    "versionFormat": "short",
+    "metadata": {
+      "jsii": {
+        "rosetta": {
+          "strict": true
+        }
+      }
+    }
+  }
+}

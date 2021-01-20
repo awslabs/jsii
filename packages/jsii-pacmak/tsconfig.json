@@ -1,13 +1,12 @@
 {
   "extends": "../../tsconfig-base",
-  "include": [
-    "**/*.ts"
-  ],
+  "include": ["**/*.ts"],
   "exclude": ["jest.config.ts"],
   "references": [
+    { "path": "../@jsii/config" },
     { "path": "../@jsii/spec" },
     { "path": "../codemaker" },
     { "path": "../jsii-rosetta" },
-    { "path": "../jsii-reflect" },
-  ],
+    { "path": "../jsii-reflect" }
+  ]
 }

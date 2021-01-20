@@ -34,11 +34,13 @@
     "package": "package-js"
   },
   "dependencies": {
+    "@jsii/config": "^0.0.0",
     "@jsii/spec": "^0.0.0",
     "case": "^1.6.3",
     "colors": "^1.4.0",
     "deep-equal": "^2.0.5",
     "fs-extra": "^9.0.1",
+    "jsonschema": "^1.4.0",
     "log4js": "^6.3.0",
     "semver": "^7.3.4",
     "semver-intersect": "^1.4.0",
@@ -62,6 +64,7 @@
     "jest-expect-message": "^1.0.2",
     "jsii-build-tools": "^0.0.0",
     "prettier": "^2.2.1",
-    "ts-jest": "^26.4.4"
+    "ts-jest": "^26.4.4",
+    "typescript-json-schema": "^0.45.1"
   }
 }

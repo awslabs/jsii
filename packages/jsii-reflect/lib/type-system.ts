@@ -97,9 +97,6 @@ export class TypeSystem {
     ) {
       const filePath = path.join(moduleDirectory, 'package.json');
       const pkg = JSON.parse((await readFile(filePath)).toString());
-      if (!pkg.jsii) {
-        throw new Error(`No "jsii" section in ${filePath}`);
-      }
 
       // Load the assembly, but don't recurse if we already have an assembly with the same name.
       // Validation is not an insignificant time sink, and loading IS insignificant, so do a

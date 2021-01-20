@@ -1,0 +1,12 @@
+*
+
+!/lib/**/*.js
+!/lib/**/*.d.ts
+!/schema/**/*.schema.json
+
+!/LICENSE
+!/NOTICE
+!/README.md
+
+*.test.js
+*.test.d.ts

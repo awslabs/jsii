@@ -1,3 +1,4 @@
+import * as config from '@jsii/config';
 import * as spec from '@jsii/spec';
 import * as fs from 'fs-extra';
 import * as log4js from 'log4js';
@@ -49,10 +50,13 @@ export interface ProjectInfo {
   readonly description?: string;
   readonly homepage?: string;
   readonly contributors?: readonly spec.Person[];
-  readonly excludeTypescript: string[];
+  readonly excludeTypescript: readonly string[];
   readonly projectReferences?: boolean;
   readonly tsc?: TSCompilerOptions;
   readonly bin?: { readonly [name: string]: string };
+
+  /** Whether the typescript configuration for this project is managed by jsii. */
+  readonly managedTsconfig: boolean;
 }
 
 export async function loadProjectInfo(
@@ -141,6 +145,8 @@ export async function loadProjectInfo(
 
   const transitiveDependencies = Object.values(transitiveAssemblies);
 
+  const jsiiConfig = config.load(projectRoot);
+
   const metadata = mergeMetadata(
     {
       jsii: {
@@ -150,12 +156,21 @@ export async function loadProjectInfo(
         },
       },
     },
-    pkg.jsii?.metadata,
+    jsiiConfig.metadata,
   );
+
+  const tsconfig =
+    jsiiConfig.configStyle === config.JsiiConfigStyle.PACKAGE_JSON
+      ? jsiiConfig.tsconfig
+      : undefined;
 
   return {
     projectRoot,
     packageJson: pkg,
+
+    // If the configuration is from package.json, then we own the tsconfig.json
+    managedTsconfig:
+      jsiiConfig.configStyle === config.JsiiConfigStyle.PACKAGE_JSON,
 
     name: _required(
       pkg.name,
@@ -196,15 +211,9 @@ export async function loadProjectInfo(
     peerDependencies,
     dependencyClosure: transitiveDependencies,
     bundleDependencies,
-    targets: {
-      ..._required(
-        pkg.jsii,
-        'The "package.json" file must specify the "jsii" attribute',
-      ).targets,
-      js: { npm: pkg.name },
-    },
+    targets: jsiiConfig.targets,
     metadata,
-    jsiiVersionFormat: _validateVersionFormat(pkg.jsii.versionFormat ?? 'full'),
+    jsiiVersionFormat: jsiiConfig.versionFormat,
 
     description: pkg.description,
     homepage: pkg.homepage,
@@ -212,14 +221,11 @@ export async function loadProjectInfo(
       _toPerson(contrib, `contributors[${index}]`, 'contributor'),
     ),
 
-    excludeTypescript: pkg.jsii?.excludeTypescript ?? [],
-    projectReferences: pkg.jsii?.projectReferences,
-    tsc: {
-      outDir: pkg.jsii?.tsc?.outDir,
-      rootDir: pkg.jsii?.tsc?.rootDir,
-    },
+    excludeTypescript: tsconfig?.exclude ?? [],
+    projectReferences: tsconfig?.references,
+    tsc: tsconfig?.compilerOptions,
     bin: pkg.bin,
-    diagnostics: _loadDiagnostics(pkg.jsii?.diagnostics),
+    diagnostics: _loadDiagnostics(jsiiConfig.diagnostics),
   };
 }
 
@@ -378,15 +384,6 @@ function _validateLicense(id: string): string {
   return id;
 }
 
-function _validateVersionFormat(format: string): 'short' | 'full' {
-  if (format !== 'short' && format !== 'full') {
-    throw new Error(
-      `Invalid jsii.versionFormat "${format}", it must be either "short" or "full" (the default)`,
-    );
-  }
-  return format;
-}
-
 function _validateStability(
   stability: string | undefined,
   deprecated: string | undefined,
@@ -470,19 +467,15 @@ function mergeMetadata(
 }
 
 function _loadDiagnostics(entries?: {
-  [key: string]: string;
-}):
-  | {
-      [key: string]: ts.DiagnosticCategory;
-    }
-  | undefined {
+  readonly [key: string]: string;
+}): Record<string, ts.DiagnosticCategory> | undefined {
   if (entries === undefined || Object.keys(entries).length === 0) {
     return undefined;
   }
-  const result: { [key: string]: ts.DiagnosticCategory } = {};
-  for (const code of Object.keys(entries)) {
+  const result: Record<string, ts.DiagnosticCategory> = {};
+  for (const [code, setting] of Object.entries(entries)) {
     let category: ts.DiagnosticCategory;
-    switch (entries[code].trim().toLowerCase()) {
+    switch (setting.toLowerCase()) {
       case 'error':
         category = ts.DiagnosticCategory.Error;
         break;

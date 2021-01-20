@@ -1,0 +1,51 @@
+{
+  "name": "@jsii/config",
+  "version": "0.0.0",
+  "description": "Access the configuration of jsii projects",
+  "license": "Apache-2.0",
+  "author": {
+    "name": "Amazon Web Services",
+    "url": "https://aws.amazon.com"
+  },
+  "homepage": "https://github.com/aws/jsii",
+  "bugs": {
+    "url": "https://github.com/aws/jsii/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/aws/jsii.git",
+    "directory": "packages/@jsii/config"
+  },
+  "engines": {
+    "node": ">= 10.3.0"
+  },
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "scripts": {
+    "build": "yarn gen && tsc --build && yarn lint",
+    "gen": "node build-tools/generate.js",
+    "watch": "yarn gen && tsc --build -w",
+    "lint": "eslint . --ext .js,.ts --ignore-path=.gitignore --ignore-pattern='build-tools/*'",
+    "lint:fix": "yarn lint --fix",
+    "test": "jest",
+    "test:update": "jest -u",
+    "package": "package-js"
+  },
+  "dependencies": {
+    "@jsii/spec": "^0.0.0",
+    "jsonschema": "^1.4.0",
+    "spdx-license-list": "^6.3.0",
+    "typescript": "~3.9.7"
+  },
+  "devDependencies": {
+    "@types/fs-extra": "^8.1.1",
+    "@types/jest": "^26.0.19",
+    "@types/node": "^10.17.49",
+    "eslint": "^7.16.0",
+    "fs-extra": "^9.0.1",
+    "jest": "^26.6.3",
+    "jsii-build-tools": "^0.0.0",
+    "prettier": "^2.2.1",
+    "typescript-json-schema": "^0.45.1"
+  }
+}
