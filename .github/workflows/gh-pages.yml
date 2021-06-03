@@ -27,7 +27,7 @@ jobs:
         run: |-
           echo "::set-output name=pip-cache::$(python3 -m pip cache dir)"
       - name: Cache
-        uses: actions/cache@v2.1.5
+        uses: actions/cache@v2.1.6
         with:
           path: ${{ steps.cache-locations.outputs.pip-cache }}
           key: ${{ runner.os }}-${{ hashFiles('**/requirements-dev.txt') }}

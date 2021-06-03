@@ -2928,10 +2928,18 @@ exports[`Generated code for "jsii-calc": <outDir>/ 1`] = `
        ┃           ┃  ┣━ 📄 Derived.cs
        ┃           ┃  ┗━ 📄 IFoo.cs
        ┃           ┣━ 📁 Module2702
+       ┃           ┃  ┣━ 📄 Baz.cs
        ┃           ┃  ┣━ 📄 Class1.cs
        ┃           ┃  ┣━ 📄 Class2.cs
        ┃           ┃  ┣━ 📄 Class3.cs
-       ┃           ┃  ┗━ 📄 IFoo.cs
+       ┃           ┃  ┣━ 📄 Construct.cs
+       ┃           ┃  ┣━ 📄 IBaz.cs
+       ┃           ┃  ┣━ 📄 IConstruct.cs
+       ┃           ┃  ┣━ 📄 IFoo.cs
+       ┃           ┃  ┣━ 📄 IResource.cs
+       ┃           ┃  ┣━ 📄 IVpc.cs
+       ┃           ┃  ┣━ 📄 Resource.cs
+       ┃           ┃  ┗━ 📄 Vpc.cs
        ┃           ┣━ 📄 Multiply.cs
        ┃           ┣━ 📄 NamespaceDoc.cs
        ┃           ┣━ 📄 Negate.cs
@@ -12867,6 +12875,44 @@ namespace Amazon.JSII.Tests.CalculatorNamespace.Module2700
 
 `;
 
+exports[`Generated code for "jsii-calc": <outDir>/dotnet/Amazon.JSII.Tests.CalculatorPackageId/Amazon/JSII/Tests/CalculatorNamespace/Module2702/Baz.cs 1`] = `
+using Amazon.JSII.Runtime.Deputy;
+
+#pragma warning disable CS0672,CS0809,CS1591
+
+namespace Amazon.JSII.Tests.CalculatorNamespace.Module2702
+{
+    [JsiiClass(nativeType: typeof(Amazon.JSII.Tests.CalculatorNamespace.Module2702.Baz), fullyQualifiedName: "jsii-calc.module2702.Baz")]
+    public class Baz : Amazon.JSII.Tests.CalculatorNamespace.Module2702.Class3, Amazon.JSII.Tests.CalculatorNamespace.Module2702.IBaz
+    {
+        public Baz(): base(new DeputyProps(System.Array.Empty<object?>()))
+        {
+        }
+
+        /// <summary>Used by jsii to construct an instance of this class from a Javascript-owned object reference</summary>
+        /// <param name="reference">The Javascript-owned object reference</param>
+        [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
+        protected Baz(ByRefValue reference): base(reference)
+        {
+        }
+
+        /// <summary>Used by jsii to construct an instance of this class from DeputyProps</summary>
+        /// <param name="props">The deputy props</param>
+        [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
+        protected Baz(DeputyProps props): base(props)
+        {
+        }
+
+        [JsiiMethod(name: "bazMethod", isOverride: true)]
+        public virtual void BazMethod()
+        {
+            InvokeInstanceVoidMethod(new System.Type[]{}, new object[]{});
+        }
+    }
+}
+
+`;
+
 exports[`Generated code for "jsii-calc": <outDir>/dotnet/Amazon.JSII.Tests.CalculatorPackageId/Amazon/JSII/Tests/CalculatorNamespace/Module2702/Class1.cs 1`] = `
 using Amazon.JSII.Runtime.Deputy;
 
@@ -12993,6 +13039,118 @@ namespace Amazon.JSII.Tests.CalculatorNamespace.Module2702
 
 `;
 
+exports[`Generated code for "jsii-calc": <outDir>/dotnet/Amazon.JSII.Tests.CalculatorPackageId/Amazon/JSII/Tests/CalculatorNamespace/Module2702/Construct.cs 1`] = `
+using Amazon.JSII.Runtime.Deputy;
+
+#pragma warning disable CS0672,CS0809,CS1591
+
+namespace Amazon.JSII.Tests.CalculatorNamespace.Module2702
+{
+    [JsiiClass(nativeType: typeof(Amazon.JSII.Tests.CalculatorNamespace.Module2702.Construct), fullyQualifiedName: "jsii-calc.module2702.Construct")]
+    public class Construct : DeputyBase, Amazon.JSII.Tests.CalculatorNamespace.Module2702.IConstruct
+    {
+        public Construct(): base(new DeputyProps(System.Array.Empty<object?>()))
+        {
+        }
+
+        /// <summary>Used by jsii to construct an instance of this class from a Javascript-owned object reference</summary>
+        /// <param name="reference">The Javascript-owned object reference</param>
+        [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
+        protected Construct(ByRefValue reference): base(reference)
+        {
+        }
+
+        /// <summary>Used by jsii to construct an instance of this class from DeputyProps</summary>
+        /// <param name="props">The deputy props</param>
+        [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
+        protected Construct(DeputyProps props): base(props)
+        {
+        }
+
+        [JsiiMethod(name: "constructMethod", isOverride: true)]
+        public virtual void ConstructMethod()
+        {
+            InvokeInstanceVoidMethod(new System.Type[]{}, new object[]{});
+        }
+    }
+}
+
+`;
+
+exports[`Generated code for "jsii-calc": <outDir>/dotnet/Amazon.JSII.Tests.CalculatorPackageId/Amazon/JSII/Tests/CalculatorNamespace/Module2702/IBaz.cs 1`] = `
+using Amazon.JSII.Runtime.Deputy;
+
+#pragma warning disable CS0672,CS0809,CS1591
+
+namespace Amazon.JSII.Tests.CalculatorNamespace.Module2702
+{
+    [JsiiInterface(nativeType: typeof(IBaz), fullyQualifiedName: "jsii-calc.module2702.IBaz")]
+    public interface IBaz : Amazon.JSII.Tests.CalculatorNamespace.BaseNamespace.IBaseInterface
+    {
+        [JsiiMethod(name: "bazMethod")]
+        void BazMethod();
+
+        [JsiiTypeProxy(nativeType: typeof(IBaz), fullyQualifiedName: "jsii-calc.module2702.IBaz")]
+        internal sealed class _Proxy : DeputyBase, Amazon.JSII.Tests.CalculatorNamespace.Module2702.IBaz
+        {
+            private _Proxy(ByRefValue reference): base(reference)
+            {
+            }
+
+            [JsiiMethod(name: "bazMethod")]
+            public void BazMethod()
+            {
+                InvokeInstanceVoidMethod(new System.Type[]{}, new object[]{});
+            }
+
+            [JsiiMethod(name: "bar")]
+            public void Bar()
+            {
+                InvokeInstanceVoidMethod(new System.Type[]{}, new object[]{});
+            }
+
+            [JsiiMethod(name: "foo")]
+            public void Foo()
+            {
+                InvokeInstanceVoidMethod(new System.Type[]{}, new object[]{});
+            }
+        }
+    }
+}
+
+`;
+
+exports[`Generated code for "jsii-calc": <outDir>/dotnet/Amazon.JSII.Tests.CalculatorPackageId/Amazon/JSII/Tests/CalculatorNamespace/Module2702/IConstruct.cs 1`] = `
+using Amazon.JSII.Runtime.Deputy;
+
+#pragma warning disable CS0672,CS0809,CS1591
+
+namespace Amazon.JSII.Tests.CalculatorNamespace.Module2702
+{
+    [JsiiInterface(nativeType: typeof(IConstruct), fullyQualifiedName: "jsii-calc.module2702.IConstruct")]
+    public interface IConstruct
+    {
+        [JsiiMethod(name: "constructMethod")]
+        void ConstructMethod();
+
+        [JsiiTypeProxy(nativeType: typeof(IConstruct), fullyQualifiedName: "jsii-calc.module2702.IConstruct")]
+        internal sealed class _Proxy : DeputyBase, Amazon.JSII.Tests.CalculatorNamespace.Module2702.IConstruct
+        {
+            private _Proxy(ByRefValue reference): base(reference)
+            {
+            }
+
+            [JsiiMethod(name: "constructMethod")]
+            public void ConstructMethod()
+            {
+                InvokeInstanceVoidMethod(new System.Type[]{}, new object[]{});
+            }
+        }
+    }
+}
+
+`;
+
 exports[`Generated code for "jsii-calc": <outDir>/dotnet/Amazon.JSII.Tests.CalculatorPackageId/Amazon/JSII/Tests/CalculatorNamespace/Module2702/IFoo.cs 1`] = `
 using Amazon.JSII.Runtime.Deputy;
 
@@ -13033,6 +13191,176 @@ namespace Amazon.JSII.Tests.CalculatorNamespace.Module2702
             {
                 InvokeInstanceVoidMethod(new System.Type[]{}, new object[]{});
             }
+        }
+    }
+}
+
+`;
+
+exports[`Generated code for "jsii-calc": <outDir>/dotnet/Amazon.JSII.Tests.CalculatorPackageId/Amazon/JSII/Tests/CalculatorNamespace/Module2702/IResource.cs 1`] = `
+using Amazon.JSII.Runtime.Deputy;
+
+#pragma warning disable CS0672,CS0809,CS1591
+
+namespace Amazon.JSII.Tests.CalculatorNamespace.Module2702
+{
+    [JsiiInterface(nativeType: typeof(IResource), fullyQualifiedName: "jsii-calc.module2702.IResource")]
+    public interface IResource : Amazon.JSII.Tests.CalculatorNamespace.Module2702.IConstruct
+    {
+        [JsiiMethod(name: "resourceMethod")]
+        void ResourceMethod();
+
+        [JsiiTypeProxy(nativeType: typeof(IResource), fullyQualifiedName: "jsii-calc.module2702.IResource")]
+        new internal sealed class _Proxy : DeputyBase, Amazon.JSII.Tests.CalculatorNamespace.Module2702.IResource
+        {
+            private _Proxy(ByRefValue reference): base(reference)
+            {
+            }
+
+            [JsiiMethod(name: "resourceMethod")]
+            public void ResourceMethod()
+            {
+                InvokeInstanceVoidMethod(new System.Type[]{}, new object[]{});
+            }
+
+            [JsiiMethod(name: "constructMethod")]
+            public void ConstructMethod()
+            {
+                InvokeInstanceVoidMethod(new System.Type[]{}, new object[]{});
+            }
+        }
+    }
+}
+
+`;
+
+exports[`Generated code for "jsii-calc": <outDir>/dotnet/Amazon.JSII.Tests.CalculatorPackageId/Amazon/JSII/Tests/CalculatorNamespace/Module2702/IVpc.cs 1`] = `
+using Amazon.JSII.Runtime.Deputy;
+
+#pragma warning disable CS0672,CS0809,CS1591
+
+namespace Amazon.JSII.Tests.CalculatorNamespace.Module2702
+{
+    [JsiiInterface(nativeType: typeof(IVpc), fullyQualifiedName: "jsii-calc.module2702.IVpc")]
+    public interface IVpc : Amazon.JSII.Tests.CalculatorNamespace.Module2702.IResource
+    {
+        [JsiiMethod(name: "vpcMethod")]
+        void VpcMethod();
+
+        [JsiiTypeProxy(nativeType: typeof(IVpc), fullyQualifiedName: "jsii-calc.module2702.IVpc")]
+        new internal sealed class _Proxy : DeputyBase, Amazon.JSII.Tests.CalculatorNamespace.Module2702.IVpc
+        {
+            private _Proxy(ByRefValue reference): base(reference)
+            {
+            }
+
+            [JsiiMethod(name: "vpcMethod")]
+            public void VpcMethod()
+            {
+                InvokeInstanceVoidMethod(new System.Type[]{}, new object[]{});
+            }
+
+            [JsiiMethod(name: "resourceMethod")]
+            public void ResourceMethod()
+            {
+                InvokeInstanceVoidMethod(new System.Type[]{}, new object[]{});
+            }
+
+            [JsiiMethod(name: "constructMethod")]
+            public void ConstructMethod()
+            {
+                InvokeInstanceVoidMethod(new System.Type[]{}, new object[]{});
+            }
+        }
+    }
+}
+
+`;
+
+exports[`Generated code for "jsii-calc": <outDir>/dotnet/Amazon.JSII.Tests.CalculatorPackageId/Amazon/JSII/Tests/CalculatorNamespace/Module2702/Resource.cs 1`] = `
+using Amazon.JSII.Runtime.Deputy;
+
+#pragma warning disable CS0672,CS0809,CS1591
+
+namespace Amazon.JSII.Tests.CalculatorNamespace.Module2702
+{
+    [JsiiClass(nativeType: typeof(Amazon.JSII.Tests.CalculatorNamespace.Module2702.Resource), fullyQualifiedName: "jsii-calc.module2702.Resource")]
+    public abstract class Resource : Amazon.JSII.Tests.CalculatorNamespace.Module2702.Construct, Amazon.JSII.Tests.CalculatorNamespace.Module2702.IResource
+    {
+        protected Resource(): base(new DeputyProps(System.Array.Empty<object?>()))
+        {
+        }
+
+        /// <summary>Used by jsii to construct an instance of this class from a Javascript-owned object reference</summary>
+        /// <param name="reference">The Javascript-owned object reference</param>
+        [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
+        protected Resource(ByRefValue reference): base(reference)
+        {
+        }
+
+        /// <summary>Used by jsii to construct an instance of this class from DeputyProps</summary>
+        /// <param name="props">The deputy props</param>
+        [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
+        protected Resource(DeputyProps props): base(props)
+        {
+        }
+
+        [JsiiMethod(name: "resourceMethod", isOverride: true)]
+        public virtual void ResourceMethod()
+        {
+            InvokeInstanceVoidMethod(new System.Type[]{}, new object[]{});
+        }
+
+        [JsiiTypeProxy(nativeType: typeof(Amazon.JSII.Tests.CalculatorNamespace.Module2702.Resource), fullyQualifiedName: "jsii-calc.module2702.Resource")]
+        internal sealed class _Proxy : Amazon.JSII.Tests.CalculatorNamespace.Module2702.Resource
+        {
+            private _Proxy(ByRefValue reference): base(reference)
+            {
+            }
+
+            [JsiiMethod(name: "constructMethod")]
+            public override void ConstructMethod()
+            {
+                InvokeInstanceVoidMethod(new System.Type[]{}, new object[]{});
+            }
+        }
+    }
+}
+
+`;
+
+exports[`Generated code for "jsii-calc": <outDir>/dotnet/Amazon.JSII.Tests.CalculatorPackageId/Amazon/JSII/Tests/CalculatorNamespace/Module2702/Vpc.cs 1`] = `
+using Amazon.JSII.Runtime.Deputy;
+
+#pragma warning disable CS0672,CS0809,CS1591
+
+namespace Amazon.JSII.Tests.CalculatorNamespace.Module2702
+{
+    [JsiiClass(nativeType: typeof(Amazon.JSII.Tests.CalculatorNamespace.Module2702.Vpc), fullyQualifiedName: "jsii-calc.module2702.Vpc")]
+    public class Vpc : Amazon.JSII.Tests.CalculatorNamespace.Module2702.Resource, Amazon.JSII.Tests.CalculatorNamespace.Module2702.IVpc
+    {
+        public Vpc(): base(new DeputyProps(System.Array.Empty<object?>()))
+        {
+        }
+
+        /// <summary>Used by jsii to construct an instance of this class from a Javascript-owned object reference</summary>
+        /// <param name="reference">The Javascript-owned object reference</param>
+        [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
+        protected Vpc(ByRefValue reference): base(reference)
+        {
+        }
+
+        /// <summary>Used by jsii to construct an instance of this class from DeputyProps</summary>
+        /// <param name="props">The deputy props</param>
+        [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
+        protected Vpc(DeputyProps props): base(props)
+        {
+        }
+
+        [JsiiMethod(name: "vpcMethod", isOverride: true)]
+        public virtual void VpcMethod()
+        {
+            InvokeInstanceVoidMethod(new System.Type[]{}, new object[]{});
         }
     }
 }

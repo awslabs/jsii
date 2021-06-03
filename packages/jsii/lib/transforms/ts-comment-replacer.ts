@@ -126,5 +126,8 @@ function whiteoutLeadingComments(node: ts.Node, source: ts.SourceFile) {
       text = text.slice(0, pos).padEnd(end, ' ') + text.slice(end);
     }
   });
-  source.text = text;
+  if (source.text !== text) {
+    source.text = text;
+    (source as any).lineMap = (ts as any).computeLineStarts(text);
+  }
 }

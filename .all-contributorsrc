@@ -1140,6 +1140,25 @@
       "contributions": [
         "bug"
       ]
+    },
+    {
+      "login": "lzhoucs",
+      "name": "Liang Zhou",
+      "avatar_url": "https://avatars.githubusercontent.com/u/1444104?v=4",
+      "profile": "https://liangzhou.dev",
+      "contributions": [
+        "bug",
+        "code"
+      ]
+    },
+    {
+      "login": "polothy",
+      "name": "Mark Nielsen",
+      "avatar_url": "https://avatars.githubusercontent.com/u/634657?v=4",
+      "profile": "https://polothy.github.io",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "repoType": "github",

@@ -30,3 +30,45 @@ export class Class3 implements IBaseInterface {
 export interface IFoo extends IBaseInterface {
   readonly iBaseInterface: string;
 }
+
+// See https://github.com/aws/aws-cdk/issues/13474
+
+export interface IConstruct {
+  constructMethod(): void;
+}
+
+export interface IResource extends IConstruct {
+  resourceMethod(): void;
+}
+
+export interface IVpc extends IResource {
+  vpcMethod(): void;
+}
+
+export class Construct implements IConstruct {
+  public constructMethod(): void {
+    return;
+  }
+}
+
+export abstract class Resource extends Construct implements IResource {
+  public resourceMethod(): void {
+    return;
+  }
+}
+
+export class Vpc extends Resource implements IVpc {
+  public vpcMethod(): void {
+    return;
+  }
+}
+
+export interface IBaz extends IBaseInterface {
+  bazMethod(): void;
+}
+
+export class Baz extends Class3 implements IBaz {
+  public bazMethod(): void {
+    return;
+  }
+}

@@ -17342,6 +17342,77 @@ import (
 	"github.com/aws/jsii/jsii-calc/go/jsiicalc/v3/module2702/internal"
 )
 
+type Baz interface {
+	Class3
+	IBaz
+	Bar()
+	BazMethod()
+	Foo()
+	IBaseInterface()
+}
+
+// The jsii proxy struct for Baz
+type jsiiProxy_Baz struct {
+	jsiiProxy_Class3
+	jsiiProxy_IBaz
+}
+
+func NewBaz() Baz {
+	_init_.Initialize()
+
+	j := jsiiProxy_Baz{}
+
+	_jsii_.Create(
+		"jsii-calc.module2702.Baz",
+		nil, // no parameters
+		&j,
+	)
+
+	return &j
+}
+
+func NewBaz_Override(b Baz) {
+	_init_.Initialize()
+
+	_jsii_.Create(
+		"jsii-calc.module2702.Baz",
+		nil, // no parameters
+		b,
+	)
+}
+
+func (b *jsiiProxy_Baz) Bar() {
+	_jsii_.InvokeVoid(
+		b,
+		"bar",
+		nil, // no parameters
+	)
+}
+
+func (b *jsiiProxy_Baz) BazMethod() {
+	_jsii_.InvokeVoid(
+		b,
+		"bazMethod",
+		nil, // no parameters
+	)
+}
+
+func (b *jsiiProxy_Baz) Foo() {
+	_jsii_.InvokeVoid(
+		b,
+		"foo",
+		nil, // no parameters
+	)
+}
+
+func (b *jsiiProxy_Baz) IBaseInterface() {
+	_jsii_.InvokeVoid(
+		b,
+		"iBaseInterface",
+		nil, // no parameters
+	)
+}
+
 type Class1 interface {
 	jcb.Base
 	Base()
@@ -17519,6 +17590,83 @@ func (c *jsiiProxy_Class3) IBaseInterface() {
 	)
 }
 
+type Construct interface {
+	IConstruct
+	ConstructMethod()
+}
+
+// The jsii proxy struct for Construct
+type jsiiProxy_Construct struct {
+	jsiiProxy_IConstruct
+}
+
+func NewConstruct() Construct {
+	_init_.Initialize()
+
+	j := jsiiProxy_Construct{}
+
+	_jsii_.Create(
+		"jsii-calc.module2702.Construct",
+		nil, // no parameters
+		&j,
+	)
+
+	return &j
+}
+
+func NewConstruct_Override(c Construct) {
+	_init_.Initialize()
+
+	_jsii_.Create(
+		"jsii-calc.module2702.Construct",
+		nil, // no parameters
+		c,
+	)
+}
+
+func (c *jsiiProxy_Construct) ConstructMethod() {
+	_jsii_.InvokeVoid(
+		c,
+		"constructMethod",
+		nil, // no parameters
+	)
+}
+
+type IBaz interface {
+	jcb.IBaseInterface
+	BazMethod()
+}
+
+// The jsii proxy for IBaz
+type jsiiProxy_IBaz struct {
+	internal.Type__jcbIBaseInterface
+}
+
+func (i *jsiiProxy_IBaz) BazMethod() {
+	_jsii_.InvokeVoid(
+		i,
+		"bazMethod",
+		nil, // no parameters
+	)
+}
+
+type IConstruct interface {
+	ConstructMethod()
+}
+
+// The jsii proxy for IConstruct
+type jsiiProxy_IConstruct struct {
+	_ byte // padding
+}
+
+func (i *jsiiProxy_IConstruct) ConstructMethod() {
+	_jsii_.InvokeVoid(
+		i,
+		"constructMethod",
+		nil, // no parameters
+	)
+}
+
 type IFoo interface {
 	jcb.IBaseInterface
 	IBaseInterface() *string
@@ -17539,6 +17687,143 @@ func (j *jsiiProxy_IFoo) IBaseInterface() *string {
 	return returns
 }
 
+type IResource interface {
+	IConstruct
+	ResourceMethod()
+}
+
+// The jsii proxy for IResource
+type jsiiProxy_IResource struct {
+	jsiiProxy_IConstruct
+}
+
+func (i *jsiiProxy_IResource) ResourceMethod() {
+	_jsii_.InvokeVoid(
+		i,
+		"resourceMethod",
+		nil, // no parameters
+	)
+}
+
+type IVpc interface {
+	IResource
+	VpcMethod()
+}
+
+// The jsii proxy for IVpc
+type jsiiProxy_IVpc struct {
+	jsiiProxy_IResource
+}
+
+func (i *jsiiProxy_IVpc) VpcMethod() {
+	_jsii_.InvokeVoid(
+		i,
+		"vpcMethod",
+		nil, // no parameters
+	)
+}
+
+type Resource interface {
+	Construct
+	IResource
+	ConstructMethod()
+	ResourceMethod()
+}
+
+// The jsii proxy struct for Resource
+type jsiiProxy_Resource struct {
+	jsiiProxy_Construct
+	jsiiProxy_IResource
+}
+
+func NewResource_Override(r Resource) {
+	_init_.Initialize()
+
+	_jsii_.Create(
+		"jsii-calc.module2702.Resource",
+		nil, // no parameters
+		r,
+	)
+}
+
+func (r *jsiiProxy_Resource) ConstructMethod() {
+	_jsii_.InvokeVoid(
+		r,
+		"constructMethod",
+		nil, // no parameters
+	)
+}
+
+func (r *jsiiProxy_Resource) ResourceMethod() {
+	_jsii_.InvokeVoid(
+		r,
+		"resourceMethod",
+		nil, // no parameters
+	)
+}
+
+type Vpc interface {
+	Resource
+	IVpc
+	ConstructMethod()
+	ResourceMethod()
+	VpcMethod()
+}
+
+// The jsii proxy struct for Vpc
+type jsiiProxy_Vpc struct {
+	jsiiProxy_Resource
+	jsiiProxy_IVpc
+}
+
+func NewVpc() Vpc {
+	_init_.Initialize()
+
+	j := jsiiProxy_Vpc{}
+
+	_jsii_.Create(
+		"jsii-calc.module2702.Vpc",
+		nil, // no parameters
+		&j,
+	)
+
+	return &j
+}
+
+func NewVpc_Override(v Vpc) {
+	_init_.Initialize()
+
+	_jsii_.Create(
+		"jsii-calc.module2702.Vpc",
+		nil, // no parameters
+		v,
+	)
+}
+
+func (v *jsiiProxy_Vpc) ConstructMethod() {
+	_jsii_.InvokeVoid(
+		v,
+		"constructMethod",
+		nil, // no parameters
+	)
+}
+
+func (v *jsiiProxy_Vpc) ResourceMethod() {
+	_jsii_.InvokeVoid(
+		v,
+		"resourceMethod",
+		nil, // no parameters
+	)
+}
+
+func (v *jsiiProxy_Vpc) VpcMethod() {
+	_jsii_.InvokeVoid(
+		v,
+		"vpcMethod",
+		nil, // no parameters
+	)
+}
+
 
 `;
 
@@ -17552,6 +17837,22 @@ import (
 )
 
 func init() {
+	_jsii_.RegisterClass(
+		"jsii-calc.module2702.Baz",
+		reflect.TypeOf((*Baz)(nil)).Elem(),
+		[]_jsii_.Member{
+			_jsii_.MemberMethod{JsiiMethod: "bar", GoMethod: "Bar"},
+			_jsii_.MemberMethod{JsiiMethod: "bazMethod", GoMethod: "BazMethod"},
+			_jsii_.MemberMethod{JsiiMethod: "foo", GoMethod: "Foo"},
+			_jsii_.MemberMethod{JsiiMethod: "iBaseInterface", GoMethod: "IBaseInterface"},
+		},
+		func() interface{} {
+			j := jsiiProxy_Baz{}
+			_jsii_.InitJsiiProxy(&j.jsiiProxy_Class3)
+			_jsii_.InitJsiiProxy(&j.jsiiProxy_IBaz)
+			return &j
+		},
+	)
 	_jsii_.RegisterClass(
 		"jsii-calc.module2702.Class1",
 		reflect.TypeOf((*Class1)(nil)).Elem(),
@@ -17592,6 +17893,42 @@ func init() {
 			return &j
 		},
 	)
+	_jsii_.RegisterClass(
+		"jsii-calc.module2702.Construct",
+		reflect.TypeOf((*Construct)(nil)).Elem(),
+		[]_jsii_.Member{
+			_jsii_.MemberMethod{JsiiMethod: "constructMethod", GoMethod: "ConstructMethod"},
+		},
+		func() interface{} {
+			j := jsiiProxy_Construct{}
+			_jsii_.InitJsiiProxy(&j.jsiiProxy_IConstruct)
+			return &j
+		},
+	)
+	_jsii_.RegisterInterface(
+		"jsii-calc.module2702.IBaz",
+		reflect.TypeOf((*IBaz)(nil)).Elem(),
+		[]_jsii_.Member{
+			_jsii_.MemberMethod{JsiiMethod: "bar", GoMethod: "Bar"},
+			_jsii_.MemberMethod{JsiiMethod: "bazMethod", GoMethod: "BazMethod"},
+			_jsii_.MemberMethod{JsiiMethod: "foo", GoMethod: "Foo"},
+		},
+		func() interface{} {
+			j := jsiiProxy_IBaz{}
+			_jsii_.InitJsiiProxy(&j.Type__jcbIBaseInterface)
+			return &j
+		},
+	)
+	_jsii_.RegisterInterface(
+		"jsii-calc.module2702.IConstruct",
+		reflect.TypeOf((*IConstruct)(nil)).Elem(),
+		[]_jsii_.Member{
+			_jsii_.MemberMethod{JsiiMethod: "constructMethod", GoMethod: "ConstructMethod"},
+		},
+		func() interface{} {
+			return &jsiiProxy_IConstruct{}
+		},
+	)
 	_jsii_.RegisterInterface(
 		"jsii-calc.module2702.IFoo",
 		reflect.TypeOf((*IFoo)(nil)).Elem(),
@@ -17603,6 +17940,62 @@ func init() {
 		func() interface{} {
 			j := jsiiProxy_IFoo{}
 			_jsii_.InitJsiiProxy(&j.Type__jcbIBaseInterface)
+			return &j
+		},
+	)
+	_jsii_.RegisterInterface(
+		"jsii-calc.module2702.IResource",
+		reflect.TypeOf((*IResource)(nil)).Elem(),
+		[]_jsii_.Member{
+			_jsii_.MemberMethod{JsiiMethod: "constructMethod", GoMethod: "ConstructMethod"},
+			_jsii_.MemberMethod{JsiiMethod: "resourceMethod", GoMethod: "ResourceMethod"},
+		},
+		func() interface{} {
+			j := jsiiProxy_IResource{}
+			_jsii_.InitJsiiProxy(&j.jsiiProxy_IConstruct)
+			return &j
+		},
+	)
+	_jsii_.RegisterInterface(
+		"jsii-calc.module2702.IVpc",
+		reflect.TypeOf((*IVpc)(nil)).Elem(),
+		[]_jsii_.Member{
+			_jsii_.MemberMethod{JsiiMethod: "constructMethod", GoMethod: "ConstructMethod"},
+			_jsii_.MemberMethod{JsiiMethod: "resourceMethod", GoMethod: "ResourceMethod"},
+			_jsii_.MemberMethod{JsiiMethod: "vpcMethod", GoMethod: "VpcMethod"},
+		},
+		func() interface{} {
+			j := jsiiProxy_IVpc{}
+			_jsii_.InitJsiiProxy(&j.jsiiProxy_IResource)
+			return &j
+		},
+	)
+	_jsii_.RegisterClass(
+		"jsii-calc.module2702.Resource",
+		reflect.TypeOf((*Resource)(nil)).Elem(),
+		[]_jsii_.Member{
+			_jsii_.MemberMethod{JsiiMethod: "constructMethod", GoMethod: "ConstructMethod"},
+			_jsii_.MemberMethod{JsiiMethod: "resourceMethod", GoMethod: "ResourceMethod"},
+		},
+		func() interface{} {
+			j := jsiiProxy_Resource{}
+			_jsii_.InitJsiiProxy(&j.jsiiProxy_Construct)
+			_jsii_.InitJsiiProxy(&j.jsiiProxy_IResource)
+			return &j
+		},
+	)
+	_jsii_.RegisterClass(
+		"jsii-calc.module2702.Vpc",
+		reflect.TypeOf((*Vpc)(nil)).Elem(),
+		[]_jsii_.Member{
+			_jsii_.MemberMethod{JsiiMethod: "constructMethod", GoMethod: "ConstructMethod"},
+			_jsii_.MemberMethod{JsiiMethod: "resourceMethod", GoMethod: "ResourceMethod"},
+			_jsii_.MemberMethod{JsiiMethod: "vpcMethod", GoMethod: "VpcMethod"},
+		},
+		func() interface{} {
+			j := jsiiProxy_Vpc{}
+			_jsii_.InitJsiiProxy(&j.jsiiProxy_Resource)
+			_jsii_.InitJsiiProxy(&j.jsiiProxy_IVpc)
 			return &j
 		},
 	)

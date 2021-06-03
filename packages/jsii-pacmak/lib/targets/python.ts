@@ -392,14 +392,9 @@ abstract class BasePythonClassType implements PythonType, ISortableType {
       trailingNewLine: true,
     });
 
-    const preamble = this.emitPreamble;
-    if (preamble) {
-      preamble(code, context);
-    }
-
     if (this.members.length > 0) {
       const resolver = this.boundResolver(context.resolver);
-      let shouldSeparate = preamble != null;
+      let shouldSeparate = false;
       for (const member of prepareMembers(this.members, resolver)) {
         if (shouldSeparate) {
           code.line();
@@ -407,7 +402,7 @@ abstract class BasePythonClassType implements PythonType, ISortableType {
         shouldSeparate = this.separateMembers;
         member.emit(code, { ...context, resolver });
       }
-    } else if (!preamble) {
+    } else {
       code.line('pass');
     }
 
@@ -426,11 +421,6 @@ abstract class BasePythonClassType implements PythonType, ISortableType {
   }
 
   protected abstract getClassParams(context: EmitContext): string[];
-
-  protected abstract readonly emitPreamble?: (
-    code: CodeMaker,
-    context: EmitContext,
-  ) => void;
 }
 
 interface BaseMethodOpts {
@@ -926,7 +916,7 @@ class Interface extends BasePythonClassType {
           typeAnnotation: false,
         })}) # type: ignore[misc]`,
     );
-    openSignature(code, 'class', this.getProxyClassName(), proxyBases);
+    openSignature(code, 'class', this.proxyClassName, proxyBases);
     this.generator.emitDocString(code, this.docs, {
       documentableItem: `class-${this.pythonName}`,
       trailingNewLine: true,
@@ -945,6 +935,13 @@ class Interface extends BasePythonClassType {
     }
 
     code.closeBlock();
+    code.line();
+    code.line(
+      '# Adding a "__jsii_proxy_class__(): typing.Type" function to the interface',
+    );
+    code.line(
+      `typing.cast(typing.Any, ${this.pythonName}).__jsii_proxy_class__ = lambda : ${this.proxyClassName}`,
+    );
 
     if (this.fqn != null) {
       context.emittedTypes.add(this.fqn);
@@ -961,19 +958,7 @@ class Interface extends BasePythonClassType {
     return params;
   }
 
-  protected readonly emitPreamble = (
-    code: CodeMaker,
-    _context: EmitContext,
-  ) => {
-    code.line('@builtins.staticmethod');
-    code.openBlock(
-      `def __jsii_proxy_class__() -> typing.Type["${this.getProxyClassName()}"]`,
-    );
-    code.line(`return ${this.getProxyClassName()}`);
-    code.closeBlock();
-  };
-
-  private getProxyClassName(): string {
+  private get proxyClassName(): string {
     return `_${this.pythonName}Proxy`;
   }
 }
@@ -993,7 +978,6 @@ class InterfaceProperty extends BaseProperty {
 }
 
 class Struct extends BasePythonClassType {
-  protected readonly emitPreamble = undefined;
   protected directMembers = new Array<StructField>();
 
   public addMember(member: PythonBase): void {
@@ -1333,7 +1317,7 @@ class Class extends BasePythonClassType implements ISortableType {
 
       code.line();
       code.line();
-      openSignature(code, 'class', this.getProxyClassName(), proxyBases);
+      openSignature(code, 'class', this.proxyClassName, proxyBases);
 
       // Filter our list of members to *only* be abstract members, and not any
       // other types.
@@ -1358,19 +1342,14 @@ class Class extends BasePythonClassType implements ISortableType {
       }
 
       code.closeBlock();
-    }
-  }
-
-  protected get emitPreamble() {
-    if (!this.abstract) return undefined;
-    return (code: CodeMaker, _context: EmitContext) => {
-      code.line('@builtins.staticmethod');
-      code.openBlock(
-        `def __jsii_proxy_class__() -> typing.Type["${this.getProxyClassName()}"]`,
+      code.line();
+      code.line(
+        '# Adding a "__jsii_proxy_class__(): typing.Type" function to the abstract class',
       );
-      code.line(`return ${this.getProxyClassName()}`);
-      code.closeBlock();
-    };
+      code.line(
+        `typing.cast(typing.Any, ${this.pythonName}).__jsii_proxy_class__ = lambda : ${this.proxyClassName}`,
+      );
+    }
   }
 
   protected getClassParams(context: EmitContext): string[] {
@@ -1385,7 +1364,7 @@ class Class extends BasePythonClassType implements ISortableType {
     return params;
   }
 
-  private getProxyClassName(): string {
+  private get proxyClassName(): string {
     return `_${this.pythonName}Proxy`;
   }
 }
@@ -1428,7 +1407,6 @@ class Property extends BaseProperty {
 }
 
 class Enum extends BasePythonClassType {
-  protected readonly emitPreamble = undefined;
   protected readonly separateMembers = false;
 
   public emit(code: CodeMaker, context: EmitContext) {
@@ -1607,7 +1585,7 @@ class PythonModule implements PythonType {
       }
       code.unindent(']');
     } else {
-      code.line('__all__: List[typing.Any] = []');
+      code.line('__all__: typing.List[typing.Any] = []');
     }
 
     // Finally, we'll use publication to ensure that all of the non-public names

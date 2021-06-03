@@ -1,5 +1,4 @@
 import * as jsii from '@jsii/spec';
-import * as fs from 'fs';
 import * as path from 'path';
 import { promisify } from 'util';
 
@@ -11,9 +10,6 @@ import { Method } from './method';
 import { ModuleLike } from './module-like';
 import { Property } from './property';
 import { Type } from './type';
-
-const readFile = promisify(fs.readFile);
-const stat = promisify(fs.stat);
 
 export class TypeSystem {
   /**
@@ -344,4 +340,18 @@ function flatMap<T, R>(
   return collection
     .map(mapper)
     .reduce((acc, elt) => acc.concat(elt), new Array<R>());
+}
+
+function stat(p: string) {
+  // just-in-time require so that this file can be loaded in browsers as well.
+  // eslint-disable-next-line @typescript-eslint/no-require-imports,@typescript-eslint/no-var-requires
+  const fs = require('fs');
+  return promisify(fs.stat)(p);
+}
+
+function readFile(p: string) {
+  // just-in-time require so that this file can be loaded in browsers as well.
+  // eslint-disable-next-line @typescript-eslint/no-require-imports,@typescript-eslint/no-var-requires
+  const fs = require('fs');
+  return promisify(fs.readFile)(p);
 }

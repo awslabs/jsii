@@ -252,6 +252,13 @@ exports[`jsii-tree --all 1`] = `
  │ │ │         └── type: number
  │ │ ├─┬ module2702
  │ │ │ └─┬ types
+ │ │ │   ├─┬ class Baz (stable)
+ │ │ │   │ ├── base: Class3
+ │ │ │   │ ├── interfaces: IBaz
+ │ │ │   │ └─┬ members
+ │ │ │   │   ├── <initializer>() initializer (stable)
+ │ │ │   │   └─┬ bazMethod() method (stable)
+ │ │ │   │     └── returns: void
  │ │ │   ├─┬ class Class1 (stable)
  │ │ │   │ ├── base: Base
  │ │ │   │ └─┬ members
@@ -275,14 +282,60 @@ exports[`jsii-tree --all 1`] = `
  │ │ │   │   │ └── returns: void
  │ │ │   │   └─┬ iBaseInterface() method (stable)
  │ │ │   │     └── returns: void
- │ │ │   └─┬ interface IFoo (stable)
+ │ │ │   ├─┬ class Construct (stable)
+ │ │ │   │ ├── interfaces: IConstruct
+ │ │ │   │ └─┬ members
+ │ │ │   │   ├── <initializer>() initializer (stable)
+ │ │ │   │   └─┬ constructMethod() method (stable)
+ │ │ │   │     └── returns: void
+ │ │ │   ├─┬ class Resource (stable)
+ │ │ │   │ ├── base: Construct
+ │ │ │   │ ├── interfaces: IResource
+ │ │ │   │ └─┬ members
+ │ │ │   │   ├── <initializer>() initializer (stable)
+ │ │ │   │   └─┬ resourceMethod() method (stable)
+ │ │ │   │     └── returns: void
+ │ │ │   ├─┬ class Vpc (stable)
+ │ │ │   │ ├── base: Resource
+ │ │ │   │ ├── interfaces: IVpc
+ │ │ │   │ └─┬ members
+ │ │ │   │   ├── <initializer>() initializer (stable)
+ │ │ │   │   └─┬ vpcMethod() method (stable)
+ │ │ │   │     └── returns: void
+ │ │ │   ├─┬ interface IBaz (stable)
+ │ │ │   │ ├─┬ interfaces
+ │ │ │   │ │ └── IBaseInterface
+ │ │ │   │ └─┬ members
+ │ │ │   │   └─┬ bazMethod() method (stable)
+ │ │ │   │     ├── abstract
+ │ │ │   │     └── returns: void
+ │ │ │   ├─┬ interface IConstruct (stable)
+ │ │ │   │ └─┬ members
+ │ │ │   │   └─┬ constructMethod() method (stable)
+ │ │ │   │     ├── abstract
+ │ │ │   │     └── returns: void
+ │ │ │   ├─┬ interface IFoo (stable)
+ │ │ │   │ ├─┬ interfaces
+ │ │ │   │ │ └── IBaseInterface
+ │ │ │   │ └─┬ members
+ │ │ │   │   └─┬ iBaseInterface property (stable)
+ │ │ │   │     ├── abstract
+ │ │ │   │     ├── immutable
+ │ │ │   │     └── type: string
+ │ │ │   ├─┬ interface IResource (stable)
+ │ │ │   │ ├─┬ interfaces
+ │ │ │   │ │ └── IConstruct
+ │ │ │   │ └─┬ members
+ │ │ │   │   └─┬ resourceMethod() method (stable)
+ │ │ │   │     ├── abstract
+ │ │ │   │     └── returns: void
+ │ │ │   └─┬ interface IVpc (stable)
  │ │ │     ├─┬ interfaces
- │ │ │     │ └── IBaseInterface
+ │ │ │     │ └── IResource
  │ │ │     └─┬ members
- │ │ │       └─┬ iBaseInterface property (stable)
+ │ │ │       └─┬ vpcMethod() method (stable)
  │ │ │         ├── abstract
- │ │ │         ├── immutable
- │ │ │         └── type: string
+ │ │ │         └── returns: void
  │ │ ├─┬ nodirect
  │ │ │ ├─┬ submodules
  │ │ │ │ ├─┬ sub1
@@ -3189,15 +3242,36 @@ exports[`jsii-tree --inheritance 1`] = `
  │ │ │   └── interface IFoo
  │ │ ├─┬ module2702
  │ │ │ └─┬ types
+ │ │ │   ├─┬ class Baz
+ │ │ │   │ ├── base: Class3
+ │ │ │   │ └── interfaces: IBaz
  │ │ │   ├─┬ class Class1
  │ │ │   │ └── base: Base
  │ │ │   ├─┬ class Class2
  │ │ │   │ └── base: Base
  │ │ │   ├─┬ class Class3
  │ │ │   │ └── interfaces: IBaseInterface
- │ │ │   └─┬ interface IFoo
+ │ │ │   ├─┬ class Construct
+ │ │ │   │ └── interfaces: IConstruct
+ │ │ │   ├─┬ class Resource
+ │ │ │   │ ├── base: Construct
+ │ │ │   │ └── interfaces: IResource
+ │ │ │   ├─┬ class Vpc
+ │ │ │   │ ├── base: Resource
+ │ │ │   │ └── interfaces: IVpc
+ │ │ │   ├─┬ interface IBaz
+ │ │ │   │ └─┬ interfaces
+ │ │ │   │   └── IBaseInterface
+ │ │ │   ├── interface IConstruct
+ │ │ │   ├─┬ interface IFoo
+ │ │ │   │ └─┬ interfaces
+ │ │ │   │   └── IBaseInterface
+ │ │ │   ├─┬ interface IResource
+ │ │ │   │ └─┬ interfaces
+ │ │ │   │   └── IConstruct
+ │ │ │   └─┬ interface IVpc
  │ │ │     └─┬ interfaces
- │ │ │       └── IBaseInterface
+ │ │ │       └── IResource
  │ │ ├─┬ nodirect
  │ │ │ ├─┬ submodules
  │ │ │ │ ├─┬ sub1
@@ -3705,6 +3779,10 @@ exports[`jsii-tree --members 1`] = `
  │ │ │       └── baz property
  │ │ ├─┬ module2702
  │ │ │ └─┬ types
+ │ │ │   ├─┬ class Baz
+ │ │ │   │ └─┬ members
+ │ │ │   │   ├── <initializer>() initializer
+ │ │ │   │   └── bazMethod() method
  │ │ │   ├─┬ class Class1
  │ │ │   │ └─┬ members
  │ │ │   │   ├── <initializer>() initializer
@@ -3719,9 +3797,33 @@ exports[`jsii-tree --members 1`] = `
  │ │ │   │   ├── bar() method
  │ │ │   │   ├── foo() method
  │ │ │   │   └── iBaseInterface() method
- │ │ │   └─┬ interface IFoo
+ │ │ │   ├─┬ class Construct
+ │ │ │   │ └─┬ members
+ │ │ │   │   ├── <initializer>() initializer
+ │ │ │   │   └── constructMethod() method
+ │ │ │   ├─┬ class Resource
+ │ │ │   │ └─┬ members
+ │ │ │   │   ├── <initializer>() initializer
+ │ │ │   │   └── resourceMethod() method
+ │ │ │   ├─┬ class Vpc
+ │ │ │   │ └─┬ members
+ │ │ │   │   ├── <initializer>() initializer
+ │ │ │   │   └── vpcMethod() method
+ │ │ │   ├─┬ interface IBaz
+ │ │ │   │ └─┬ members
+ │ │ │   │   └── bazMethod() method
+ │ │ │   ├─┬ interface IConstruct
+ │ │ │   │ └─┬ members
+ │ │ │   │   └── constructMethod() method
+ │ │ │   ├─┬ interface IFoo
+ │ │ │   │ └─┬ members
+ │ │ │   │   └── iBaseInterface property
+ │ │ │   ├─┬ interface IResource
+ │ │ │   │ └─┬ members
+ │ │ │   │   └── resourceMethod() method
+ │ │ │   └─┬ interface IVpc
  │ │ │     └─┬ members
- │ │ │       └── iBaseInterface property
+ │ │ │       └── vpcMethod() method
  │ │ ├─┬ nodirect
  │ │ │ ├─┬ submodules
  │ │ │ │ ├─┬ sub1
@@ -5105,10 +5207,18 @@ exports[`jsii-tree --types 1`] = `
  │ │ │   └── interface IFoo
  │ │ ├─┬ module2702
  │ │ │ └─┬ types
+ │ │ │   ├── class Baz
  │ │ │   ├── class Class1
  │ │ │   ├── class Class2
  │ │ │   ├── class Class3
- │ │ │   └── interface IFoo
+ │ │ │   ├── class Construct
+ │ │ │   ├── class Resource
+ │ │ │   ├── class Vpc
+ │ │ │   ├── interface IBaz
+ │ │ │   ├── interface IConstruct
+ │ │ │   ├── interface IFoo
+ │ │ │   ├── interface IResource
+ │ │ │   └── interface IVpc
  │ │ ├─┬ nodirect
  │ │ │ ├─┬ submodules
  │ │ │ │ ├─┬ sub1

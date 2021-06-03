@@ -393,6 +393,13 @@ exports[`showAll 1`] = `
  │ │ │         └── type: number
  │ │ ├─┬ module2702
  │ │ │ └─┬ types
+ │ │ │   ├─┬ class Baz
+ │ │ │   │ ├── base: Class3
+ │ │ │   │ ├── interfaces: IBaz
+ │ │ │   │ └─┬ members
+ │ │ │   │   ├── <initializer>() initializer
+ │ │ │   │   └─┬ bazMethod() method
+ │ │ │   │     └── returns: void
  │ │ │   ├─┬ class Class1
  │ │ │   │ ├── base: Base
  │ │ │   │ └─┬ members
@@ -416,14 +423,60 @@ exports[`showAll 1`] = `
  │ │ │   │   │ └── returns: void
  │ │ │   │   └─┬ iBaseInterface() method
  │ │ │   │     └── returns: void
- │ │ │   └─┬ interface IFoo
+ │ │ │   ├─┬ class Construct
+ │ │ │   │ ├── interfaces: IConstruct
+ │ │ │   │ └─┬ members
+ │ │ │   │   ├── <initializer>() initializer
+ │ │ │   │   └─┬ constructMethod() method
+ │ │ │   │     └── returns: void
+ │ │ │   ├─┬ class Resource
+ │ │ │   │ ├── base: Construct
+ │ │ │   │ ├── interfaces: IResource
+ │ │ │   │ └─┬ members
+ │ │ │   │   ├── <initializer>() initializer
+ │ │ │   │   └─┬ resourceMethod() method
+ │ │ │   │     └── returns: void
+ │ │ │   ├─┬ class Vpc
+ │ │ │   │ ├── base: Resource
+ │ │ │   │ ├── interfaces: IVpc
+ │ │ │   │ └─┬ members
+ │ │ │   │   ├── <initializer>() initializer
+ │ │ │   │   └─┬ vpcMethod() method
+ │ │ │   │     └── returns: void
+ │ │ │   ├─┬ interface IBaz
+ │ │ │   │ ├─┬ interfaces
+ │ │ │   │ │ └── IBaseInterface
+ │ │ │   │ └─┬ members
+ │ │ │   │   └─┬ bazMethod() method
+ │ │ │   │     ├── abstract
+ │ │ │   │     └── returns: void
+ │ │ │   ├─┬ interface IConstruct
+ │ │ │   │ └─┬ members
+ │ │ │   │   └─┬ constructMethod() method
+ │ │ │   │     ├── abstract
+ │ │ │   │     └── returns: void
+ │ │ │   ├─┬ interface IFoo
+ │ │ │   │ ├─┬ interfaces
+ │ │ │   │ │ └── IBaseInterface
+ │ │ │   │ └─┬ members
+ │ │ │   │   └─┬ iBaseInterface property
+ │ │ │   │     ├── abstract
+ │ │ │   │     ├── immutable
+ │ │ │   │     └── type: string
+ │ │ │   ├─┬ interface IResource
+ │ │ │   │ ├─┬ interfaces
+ │ │ │   │ │ └── IConstruct
+ │ │ │   │ └─┬ members
+ │ │ │   │   └─┬ resourceMethod() method
+ │ │ │   │     ├── abstract
+ │ │ │   │     └── returns: void
+ │ │ │   └─┬ interface IVpc
  │ │ │     ├─┬ interfaces
- │ │ │     │ └── IBaseInterface
+ │ │ │     │ └── IResource
  │ │ │     └─┬ members
- │ │ │       └─┬ iBaseInterface property
+ │ │ │       └─┬ vpcMethod() method
  │ │ │         ├── abstract
- │ │ │         ├── immutable
- │ │ │         └── type: string
+ │ │ │         └── returns: void
  │ │ ├─┬ nodirect
  │ │ │ ├─┬ submodules
  │ │ │ │ ├─┬ sub1
@@ -3367,10 +3420,18 @@ exports[`types 1`] = `
  │ │ │   └── interface IFoo
  │ │ ├─┬ module2702
  │ │ │ └─┬ types
+ │ │ │   ├── class Baz
  │ │ │   ├── class Class1
  │ │ │   ├── class Class2
  │ │ │   ├── class Class3
- │ │ │   └── interface IFoo
+ │ │ │   ├── class Construct
+ │ │ │   ├── class Resource
+ │ │ │   ├── class Vpc
+ │ │ │   ├── interface IBaz
+ │ │ │   ├── interface IConstruct
+ │ │ │   ├── interface IFoo
+ │ │ │   ├── interface IResource
+ │ │ │   └── interface IVpc
  │ │ ├─┬ nodirect
  │ │ │ ├─┬ submodules
  │ │ │ │ ├─┬ sub1

@@ -2572,10 +2572,6 @@ class Namespace1(metaclass=jsii.JSIIMeta, jsii_type="testpkg.Namespace1"):
 
     @jsii.interface(jsii_type="testpkg.Namespace1.IBar")
     class IBar(typing_extensions.Protocol):
-        @builtins.staticmethod
-        def __jsii_proxy_class__() -> typing.Type["_IBarProxy"]:
-            return _IBarProxy
-
         @builtins.property # type: ignore[misc]
         @jsii.member(jsii_name="bar")
         def bar(self) -> builtins.str:
@@ -2597,6 +2593,9 @@ class Namespace1(metaclass=jsii.JSIIMeta, jsii_type="testpkg.Namespace1"):
         @jsii.member(jsii_name="method")
         def method(self) -> None:
             return typing.cast(None, jsii.invoke(self, "method", []))
+
+    # Adding a "__jsii_proxy_class__(): typing.Type" function to the interface
+    typing.cast(typing.Any, IBar).__jsii_proxy_class__ = lambda : _IBarProxy
 
 
 class Namespace2(metaclass=jsii.JSIIMeta, jsii_type="testpkg.Namespace2"):

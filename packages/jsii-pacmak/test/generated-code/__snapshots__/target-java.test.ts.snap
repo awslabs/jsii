@@ -3736,10 +3736,18 @@ exports[`Generated code for "jsii-calc": <outDir>/ 1`] = `
           ┃                 ┃  ┣━ 📄 Derived.java
           ┃                 ┃  ┗━ 📄 IFoo.java
           ┃                 ┣━ 📁 module2702
+          ┃                 ┃  ┣━ 📄 Baz.java
           ┃                 ┃  ┣━ 📄 Class1.java
           ┃                 ┃  ┣━ 📄 Class2.java
           ┃                 ┃  ┣━ 📄 Class3.java
-          ┃                 ┃  ┗━ 📄 IFoo.java
+          ┃                 ┃  ┣━ 📄 Construct.java
+          ┃                 ┃  ┣━ 📄 IBaz.java
+          ┃                 ┃  ┣━ 📄 IConstruct.java
+          ┃                 ┃  ┣━ 📄 IFoo.java
+          ┃                 ┃  ┣━ 📄 IResource.java
+          ┃                 ┃  ┣━ 📄 IVpc.java
+          ┃                 ┃  ┣━ 📄 Resource.java
+          ┃                 ┃  ┗━ 📄 Vpc.java
           ┃                 ┣━ 📄 Multiply.java
           ┃                 ┣━ 📄 Negate.java
           ┃                 ┣━ 📄 NestedClassInstance.java
@@ -22798,6 +22806,43 @@ public interface IFoo extends software.amazon.jsii.JsiiSerializable {
 
 `;
 
+exports[`Generated code for "jsii-calc": <outDir>/java/src/main/java/software/amazon/jsii/tests/calculator/module2702/Baz.java 1`] = `
+package software.amazon.jsii.tests.calculator.module2702;
+
+/**
+ */
+@javax.annotation.Generated(value = "jsii-pacmak")
+@software.amazon.jsii.Stability(software.amazon.jsii.Stability.Level.Stable)
+@software.amazon.jsii.Jsii(module = software.amazon.jsii.tests.calculator.$Module.class, fqn = "jsii-calc.module2702.Baz")
+public class Baz extends software.amazon.jsii.tests.calculator.module2702.Class3 implements software.amazon.jsii.tests.calculator.module2702.IBaz {
+
+    protected Baz(final software.amazon.jsii.JsiiObjectRef objRef) {
+        super(objRef);
+    }
+
+    protected Baz(final software.amazon.jsii.JsiiObject.InitializationMode initializationMode) {
+        super(initializationMode);
+    }
+
+    /**
+     */
+    @software.amazon.jsii.Stability(software.amazon.jsii.Stability.Level.Stable)
+    public Baz() {
+        super(software.amazon.jsii.JsiiObject.InitializationMode.JSII);
+        software.amazon.jsii.JsiiEngine.getInstance().createNewObject(this);
+    }
+
+    /**
+     */
+    @software.amazon.jsii.Stability(software.amazon.jsii.Stability.Level.Stable)
+    @Override
+    public void bazMethod() {
+        software.amazon.jsii.Kernel.call(this, "bazMethod", software.amazon.jsii.NativeType.VOID);
+    }
+}
+
+`;
+
 exports[`Generated code for "jsii-calc": <outDir>/java/src/main/java/software/amazon/jsii/tests/calculator/module2702/Class1.java 1`] = `
 package software.amazon.jsii.tests.calculator.module2702;
 
@@ -22916,6 +22961,167 @@ public class Class3 extends software.amazon.jsii.JsiiObject implements software.
 
 `;
 
+exports[`Generated code for "jsii-calc": <outDir>/java/src/main/java/software/amazon/jsii/tests/calculator/module2702/Construct.java 1`] = `
+package software.amazon.jsii.tests.calculator.module2702;
+
+/**
+ */
+@javax.annotation.Generated(value = "jsii-pacmak")
+@software.amazon.jsii.Stability(software.amazon.jsii.Stability.Level.Stable)
+@software.amazon.jsii.Jsii(module = software.amazon.jsii.tests.calculator.$Module.class, fqn = "jsii-calc.module2702.Construct")
+public class Construct extends software.amazon.jsii.JsiiObject implements software.amazon.jsii.tests.calculator.module2702.IConstruct {
+
+    protected Construct(final software.amazon.jsii.JsiiObjectRef objRef) {
+        super(objRef);
+    }
+
+    protected Construct(final software.amazon.jsii.JsiiObject.InitializationMode initializationMode) {
+        super(initializationMode);
+    }
+
+    /**
+     */
+    @software.amazon.jsii.Stability(software.amazon.jsii.Stability.Level.Stable)
+    public Construct() {
+        super(software.amazon.jsii.JsiiObject.InitializationMode.JSII);
+        software.amazon.jsii.JsiiEngine.getInstance().createNewObject(this);
+    }
+
+    /**
+     */
+    @software.amazon.jsii.Stability(software.amazon.jsii.Stability.Level.Stable)
+    @Override
+    public void constructMethod() {
+        software.amazon.jsii.Kernel.call(this, "constructMethod", software.amazon.jsii.NativeType.VOID);
+    }
+}
+
+`;
+
+exports[`Generated code for "jsii-calc": <outDir>/java/src/main/java/software/amazon/jsii/tests/calculator/module2702/IBaz.java 1`] = `
+package software.amazon.jsii.tests.calculator.module2702;
+
+/**
+ */
+@javax.annotation.Generated(value = "jsii-pacmak")
+@software.amazon.jsii.Jsii(module = software.amazon.jsii.tests.calculator.$Module.class, fqn = "jsii-calc.module2702.IBaz")
+@software.amazon.jsii.Jsii.Proxy(IBaz.Jsii$Proxy.class)
+@software.amazon.jsii.Stability(software.amazon.jsii.Stability.Level.Stable)
+public interface IBaz extends software.amazon.jsii.JsiiSerializable, software.amazon.jsii.tests.calculator.base.IBaseInterface {
+
+    /**
+     */
+    @software.amazon.jsii.Stability(software.amazon.jsii.Stability.Level.Stable)
+    void bazMethod();
+
+    /**
+     * A proxy class which represents a concrete javascript instance of this type.
+     */
+    @software.amazon.jsii.Internal
+    final class Jsii$Proxy extends software.amazon.jsii.JsiiObject implements software.amazon.jsii.tests.calculator.module2702.IBaz.Jsii$Default {
+        protected Jsii$Proxy(final software.amazon.jsii.JsiiObjectRef objRef) {
+            super(objRef);
+        }
+
+        @Override
+        public final void foo() {
+            software.amazon.jsii.Kernel.call(this, "foo", software.amazon.jsii.NativeType.VOID);
+        }
+
+        @Override
+        public final void bar() {
+            software.amazon.jsii.Kernel.call(this, "bar", software.amazon.jsii.NativeType.VOID);
+        }
+
+        /**
+         */
+        @software.amazon.jsii.Stability(software.amazon.jsii.Stability.Level.Stable)
+        @Override
+        public final void bazMethod() {
+            software.amazon.jsii.Kernel.call(this, "bazMethod", software.amazon.jsii.NativeType.VOID);
+        }
+    }
+
+    /**
+     * Internal default implementation for {@link IBaz}.
+     */
+    @software.amazon.jsii.Internal
+    interface Jsii$Default extends IBaz, software.amazon.jsii.tests.calculator.baseofbase.IVeryBaseInterface.Jsii$Default {
+
+        @Override
+        default void foo() {
+            software.amazon.jsii.Kernel.call(this, "foo", software.amazon.jsii.NativeType.VOID);
+        }
+
+        @Override
+        default void bar() {
+            software.amazon.jsii.Kernel.call(this, "bar", software.amazon.jsii.NativeType.VOID);
+        }
+
+        /**
+         */
+        @software.amazon.jsii.Stability(software.amazon.jsii.Stability.Level.Stable)
+        @Override
+        default void bazMethod() {
+            software.amazon.jsii.Kernel.call(this, "bazMethod", software.amazon.jsii.NativeType.VOID);
+        }
+    }
+}
+
+`;
+
+exports[`Generated code for "jsii-calc": <outDir>/java/src/main/java/software/amazon/jsii/tests/calculator/module2702/IConstruct.java 1`] = `
+package software.amazon.jsii.tests.calculator.module2702;
+
+/**
+ */
+@javax.annotation.Generated(value = "jsii-pacmak")
+@software.amazon.jsii.Jsii(module = software.amazon.jsii.tests.calculator.$Module.class, fqn = "jsii-calc.module2702.IConstruct")
+@software.amazon.jsii.Jsii.Proxy(IConstruct.Jsii$Proxy.class)
+@software.amazon.jsii.Stability(software.amazon.jsii.Stability.Level.Stable)
+public interface IConstruct extends software.amazon.jsii.JsiiSerializable {
+
+    /**
+     */
+    @software.amazon.jsii.Stability(software.amazon.jsii.Stability.Level.Stable)
+    void constructMethod();
+
+    /**
+     * A proxy class which represents a concrete javascript instance of this type.
+     */
+    @software.amazon.jsii.Internal
+    final class Jsii$Proxy extends software.amazon.jsii.JsiiObject implements software.amazon.jsii.tests.calculator.module2702.IConstruct.Jsii$Default {
+        protected Jsii$Proxy(final software.amazon.jsii.JsiiObjectRef objRef) {
+            super(objRef);
+        }
+
+        /**
+         */
+        @software.amazon.jsii.Stability(software.amazon.jsii.Stability.Level.Stable)
+        @Override
+        public final void constructMethod() {
+            software.amazon.jsii.Kernel.call(this, "constructMethod", software.amazon.jsii.NativeType.VOID);
+        }
+    }
+
+    /**
+     * Internal default implementation for {@link IConstruct}.
+     */
+    @software.amazon.jsii.Internal
+    interface Jsii$Default extends IConstruct {
+
+        /**
+         */
+        @software.amazon.jsii.Stability(software.amazon.jsii.Stability.Level.Stable)
+        @Override
+        default void constructMethod() {
+            software.amazon.jsii.Kernel.call(this, "constructMethod", software.amazon.jsii.NativeType.VOID);
+        }
+    }
+}
+
+`;
+
 exports[`Generated code for "jsii-calc": <outDir>/java/src/main/java/software/amazon/jsii/tests/calculator/module2702/IFoo.java 1`] = `
 package software.amazon.jsii.tests.calculator.module2702;
 
@@ -22983,6 +23189,242 @@ public interface IFoo extends software.amazon.jsii.JsiiSerializable, software.am
         default void bar() {
             software.amazon.jsii.Kernel.call(this, "bar", software.amazon.jsii.NativeType.VOID);
         }
+    }
+}
+
+`;
+
+exports[`Generated code for "jsii-calc": <outDir>/java/src/main/java/software/amazon/jsii/tests/calculator/module2702/IResource.java 1`] = `
+package software.amazon.jsii.tests.calculator.module2702;
+
+/**
+ */
+@javax.annotation.Generated(value = "jsii-pacmak")
+@software.amazon.jsii.Jsii(module = software.amazon.jsii.tests.calculator.$Module.class, fqn = "jsii-calc.module2702.IResource")
+@software.amazon.jsii.Jsii.Proxy(IResource.Jsii$Proxy.class)
+@software.amazon.jsii.Stability(software.amazon.jsii.Stability.Level.Stable)
+public interface IResource extends software.amazon.jsii.JsiiSerializable, software.amazon.jsii.tests.calculator.module2702.IConstruct {
+
+    /**
+     */
+    @software.amazon.jsii.Stability(software.amazon.jsii.Stability.Level.Stable)
+    void resourceMethod();
+
+    /**
+     * A proxy class which represents a concrete javascript instance of this type.
+     */
+    @software.amazon.jsii.Internal
+    final class Jsii$Proxy extends software.amazon.jsii.JsiiObject implements software.amazon.jsii.tests.calculator.module2702.IResource.Jsii$Default {
+        protected Jsii$Proxy(final software.amazon.jsii.JsiiObjectRef objRef) {
+            super(objRef);
+        }
+
+        /**
+         */
+        @software.amazon.jsii.Stability(software.amazon.jsii.Stability.Level.Stable)
+        @Override
+        public final void constructMethod() {
+            software.amazon.jsii.Kernel.call(this, "constructMethod", software.amazon.jsii.NativeType.VOID);
+        }
+
+        /**
+         */
+        @software.amazon.jsii.Stability(software.amazon.jsii.Stability.Level.Stable)
+        @Override
+        public final void resourceMethod() {
+            software.amazon.jsii.Kernel.call(this, "resourceMethod", software.amazon.jsii.NativeType.VOID);
+        }
+    }
+
+    /**
+     * Internal default implementation for {@link IResource}.
+     */
+    @software.amazon.jsii.Internal
+    interface Jsii$Default extends IResource, software.amazon.jsii.tests.calculator.module2702.IConstruct.Jsii$Default {
+
+        /**
+         */
+        @software.amazon.jsii.Stability(software.amazon.jsii.Stability.Level.Stable)
+        @Override
+        default void constructMethod() {
+            software.amazon.jsii.Kernel.call(this, "constructMethod", software.amazon.jsii.NativeType.VOID);
+        }
+
+        /**
+         */
+        @software.amazon.jsii.Stability(software.amazon.jsii.Stability.Level.Stable)
+        @Override
+        default void resourceMethod() {
+            software.amazon.jsii.Kernel.call(this, "resourceMethod", software.amazon.jsii.NativeType.VOID);
+        }
+    }
+}
+
+`;
+
+exports[`Generated code for "jsii-calc": <outDir>/java/src/main/java/software/amazon/jsii/tests/calculator/module2702/IVpc.java 1`] = `
+package software.amazon.jsii.tests.calculator.module2702;
+
+/**
+ */
+@javax.annotation.Generated(value = "jsii-pacmak")
+@software.amazon.jsii.Jsii(module = software.amazon.jsii.tests.calculator.$Module.class, fqn = "jsii-calc.module2702.IVpc")
+@software.amazon.jsii.Jsii.Proxy(IVpc.Jsii$Proxy.class)
+@software.amazon.jsii.Stability(software.amazon.jsii.Stability.Level.Stable)
+public interface IVpc extends software.amazon.jsii.JsiiSerializable, software.amazon.jsii.tests.calculator.module2702.IResource {
+
+    /**
+     */
+    @software.amazon.jsii.Stability(software.amazon.jsii.Stability.Level.Stable)
+    void vpcMethod();
+
+    /**
+     * A proxy class which represents a concrete javascript instance of this type.
+     */
+    @software.amazon.jsii.Internal
+    final class Jsii$Proxy extends software.amazon.jsii.JsiiObject implements software.amazon.jsii.tests.calculator.module2702.IVpc.Jsii$Default {
+        protected Jsii$Proxy(final software.amazon.jsii.JsiiObjectRef objRef) {
+            super(objRef);
+        }
+
+        /**
+         */
+        @software.amazon.jsii.Stability(software.amazon.jsii.Stability.Level.Stable)
+        @Override
+        public final void constructMethod() {
+            software.amazon.jsii.Kernel.call(this, "constructMethod", software.amazon.jsii.NativeType.VOID);
+        }
+
+        /**
+         */
+        @software.amazon.jsii.Stability(software.amazon.jsii.Stability.Level.Stable)
+        @Override
+        public final void resourceMethod() {
+            software.amazon.jsii.Kernel.call(this, "resourceMethod", software.amazon.jsii.NativeType.VOID);
+        }
+
+        /**
+         */
+        @software.amazon.jsii.Stability(software.amazon.jsii.Stability.Level.Stable)
+        @Override
+        public final void vpcMethod() {
+            software.amazon.jsii.Kernel.call(this, "vpcMethod", software.amazon.jsii.NativeType.VOID);
+        }
+    }
+
+    /**
+     * Internal default implementation for {@link IVpc}.
+     */
+    @software.amazon.jsii.Internal
+    interface Jsii$Default extends IVpc, software.amazon.jsii.tests.calculator.module2702.IResource.Jsii$Default {
+
+        /**
+         */
+        @software.amazon.jsii.Stability(software.amazon.jsii.Stability.Level.Stable)
+        @Override
+        default void constructMethod() {
+            software.amazon.jsii.Kernel.call(this, "constructMethod", software.amazon.jsii.NativeType.VOID);
+        }
+
+        /**
+         */
+        @software.amazon.jsii.Stability(software.amazon.jsii.Stability.Level.Stable)
+        @Override
+        default void resourceMethod() {
+            software.amazon.jsii.Kernel.call(this, "resourceMethod", software.amazon.jsii.NativeType.VOID);
+        }
+
+        /**
+         */
+        @software.amazon.jsii.Stability(software.amazon.jsii.Stability.Level.Stable)
+        @Override
+        default void vpcMethod() {
+            software.amazon.jsii.Kernel.call(this, "vpcMethod", software.amazon.jsii.NativeType.VOID);
+        }
+    }
+}
+
+`;
+
+exports[`Generated code for "jsii-calc": <outDir>/java/src/main/java/software/amazon/jsii/tests/calculator/module2702/Resource.java 1`] = `
+package software.amazon.jsii.tests.calculator.module2702;
+
+/**
+ */
+@javax.annotation.Generated(value = "jsii-pacmak")
+@software.amazon.jsii.Stability(software.amazon.jsii.Stability.Level.Stable)
+@software.amazon.jsii.Jsii(module = software.amazon.jsii.tests.calculator.$Module.class, fqn = "jsii-calc.module2702.Resource")
+public abstract class Resource extends software.amazon.jsii.tests.calculator.module2702.Construct implements software.amazon.jsii.tests.calculator.module2702.IResource {
+
+    protected Resource(final software.amazon.jsii.JsiiObjectRef objRef) {
+        super(objRef);
+    }
+
+    protected Resource(final software.amazon.jsii.JsiiObject.InitializationMode initializationMode) {
+        super(initializationMode);
+    }
+
+    /**
+     */
+    @software.amazon.jsii.Stability(software.amazon.jsii.Stability.Level.Stable)
+    protected Resource() {
+        super(software.amazon.jsii.JsiiObject.InitializationMode.JSII);
+        software.amazon.jsii.JsiiEngine.getInstance().createNewObject(this);
+    }
+
+    /**
+     */
+    @software.amazon.jsii.Stability(software.amazon.jsii.Stability.Level.Stable)
+    @Override
+    public void resourceMethod() {
+        software.amazon.jsii.Kernel.call(this, "resourceMethod", software.amazon.jsii.NativeType.VOID);
+    }
+
+    /**
+     * A proxy class which represents a concrete javascript instance of this type.
+     */
+    @software.amazon.jsii.Internal
+    private static final class Jsii$Proxy extends software.amazon.jsii.tests.calculator.module2702.Resource implements software.amazon.jsii.tests.calculator.module2702.IResource.Jsii$Default, software.amazon.jsii.tests.calculator.module2702.IConstruct.Jsii$Default {
+        protected Jsii$Proxy(final software.amazon.jsii.JsiiObjectRef objRef) {
+            super(objRef);
+        }
+    }
+}
+
+`;
+
+exports[`Generated code for "jsii-calc": <outDir>/java/src/main/java/software/amazon/jsii/tests/calculator/module2702/Vpc.java 1`] = `
+package software.amazon.jsii.tests.calculator.module2702;
+
+/**
+ */
+@javax.annotation.Generated(value = "jsii-pacmak")
+@software.amazon.jsii.Stability(software.amazon.jsii.Stability.Level.Stable)
+@software.amazon.jsii.Jsii(module = software.amazon.jsii.tests.calculator.$Module.class, fqn = "jsii-calc.module2702.Vpc")
+public class Vpc extends software.amazon.jsii.tests.calculator.module2702.Resource implements software.amazon.jsii.tests.calculator.module2702.IVpc {
+
+    protected Vpc(final software.amazon.jsii.JsiiObjectRef objRef) {
+        super(objRef);
+    }
+
+    protected Vpc(final software.amazon.jsii.JsiiObject.InitializationMode initializationMode) {
+        super(initializationMode);
+    }
+
+    /**
+     */
+    @software.amazon.jsii.Stability(software.amazon.jsii.Stability.Level.Stable)
+    public Vpc() {
+        super(software.amazon.jsii.JsiiObject.InitializationMode.JSII);
+        software.amazon.jsii.JsiiEngine.getInstance().createNewObject(this);
+    }
+
+    /**
+     */
+    @software.amazon.jsii.Stability(software.amazon.jsii.Stability.Level.Stable)
+    @Override
+    public void vpcMethod() {
+        software.amazon.jsii.Kernel.call(this, "vpcMethod", software.amazon.jsii.NativeType.VOID);
     }
 }
 
@@ -24871,10 +25313,18 @@ jsii-calc.module2692.submodule2.Foo=software.amazon.jsii.tests.calculator.module
 jsii-calc.module2700.Base=software.amazon.jsii.tests.calculator.module2700.Base
 jsii-calc.module2700.Derived=software.amazon.jsii.tests.calculator.module2700.Derived
 jsii-calc.module2700.IFoo=software.amazon.jsii.tests.calculator.module2700.IFoo
+jsii-calc.module2702.Baz=software.amazon.jsii.tests.calculator.module2702.Baz
 jsii-calc.module2702.Class1=software.amazon.jsii.tests.calculator.module2702.Class1
 jsii-calc.module2702.Class2=software.amazon.jsii.tests.calculator.module2702.Class2
 jsii-calc.module2702.Class3=software.amazon.jsii.tests.calculator.module2702.Class3
+jsii-calc.module2702.Construct=software.amazon.jsii.tests.calculator.module2702.Construct
+jsii-calc.module2702.IBaz=software.amazon.jsii.tests.calculator.module2702.IBaz
+jsii-calc.module2702.IConstruct=software.amazon.jsii.tests.calculator.module2702.IConstruct
 jsii-calc.module2702.IFoo=software.amazon.jsii.tests.calculator.module2702.IFoo
+jsii-calc.module2702.IResource=software.amazon.jsii.tests.calculator.module2702.IResource
+jsii-calc.module2702.IVpc=software.amazon.jsii.tests.calculator.module2702.IVpc
+jsii-calc.module2702.Resource=software.amazon.jsii.tests.calculator.module2702.Resource
+jsii-calc.module2702.Vpc=software.amazon.jsii.tests.calculator.module2702.Vpc
 jsii-calc.nodirect.sub1.TypeFromSub1=software.amazon.jsii.tests.calculator.nodirect.sub1.TypeFromSub1
 jsii-calc.nodirect.sub2.TypeFromSub2=software.amazon.jsii.tests.calculator.nodirect.sub2.TypeFromSub2
 jsii-calc.onlystatic.OnlyStaticMethods=software.amazon.jsii.tests.calculator.onlystatic.OnlyStaticMethods

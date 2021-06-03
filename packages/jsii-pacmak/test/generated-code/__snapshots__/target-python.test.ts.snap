@@ -333,10 +333,6 @@ import scope.jsii_calc_base_of_base
 class Base(metaclass=jsii.JSIIAbstractClass, jsii_type="@scope/jsii-calc-base.Base"):
     '''A base class.'''
 
-    @builtins.staticmethod
-    def __jsii_proxy_class__() -> typing.Type["_BaseProxy"]:
-        return _BaseProxy
-
     def __init__(self) -> None:
         jsii.create(Base, self, [])
 
@@ -350,6 +346,9 @@ class Base(metaclass=jsii.JSIIAbstractClass, jsii_type="@scope/jsii-calc-base.Ba
 
 class _BaseProxy(Base):
     pass
+
+# Adding a "__jsii_proxy_class__(): typing.Type" function to the abstract class
+typing.cast(typing.Any, Base).__jsii_proxy_class__ = lambda : _BaseProxy
 
 
 @jsii.data_type(
@@ -402,10 +401,6 @@ class IBaseInterface(
     scope.jsii_calc_base_of_base.IVeryBaseInterface,
     typing_extensions.Protocol,
 ):
-    @builtins.staticmethod
-    def __jsii_proxy_class__() -> typing.Type["_IBaseInterfaceProxy"]:
-        return _IBaseInterfaceProxy
-
     @jsii.member(jsii_name="bar")
     def bar(self) -> None:
         ...
@@ -419,6 +414,9 @@ class _IBaseInterfaceProxy(
     @jsii.member(jsii_name="bar")
     def bar(self) -> None:
         return typing.cast(None, jsii.invoke(self, "bar", []))
+
+# Adding a "__jsii_proxy_class__(): typing.Type" function to the interface
+typing.cast(typing.Any, IBaseInterface).__jsii_proxy_class__ = lambda : _IBaseInterfaceProxy
 
 
 class StaticConsumer(
@@ -811,10 +809,6 @@ from ._jsii import *
 
 @jsii.interface(jsii_type="@scope/jsii-calc-base-of-base.IVeryBaseInterface")
 class IVeryBaseInterface(typing_extensions.Protocol):
-    @builtins.staticmethod
-    def __jsii_proxy_class__() -> typing.Type["_IVeryBaseInterfaceProxy"]:
-        return _IVeryBaseInterfaceProxy
-
     @jsii.member(jsii_name="foo")
     def foo(self) -> None:
         ...
@@ -826,6 +820,9 @@ class _IVeryBaseInterfaceProxy:
     @jsii.member(jsii_name="foo")
     def foo(self) -> None:
         return typing.cast(None, jsii.invoke(self, "foo", []))
+
+# Adding a "__jsii_proxy_class__(): typing.Type" function to the interface
+typing.cast(typing.Any, IVeryBaseInterface).__jsii_proxy_class__ = lambda : _IVeryBaseInterfaceProxy
 
 
 class StaticConsumer(
@@ -1432,10 +1429,6 @@ class IDoublable(typing_extensions.Protocol):
     :stability: deprecated
     '''
 
-    @builtins.staticmethod
-    def __jsii_proxy_class__() -> typing.Type["_IDoublableProxy"]:
-        return _IDoublableProxy
-
     @builtins.property # type: ignore[misc]
     @jsii.member(jsii_name="doubleValue")
     def double_value(self) -> jsii.Number:
@@ -1461,6 +1454,9 @@ class _IDoublableProxy:
         '''
         return typing.cast(jsii.Number, jsii.get(self, "doubleValue"))
 
+# Adding a "__jsii_proxy_class__(): typing.Type" function to the interface
+typing.cast(typing.Any, IDoublable).__jsii_proxy_class__ = lambda : _IDoublableProxy
+
 
 @jsii.interface(jsii_type="@scope/jsii-calc-lib.IFriendly")
 class IFriendly(typing_extensions.Protocol):
@@ -1471,10 +1467,6 @@ class IFriendly(typing_extensions.Protocol):
 
     :stability: deprecated
     '''
-
-    @builtins.staticmethod
-    def __jsii_proxy_class__() -> typing.Type["_IFriendlyProxy"]:
-        return _IFriendlyProxy
 
     @jsii.member(jsii_name="hello")
     def hello(self) -> builtins.str:
@@ -1504,6 +1496,9 @@ class _IFriendlyProxy:
         '''
         return typing.cast(builtins.str, jsii.invoke(self, "hello", []))
 
+# Adding a "__jsii_proxy_class__(): typing.Type" function to the interface
+typing.cast(typing.Any, IFriendly).__jsii_proxy_class__ = lambda : _IFriendlyProxy
+
 
 @jsii.interface(jsii_type="@scope/jsii-calc-lib.IThreeLevelsInterface")
 class IThreeLevelsInterface(
@@ -1517,10 +1512,6 @@ class IThreeLevelsInterface(
 
     :stability: deprecated
     '''
-
-    @builtins.staticmethod
-    def __jsii_proxy_class__() -> typing.Type["_IThreeLevelsInterfaceProxy"]:
-        return _IThreeLevelsInterfaceProxy
 
     @jsii.member(jsii_name="baz")
     def baz(self) -> None:
@@ -1549,6 +1540,9 @@ class _IThreeLevelsInterfaceProxy(
         :stability: deprecated
         '''
         return typing.cast(None, jsii.invoke(self, "baz", []))
+
+# Adding a "__jsii_proxy_class__(): typing.Type" function to the interface
+typing.cast(typing.Any, IThreeLevelsInterface).__jsii_proxy_class__ = lambda : _IThreeLevelsInterfaceProxy
 
 
 @jsii.data_type(
@@ -1633,10 +1627,6 @@ class NumericValue(
     :stability: deprecated
     '''
 
-    @builtins.staticmethod
-    def __jsii_proxy_class__() -> typing.Type["_NumericValueProxy"]:
-        return _NumericValueProxy
-
     def __init__(self) -> None:
         jsii.create(NumericValue, self, [])
 
@@ -1671,6 +1661,9 @@ class _NumericValueProxy(
         '''
         return typing.cast(jsii.Number, jsii.get(self, "value"))
 
+# Adding a "__jsii_proxy_class__(): typing.Type" function to the abstract class
+typing.cast(typing.Any, NumericValue).__jsii_proxy_class__ = lambda : _NumericValueProxy
+
 
 class Operation(
     NumericValue,
@@ -1681,10 +1674,6 @@ class Operation(
 
     :stability: deprecated
     '''
-
-    @builtins.staticmethod
-    def __jsii_proxy_class__() -> typing.Type["_OperationProxy"]:
-        return _OperationProxy
 
     def __init__(self) -> None:
         jsii.create(Operation, self, [])
@@ -1709,6 +1698,9 @@ class _OperationProxy(
         :stability: deprecated
         '''
         return typing.cast(builtins.str, jsii.invoke(self, "toString", []))
+
+# Adding a "__jsii_proxy_class__(): typing.Type" function to the abstract class
+typing.cast(typing.Any, Operation).__jsii_proxy_class__ = lambda : _OperationProxy
 
 
 @jsii.data_type(
@@ -1887,10 +1879,6 @@ class IReflectable(typing_extensions.Protocol):
     :stability: deprecated
     '''
 
-    @builtins.staticmethod
-    def __jsii_proxy_class__() -> typing.Type["_IReflectableProxy"]:
-        return _IReflectableProxy
-
     @builtins.property # type: ignore[misc]
     @jsii.member(jsii_name="entries")
     def entries(self) -> typing.List["ReflectableEntry"]:
@@ -1914,6 +1902,9 @@ class _IReflectableProxy:
         :stability: deprecated
         '''
         return typing.cast(typing.List["ReflectableEntry"], jsii.get(self, "entries"))
+
+# Adding a "__jsii_proxy_class__(): typing.Type" function to the interface
+typing.cast(typing.Any, IReflectable).__jsii_proxy_class__ = lambda : _IReflectableProxy
 
 
 class NestingClass(
@@ -2567,10 +2558,6 @@ class AbstractClassBase(
     metaclass=jsii.JSIIAbstractClass,
     jsii_type="jsii-calc.AbstractClassBase",
 ):
-    @builtins.staticmethod
-    def __jsii_proxy_class__() -> typing.Type["_AbstractClassBaseProxy"]:
-        return _AbstractClassBaseProxy
-
     def __init__(self) -> None:
         jsii.create(AbstractClassBase, self, [])
 
@@ -2586,6 +2573,9 @@ class _AbstractClassBaseProxy(AbstractClassBase):
     @jsii.member(jsii_name="abstractProperty")
     def abstract_property(self) -> builtins.str:
         return typing.cast(builtins.str, jsii.get(self, "abstractProperty"))
+
+# Adding a "__jsii_proxy_class__(): typing.Type" function to the abstract class
+typing.cast(typing.Any, AbstractClassBase).__jsii_proxy_class__ = lambda : _AbstractClassBaseProxy
 
 
 class AbstractClassReturner(
@@ -2614,10 +2604,6 @@ class AbstractSuite(
     jsii_type="jsii-calc.AbstractSuite",
 ):
     '''Ensures abstract members implementations correctly register overrides in various languages.'''
-
-    @builtins.staticmethod
-    def __jsii_proxy_class__() -> typing.Type["_AbstractSuiteProxy"]:
-        return _AbstractSuiteProxy
 
     def __init__(self) -> None:
         jsii.create(AbstractSuite, self, [])
@@ -2666,6 +2652,9 @@ class _AbstractSuiteProxy(AbstractSuite):
     @_property.setter
     def _property(self, value: builtins.str) -> None:
         jsii.set(self, "property", value)
+
+# Adding a "__jsii_proxy_class__(): typing.Type" function to the abstract class
+typing.cast(typing.Any, AbstractSuite).__jsii_proxy_class__ = lambda : _AbstractSuiteProxy
 
 
 class AllTypes(metaclass=jsii.JSIIMeta, jsii_type="jsii-calc.AllTypes"):
@@ -3033,10 +3022,6 @@ class BinaryOperation(
 ):
     '''Represents an operation with two operands.'''
 
-    @builtins.staticmethod
-    def __jsii_proxy_class__() -> typing.Type["_BinaryOperationProxy"]:
-        return _BinaryOperationProxy
-
     def __init__(
         self,
         lhs: scope.jsii_calc_lib.NumericValue,
@@ -3072,16 +3057,15 @@ class _BinaryOperationProxy(
 ):
     pass
 
+# Adding a "__jsii_proxy_class__(): typing.Type" function to the abstract class
+typing.cast(typing.Any, BinaryOperation).__jsii_proxy_class__ = lambda : _BinaryOperationProxy
+
 
 class BurriedAnonymousObject(
     metaclass=jsii.JSIIAbstractClass,
     jsii_type="jsii-calc.BurriedAnonymousObject",
 ):
     '''See https://github.com/aws/aws-cdk/issues/7977.'''
-
-    @builtins.staticmethod
-    def __jsii_proxy_class__() -> typing.Type["_BurriedAnonymousObjectProxy"]:
-        return _BurriedAnonymousObjectProxy
 
     def __init__(self) -> None:
         jsii.create(BurriedAnonymousObject, self, [])
@@ -3112,6 +3096,9 @@ class _BurriedAnonymousObjectProxy(BurriedAnonymousObject):
         :return: \`\`value\`\`
         '''
         return typing.cast(typing.Any, jsii.invoke(self, "giveItBack", [value]))
+
+# Adding a "__jsii_proxy_class__(): typing.Type" function to the abstract class
+typing.cast(typing.Any, BurriedAnonymousObject).__jsii_proxy_class__ = lambda : _BurriedAnonymousObjectProxy
 
 
 class Calculator(
@@ -4542,10 +4529,6 @@ class DynamicPropertyBearerChild(
 class Entropy(metaclass=jsii.JSIIAbstractClass, jsii_type="jsii-calc.Entropy"):
     '''This class is used to validate that serialization and deserialization does not interpret ISO-8601-formatted timestampts to the native date/time object, as the jsii protocol has a $jsii$date wrapper for this purpose (node's JSON parsing does *NOT* detect dates automatically in this way, so host libraries should not either).'''
 
-    @builtins.staticmethod
-    def __jsii_proxy_class__() -> typing.Type["_EntropyProxy"]:
-        return _EntropyProxy
-
     def __init__(self, clock: "IWallClock") -> None:
         '''Creates a new instance of Entropy.
 
@@ -4583,6 +4566,9 @@ class _EntropyProxy(Entropy):
         :return: \`\`word\`\`.
         '''
         return typing.cast(builtins.str, jsii.invoke(self, "repeat", [word]))
+
+# Adding a "__jsii_proxy_class__(): typing.Type" function to the abstract class
+typing.cast(typing.Any, Entropy).__jsii_proxy_class__ = lambda : _EntropyProxy
 
 
 class EnumDispenser(metaclass=jsii.JSIIMeta, jsii_type="jsii-calc.EnumDispenser"):
@@ -5100,10 +5086,6 @@ class GreetingAugmenter(
 class IAnonymousImplementationProvider(typing_extensions.Protocol):
     '''We can return an anonymous interface implementation from an override without losing the interface declarations.'''
 
-    @builtins.staticmethod
-    def __jsii_proxy_class__() -> typing.Type["_IAnonymousImplementationProviderProxy"]:
-        return _IAnonymousImplementationProviderProxy
-
     @jsii.member(jsii_name="provideAsClass")
     def provide_as_class(self) -> "Implementation":
         ...
@@ -5126,13 +5108,12 @@ class _IAnonymousImplementationProviderProxy:
     def provide_as_interface(self) -> "IAnonymouslyImplementMe":
         return typing.cast("IAnonymouslyImplementMe", jsii.invoke(self, "provideAsInterface", []))
 
+# Adding a "__jsii_proxy_class__(): typing.Type" function to the interface
+typing.cast(typing.Any, IAnonymousImplementationProvider).__jsii_proxy_class__ = lambda : _IAnonymousImplementationProviderProxy
+
 
 @jsii.interface(jsii_type="jsii-calc.IAnonymouslyImplementMe")
 class IAnonymouslyImplementMe(typing_extensions.Protocol):
-    @builtins.staticmethod
-    def __jsii_proxy_class__() -> typing.Type["_IAnonymouslyImplementMeProxy"]:
-        return _IAnonymouslyImplementMeProxy
-
     @builtins.property # type: ignore[misc]
     @jsii.member(jsii_name="value")
     def value(self) -> jsii.Number:
@@ -5155,13 +5136,12 @@ class _IAnonymouslyImplementMeProxy:
     def verb(self) -> builtins.str:
         return typing.cast(builtins.str, jsii.invoke(self, "verb", []))
 
+# Adding a "__jsii_proxy_class__(): typing.Type" function to the interface
+typing.cast(typing.Any, IAnonymouslyImplementMe).__jsii_proxy_class__ = lambda : _IAnonymouslyImplementMeProxy
+
 
 @jsii.interface(jsii_type="jsii-calc.IAnotherPublicInterface")
 class IAnotherPublicInterface(typing_extensions.Protocol):
-    @builtins.staticmethod
-    def __jsii_proxy_class__() -> typing.Type["_IAnotherPublicInterfaceProxy"]:
-        return _IAnotherPublicInterfaceProxy
-
     @builtins.property # type: ignore[misc]
     @jsii.member(jsii_name="a")
     def a(self) -> builtins.str:
@@ -5184,13 +5164,12 @@ class _IAnotherPublicInterfaceProxy:
     def a(self, value: builtins.str) -> None:
         jsii.set(self, "a", value)
 
+# Adding a "__jsii_proxy_class__(): typing.Type" function to the interface
+typing.cast(typing.Any, IAnotherPublicInterface).__jsii_proxy_class__ = lambda : _IAnotherPublicInterfaceProxy
+
 
 @jsii.interface(jsii_type="jsii-calc.IBell")
 class IBell(typing_extensions.Protocol):
-    @builtins.staticmethod
-    def __jsii_proxy_class__() -> typing.Type["_IBellProxy"]:
-        return _IBellProxy
-
     @jsii.member(jsii_name="ring")
     def ring(self) -> None:
         ...
@@ -5203,14 +5182,13 @@ class _IBellProxy:
     def ring(self) -> None:
         return typing.cast(None, jsii.invoke(self, "ring", []))
 
+# Adding a "__jsii_proxy_class__(): typing.Type" function to the interface
+typing.cast(typing.Any, IBell).__jsii_proxy_class__ = lambda : _IBellProxy
+
 
 @jsii.interface(jsii_type="jsii-calc.IBellRinger")
 class IBellRinger(typing_extensions.Protocol):
     '''Takes the object parameter as an interface.'''
-
-    @builtins.staticmethod
-    def __jsii_proxy_class__() -> typing.Type["_IBellRingerProxy"]:
-        return _IBellRingerProxy
 
     @jsii.member(jsii_name="yourTurn")
     def your_turn(self, bell: IBell) -> None:
@@ -5232,14 +5210,13 @@ class _IBellRingerProxy:
         '''
         return typing.cast(None, jsii.invoke(self, "yourTurn", [bell]))
 
+# Adding a "__jsii_proxy_class__(): typing.Type" function to the interface
+typing.cast(typing.Any, IBellRinger).__jsii_proxy_class__ = lambda : _IBellRingerProxy
+
 
 @jsii.interface(jsii_type="jsii-calc.IConcreteBellRinger")
 class IConcreteBellRinger(typing_extensions.Protocol):
     '''Takes the object parameter as a calss.'''
-
-    @builtins.staticmethod
-    def __jsii_proxy_class__() -> typing.Type["_IConcreteBellRingerProxy"]:
-        return _IConcreteBellRingerProxy
 
     @jsii.member(jsii_name="yourTurn")
     def your_turn(self, bell: "Bell") -> None:
@@ -5261,6 +5238,9 @@ class _IConcreteBellRingerProxy:
         '''
         return typing.cast(None, jsii.invoke(self, "yourTurn", [bell]))
 
+# Adding a "__jsii_proxy_class__(): typing.Type" function to the interface
+typing.cast(typing.Any, IConcreteBellRinger).__jsii_proxy_class__ = lambda : _IConcreteBellRingerProxy
+
 
 @jsii.interface(jsii_type="jsii-calc.IDeprecatedInterface")
 class IDeprecatedInterface(typing_extensions.Protocol):
@@ -5269,10 +5249,6 @@ class IDeprecatedInterface(typing_extensions.Protocol):
 
     :stability: deprecated
     '''
-
-    @builtins.staticmethod
-    def __jsii_proxy_class__() -> typing.Type["_IDeprecatedInterfaceProxy"]:
-        return _IDeprecatedInterfaceProxy
 
     @builtins.property # type: ignore[misc]
     @jsii.member(jsii_name="mutableProperty")
@@ -5330,16 +5306,15 @@ class _IDeprecatedInterfaceProxy:
         '''
         return typing.cast(None, jsii.invoke(self, "method", []))
 
+# Adding a "__jsii_proxy_class__(): typing.Type" function to the interface
+typing.cast(typing.Any, IDeprecatedInterface).__jsii_proxy_class__ = lambda : _IDeprecatedInterfaceProxy
+
 
 @jsii.interface(jsii_type="jsii-calc.IExperimentalInterface")
 class IExperimentalInterface(typing_extensions.Protocol):
     '''
     :stability: experimental
     '''
-
-    @builtins.staticmethod
-    def __jsii_proxy_class__() -> typing.Type["_IExperimentalInterfaceProxy"]:
-        return _IExperimentalInterfaceProxy
 
     @builtins.property # type: ignore[misc]
     @jsii.member(jsii_name="mutableProperty")
@@ -5387,13 +5362,12 @@ class _IExperimentalInterfaceProxy:
         '''
         return typing.cast(None, jsii.invoke(self, "method", []))
 
+# Adding a "__jsii_proxy_class__(): typing.Type" function to the interface
+typing.cast(typing.Any, IExperimentalInterface).__jsii_proxy_class__ = lambda : _IExperimentalInterfaceProxy
+
 
 @jsii.interface(jsii_type="jsii-calc.IExtendsPrivateInterface")
 class IExtendsPrivateInterface(typing_extensions.Protocol):
-    @builtins.staticmethod
-    def __jsii_proxy_class__() -> typing.Type["_IExtendsPrivateInterfaceProxy"]:
-        return _IExtendsPrivateInterfaceProxy
-
     @builtins.property # type: ignore[misc]
     @jsii.member(jsii_name="moreThings")
     def more_things(self) -> typing.List[builtins.str]:
@@ -5426,16 +5400,15 @@ class _IExtendsPrivateInterfaceProxy:
     def private(self, value: builtins.str) -> None:
         jsii.set(self, "private", value)
 
+# Adding a "__jsii_proxy_class__(): typing.Type" function to the interface
+typing.cast(typing.Any, IExtendsPrivateInterface).__jsii_proxy_class__ = lambda : _IExtendsPrivateInterfaceProxy
+
 
 @jsii.interface(jsii_type="jsii-calc.IExternalInterface")
 class IExternalInterface(typing_extensions.Protocol):
     '''
     :external: true
     '''
-
-    @builtins.staticmethod
-    def __jsii_proxy_class__() -> typing.Type["_IExternalInterfaceProxy"]:
-        return _IExternalInterfaceProxy
 
     @builtins.property # type: ignore[misc]
     @jsii.member(jsii_name="mutableProperty")
@@ -5483,14 +5456,13 @@ class _IExternalInterfaceProxy:
         '''
         return typing.cast(None, jsii.invoke(self, "method", []))
 
+# Adding a "__jsii_proxy_class__(): typing.Type" function to the interface
+typing.cast(typing.Any, IExternalInterface).__jsii_proxy_class__ = lambda : _IExternalInterfaceProxy
+
 
 @jsii.interface(jsii_type="jsii-calc.IFriendlier")
 class IFriendlier(scope.jsii_calc_lib.IFriendly, typing_extensions.Protocol):
     '''Even friendlier classes can implement this interface.'''
-
-    @builtins.staticmethod
-    def __jsii_proxy_class__() -> typing.Type["_IFriendlierProxy"]:
-        return _IFriendlierProxy
 
     @jsii.member(jsii_name="farewell")
     def farewell(self) -> builtins.str:
@@ -5526,14 +5498,13 @@ class _IFriendlierProxy(
         '''
         return typing.cast(builtins.str, jsii.invoke(self, "goodbye", []))
 
+# Adding a "__jsii_proxy_class__(): typing.Type" function to the interface
+typing.cast(typing.Any, IFriendlier).__jsii_proxy_class__ = lambda : _IFriendlierProxy
+
 
 @jsii.interface(jsii_type="jsii-calc.IInterfaceImplementedByAbstractClass")
 class IInterfaceImplementedByAbstractClass(typing_extensions.Protocol):
     '''awslabs/jsii#220 Abstract return type.'''
-
-    @builtins.staticmethod
-    def __jsii_proxy_class__() -> typing.Type["_IInterfaceImplementedByAbstractClassProxy"]:
-        return _IInterfaceImplementedByAbstractClassProxy
 
     @builtins.property # type: ignore[misc]
     @jsii.member(jsii_name="propFromInterface")
@@ -5551,13 +5522,12 @@ class _IInterfaceImplementedByAbstractClassProxy:
     def prop_from_interface(self) -> builtins.str:
         return typing.cast(builtins.str, jsii.get(self, "propFromInterface"))
 
+# Adding a "__jsii_proxy_class__(): typing.Type" function to the interface
+typing.cast(typing.Any, IInterfaceImplementedByAbstractClass).__jsii_proxy_class__ = lambda : _IInterfaceImplementedByAbstractClassProxy
+
 
 @jsii.interface(jsii_type="jsii-calc.IInterfaceWithInternal")
 class IInterfaceWithInternal(typing_extensions.Protocol):
-    @builtins.staticmethod
-    def __jsii_proxy_class__() -> typing.Type["_IInterfaceWithInternalProxy"]:
-        return _IInterfaceWithInternalProxy
-
     @jsii.member(jsii_name="visible")
     def visible(self) -> None:
         ...
@@ -5570,13 +5540,12 @@ class _IInterfaceWithInternalProxy:
     def visible(self) -> None:
         return typing.cast(None, jsii.invoke(self, "visible", []))
 
+# Adding a "__jsii_proxy_class__(): typing.Type" function to the interface
+typing.cast(typing.Any, IInterfaceWithInternal).__jsii_proxy_class__ = lambda : _IInterfaceWithInternalProxy
+
 
 @jsii.interface(jsii_type="jsii-calc.IInterfaceWithMethods")
 class IInterfaceWithMethods(typing_extensions.Protocol):
-    @builtins.staticmethod
-    def __jsii_proxy_class__() -> typing.Type["_IInterfaceWithMethodsProxy"]:
-        return _IInterfaceWithMethodsProxy
-
     @builtins.property # type: ignore[misc]
     @jsii.member(jsii_name="value")
     def value(self) -> builtins.str:
@@ -5599,14 +5568,13 @@ class _IInterfaceWithMethodsProxy:
     def do_things(self) -> None:
         return typing.cast(None, jsii.invoke(self, "doThings", []))
 
+# Adding a "__jsii_proxy_class__(): typing.Type" function to the interface
+typing.cast(typing.Any, IInterfaceWithMethods).__jsii_proxy_class__ = lambda : _IInterfaceWithMethodsProxy
+
 
 @jsii.interface(jsii_type="jsii-calc.IInterfaceWithOptionalMethodArguments")
 class IInterfaceWithOptionalMethodArguments(typing_extensions.Protocol):
     '''awslabs/jsii#175 Interface proxies (and builders) do not respect optional arguments in methods.'''
-
-    @builtins.staticmethod
-    def __jsii_proxy_class__() -> typing.Type["_IInterfaceWithOptionalMethodArgumentsProxy"]:
-        return _IInterfaceWithOptionalMethodArgumentsProxy
 
     @jsii.member(jsii_name="hello")
     def hello(
@@ -5638,13 +5606,12 @@ class _IInterfaceWithOptionalMethodArgumentsProxy:
         '''
         return typing.cast(None, jsii.invoke(self, "hello", [arg1, arg2]))
 
+# Adding a "__jsii_proxy_class__(): typing.Type" function to the interface
+typing.cast(typing.Any, IInterfaceWithOptionalMethodArguments).__jsii_proxy_class__ = lambda : _IInterfaceWithOptionalMethodArgumentsProxy
+
 
 @jsii.interface(jsii_type="jsii-calc.IInterfaceWithProperties")
 class IInterfaceWithProperties(typing_extensions.Protocol):
-    @builtins.staticmethod
-    def __jsii_proxy_class__() -> typing.Type["_IInterfaceWithPropertiesProxy"]:
-        return _IInterfaceWithPropertiesProxy
-
     @builtins.property # type: ignore[misc]
     @jsii.member(jsii_name="readOnlyString")
     def read_only_string(self) -> builtins.str:
@@ -5677,16 +5644,15 @@ class _IInterfaceWithPropertiesProxy:
     def read_write_string(self, value: builtins.str) -> None:
         jsii.set(self, "readWriteString", value)
 
+# Adding a "__jsii_proxy_class__(): typing.Type" function to the interface
+typing.cast(typing.Any, IInterfaceWithProperties).__jsii_proxy_class__ = lambda : _IInterfaceWithPropertiesProxy
+
 
 @jsii.interface(jsii_type="jsii-calc.IInterfaceWithPropertiesExtension")
 class IInterfaceWithPropertiesExtension(
     IInterfaceWithProperties,
     typing_extensions.Protocol,
 ):
-    @builtins.staticmethod
-    def __jsii_proxy_class__() -> typing.Type["_IInterfaceWithPropertiesExtensionProxy"]:
-        return _IInterfaceWithPropertiesExtensionProxy
-
     @builtins.property # type: ignore[misc]
     @jsii.member(jsii_name="foo")
     def foo(self) -> jsii.Number:
@@ -5711,13 +5677,12 @@ class _IInterfaceWithPropertiesExtensionProxy(
     def foo(self, value: jsii.Number) -> None:
         jsii.set(self, "foo", value)
 
+# Adding a "__jsii_proxy_class__(): typing.Type" function to the interface
+typing.cast(typing.Any, IInterfaceWithPropertiesExtension).__jsii_proxy_class__ = lambda : _IInterfaceWithPropertiesExtensionProxy
+
 
 @jsii.interface(jsii_type="jsii-calc.IJSII417PublicBaseOfBase")
 class IJSII417PublicBaseOfBase(typing_extensions.Protocol):
-    @builtins.staticmethod
-    def __jsii_proxy_class__() -> typing.Type["_IJSII417PublicBaseOfBaseProxy"]:
-        return _IJSII417PublicBaseOfBaseProxy
-
     @builtins.property # type: ignore[misc]
     @jsii.member(jsii_name="hasRoot")
     def has_root(self) -> builtins.bool:
@@ -5740,49 +5705,51 @@ class _IJSII417PublicBaseOfBaseProxy:
     def foo(self) -> None:
         return typing.cast(None, jsii.invoke(self, "foo", []))
 
+# Adding a "__jsii_proxy_class__(): typing.Type" function to the interface
+typing.cast(typing.Any, IJSII417PublicBaseOfBase).__jsii_proxy_class__ = lambda : _IJSII417PublicBaseOfBaseProxy
+
 
 @jsii.interface(jsii_type="jsii-calc.IJsii487External")
 class IJsii487External(typing_extensions.Protocol):
-    @builtins.staticmethod
-    def __jsii_proxy_class__() -> typing.Type["_IJsii487ExternalProxy"]:
-        return _IJsii487ExternalProxy
+    pass
 
 
 class _IJsii487ExternalProxy:
     __jsii_type__: typing.ClassVar[str] = "jsii-calc.IJsii487External"
     pass
 
+# Adding a "__jsii_proxy_class__(): typing.Type" function to the interface
+typing.cast(typing.Any, IJsii487External).__jsii_proxy_class__ = lambda : _IJsii487ExternalProxy
+
 
 @jsii.interface(jsii_type="jsii-calc.IJsii487External2")
 class IJsii487External2(typing_extensions.Protocol):
-    @builtins.staticmethod
-    def __jsii_proxy_class__() -> typing.Type["_IJsii487External2Proxy"]:
-        return _IJsii487External2Proxy
+    pass
 
 
 class _IJsii487External2Proxy:
     __jsii_type__: typing.ClassVar[str] = "jsii-calc.IJsii487External2"
     pass
 
+# Adding a "__jsii_proxy_class__(): typing.Type" function to the interface
+typing.cast(typing.Any, IJsii487External2).__jsii_proxy_class__ = lambda : _IJsii487External2Proxy
+
 
 @jsii.interface(jsii_type="jsii-calc.IJsii496")
 class IJsii496(typing_extensions.Protocol):
-    @builtins.staticmethod
-    def __jsii_proxy_class__() -> typing.Type["_IJsii496Proxy"]:
-        return _IJsii496Proxy
+    pass
 
 
 class _IJsii496Proxy:
     __jsii_type__: typing.ClassVar[str] = "jsii-calc.IJsii496"
     pass
 
+# Adding a "__jsii_proxy_class__(): typing.Type" function to the interface
+typing.cast(typing.Any, IJsii496).__jsii_proxy_class__ = lambda : _IJsii496Proxy
+
 
 @jsii.interface(jsii_type="jsii-calc.IMutableObjectLiteral")
 class IMutableObjectLiteral(typing_extensions.Protocol):
-    @builtins.staticmethod
-    def __jsii_proxy_class__() -> typing.Type["_IMutableObjectLiteralProxy"]:
-        return _IMutableObjectLiteralProxy
-
     @builtins.property # type: ignore[misc]
     @jsii.member(jsii_name="value")
     def value(self) -> builtins.str:
@@ -5805,13 +5772,12 @@ class _IMutableObjectLiteralProxy:
     def value(self, value: builtins.str) -> None:
         jsii.set(self, "value", value)
 
+# Adding a "__jsii_proxy_class__(): typing.Type" function to the interface
+typing.cast(typing.Any, IMutableObjectLiteral).__jsii_proxy_class__ = lambda : _IMutableObjectLiteralProxy
+
 
 @jsii.interface(jsii_type="jsii-calc.INonInternalInterface")
 class INonInternalInterface(IAnotherPublicInterface, typing_extensions.Protocol):
-    @builtins.staticmethod
-    def __jsii_proxy_class__() -> typing.Type["_INonInternalInterfaceProxy"]:
-        return _INonInternalInterfaceProxy
-
     @builtins.property # type: ignore[misc]
     @jsii.member(jsii_name="b")
     def b(self) -> builtins.str:
@@ -5854,14 +5820,13 @@ class _INonInternalInterfaceProxy(
     def c(self, value: builtins.str) -> None:
         jsii.set(self, "c", value)
 
+# Adding a "__jsii_proxy_class__(): typing.Type" function to the interface
+typing.cast(typing.Any, INonInternalInterface).__jsii_proxy_class__ = lambda : _INonInternalInterfaceProxy
+
 
 @jsii.interface(jsii_type="jsii-calc.IObjectWithProperty")
 class IObjectWithProperty(typing_extensions.Protocol):
     '''Make sure that setters are properly called on objects with interfaces.'''
-
-    @builtins.staticmethod
-    def __jsii_proxy_class__() -> typing.Type["_IObjectWithPropertyProxy"]:
-        return _IObjectWithPropertyProxy
 
     @builtins.property # type: ignore[misc]
     @jsii.member(jsii_name="property")
@@ -5895,14 +5860,13 @@ class _IObjectWithPropertyProxy:
     def was_set(self) -> builtins.bool:
         return typing.cast(builtins.bool, jsii.invoke(self, "wasSet", []))
 
+# Adding a "__jsii_proxy_class__(): typing.Type" function to the interface
+typing.cast(typing.Any, IObjectWithProperty).__jsii_proxy_class__ = lambda : _IObjectWithPropertyProxy
+
 
 @jsii.interface(jsii_type="jsii-calc.IOptionalMethod")
 class IOptionalMethod(typing_extensions.Protocol):
     '''Checks that optional result from interface method code generates correctly.'''
-
-    @builtins.staticmethod
-    def __jsii_proxy_class__() -> typing.Type["_IOptionalMethodProxy"]:
-        return _IOptionalMethodProxy
 
     @jsii.member(jsii_name="optional")
     def optional(self) -> typing.Optional[builtins.str]:
@@ -5918,13 +5882,12 @@ class _IOptionalMethodProxy:
     def optional(self) -> typing.Optional[builtins.str]:
         return typing.cast(typing.Optional[builtins.str], jsii.invoke(self, "optional", []))
 
+# Adding a "__jsii_proxy_class__(): typing.Type" function to the interface
+typing.cast(typing.Any, IOptionalMethod).__jsii_proxy_class__ = lambda : _IOptionalMethodProxy
+
 
 @jsii.interface(jsii_type="jsii-calc.IPrivatelyImplemented")
 class IPrivatelyImplemented(typing_extensions.Protocol):
-    @builtins.staticmethod
-    def __jsii_proxy_class__() -> typing.Type["_IPrivatelyImplementedProxy"]:
-        return _IPrivatelyImplementedProxy
-
     @builtins.property # type: ignore[misc]
     @jsii.member(jsii_name="success")
     def success(self) -> builtins.bool:
@@ -5939,13 +5902,12 @@ class _IPrivatelyImplementedProxy:
     def success(self) -> builtins.bool:
         return typing.cast(builtins.bool, jsii.get(self, "success"))
 
+# Adding a "__jsii_proxy_class__(): typing.Type" function to the interface
+typing.cast(typing.Any, IPrivatelyImplemented).__jsii_proxy_class__ = lambda : _IPrivatelyImplementedProxy
+
 
 @jsii.interface(jsii_type="jsii-calc.IPublicInterface")
 class IPublicInterface(typing_extensions.Protocol):
-    @builtins.staticmethod
-    def __jsii_proxy_class__() -> typing.Type["_IPublicInterfaceProxy"]:
-        return _IPublicInterfaceProxy
-
     @jsii.member(jsii_name="bye")
     def bye(self) -> builtins.str:
         ...
@@ -5958,13 +5920,12 @@ class _IPublicInterfaceProxy:
     def bye(self) -> builtins.str:
         return typing.cast(builtins.str, jsii.invoke(self, "bye", []))
 
+# Adding a "__jsii_proxy_class__(): typing.Type" function to the interface
+typing.cast(typing.Any, IPublicInterface).__jsii_proxy_class__ = lambda : _IPublicInterfaceProxy
+
 
 @jsii.interface(jsii_type="jsii-calc.IPublicInterface2")
 class IPublicInterface2(typing_extensions.Protocol):
-    @builtins.staticmethod
-    def __jsii_proxy_class__() -> typing.Type["_IPublicInterface2Proxy"]:
-        return _IPublicInterface2Proxy
-
     @jsii.member(jsii_name="ciao")
     def ciao(self) -> builtins.str:
         ...
@@ -5977,14 +5938,13 @@ class _IPublicInterface2Proxy:
     def ciao(self) -> builtins.str:
         return typing.cast(builtins.str, jsii.invoke(self, "ciao", []))
 
+# Adding a "__jsii_proxy_class__(): typing.Type" function to the interface
+typing.cast(typing.Any, IPublicInterface2).__jsii_proxy_class__ = lambda : _IPublicInterface2Proxy
+
 
 @jsii.interface(jsii_type="jsii-calc.IRandomNumberGenerator")
 class IRandomNumberGenerator(typing_extensions.Protocol):
     '''Generates random numbers.'''
-
-    @builtins.staticmethod
-    def __jsii_proxy_class__() -> typing.Type["_IRandomNumberGeneratorProxy"]:
-        return _IRandomNumberGeneratorProxy
 
     @jsii.member(jsii_name="next")
     def next(self) -> jsii.Number:
@@ -6008,14 +5968,13 @@ class _IRandomNumberGeneratorProxy:
         '''
         return typing.cast(jsii.Number, jsii.invoke(self, "next", []))
 
+# Adding a "__jsii_proxy_class__(): typing.Type" function to the interface
+typing.cast(typing.Any, IRandomNumberGenerator).__jsii_proxy_class__ = lambda : _IRandomNumberGeneratorProxy
+
 
 @jsii.interface(jsii_type="jsii-calc.IReturnJsii976")
 class IReturnJsii976(typing_extensions.Protocol):
     '''Returns a subclass of a known class which implements an interface.'''
-
-    @builtins.staticmethod
-    def __jsii_proxy_class__() -> typing.Type["_IReturnJsii976Proxy"]:
-        return _IReturnJsii976Proxy
 
     @builtins.property # type: ignore[misc]
     @jsii.member(jsii_name="foo")
@@ -6033,13 +5992,12 @@ class _IReturnJsii976Proxy:
     def foo(self) -> jsii.Number:
         return typing.cast(jsii.Number, jsii.get(self, "foo"))
 
+# Adding a "__jsii_proxy_class__(): typing.Type" function to the interface
+typing.cast(typing.Any, IReturnJsii976).__jsii_proxy_class__ = lambda : _IReturnJsii976Proxy
+
 
 @jsii.interface(jsii_type="jsii-calc.IReturnsNumber")
 class IReturnsNumber(typing_extensions.Protocol):
-    @builtins.staticmethod
-    def __jsii_proxy_class__() -> typing.Type["_IReturnsNumberProxy"]:
-        return _IReturnsNumberProxy
-
     @builtins.property # type: ignore[misc]
     @jsii.member(jsii_name="numberProp")
     def number_prop(self) -> scope.jsii_calc_lib.Number:
@@ -6062,13 +6020,12 @@ class _IReturnsNumberProxy:
     def obtain_number(self) -> scope.jsii_calc_lib.IDoublable:
         return typing.cast(scope.jsii_calc_lib.IDoublable, jsii.invoke(self, "obtainNumber", []))
 
+# Adding a "__jsii_proxy_class__(): typing.Type" function to the interface
+typing.cast(typing.Any, IReturnsNumber).__jsii_proxy_class__ = lambda : _IReturnsNumberProxy
+
 
 @jsii.interface(jsii_type="jsii-calc.IStableInterface")
 class IStableInterface(typing_extensions.Protocol):
-    @builtins.staticmethod
-    def __jsii_proxy_class__() -> typing.Type["_IStableInterfaceProxy"]:
-        return _IStableInterfaceProxy
-
     @builtins.property # type: ignore[misc]
     @jsii.member(jsii_name="mutableProperty")
     def mutable_property(self) -> typing.Optional[jsii.Number]:
@@ -6099,14 +6056,13 @@ class _IStableInterfaceProxy:
     def method(self) -> None:
         return typing.cast(None, jsii.invoke(self, "method", []))
 
+# Adding a "__jsii_proxy_class__(): typing.Type" function to the interface
+typing.cast(typing.Any, IStableInterface).__jsii_proxy_class__ = lambda : _IStableInterfaceProxy
+
 
 @jsii.interface(jsii_type="jsii-calc.IStructReturningDelegate")
 class IStructReturningDelegate(typing_extensions.Protocol):
     '''Verifies that a "pure" implementation of an interface works correctly.'''
-
-    @builtins.staticmethod
-    def __jsii_proxy_class__() -> typing.Type["_IStructReturningDelegateProxy"]:
-        return _IStructReturningDelegateProxy
 
     @jsii.member(jsii_name="returnStruct")
     def return_struct(self) -> "StructB":
@@ -6122,14 +6078,13 @@ class _IStructReturningDelegateProxy:
     def return_struct(self) -> "StructB":
         return typing.cast("StructB", jsii.invoke(self, "returnStruct", []))
 
+# Adding a "__jsii_proxy_class__(): typing.Type" function to the interface
+typing.cast(typing.Any, IStructReturningDelegate).__jsii_proxy_class__ = lambda : _IStructReturningDelegateProxy
+
 
 @jsii.interface(jsii_type="jsii-calc.IWallClock")
 class IWallClock(typing_extensions.Protocol):
     '''Implement this interface.'''
-
-    @builtins.staticmethod
-    def __jsii_proxy_class__() -> typing.Type["_IWallClockProxy"]:
-        return _IWallClockProxy
 
     @jsii.member(jsii_name="iso8601Now")
     def iso8601_now(self) -> builtins.str:
@@ -6146,6 +6101,9 @@ class _IWallClockProxy:
     def iso8601_now(self) -> builtins.str:
         '''Returns the current time, formatted as an ISO-8601 string.'''
         return typing.cast(builtins.str, jsii.invoke(self, "iso8601Now", []))
+
+# Adding a "__jsii_proxy_class__(): typing.Type" function to the interface
+typing.cast(typing.Any, IWallClock).__jsii_proxy_class__ = lambda : _IWallClockProxy
 
 
 class ImplementInternalInterface(
@@ -6320,10 +6278,6 @@ class Isomorphism(metaclass=jsii.JSIIAbstractClass, jsii_type="jsii-calc.Isomorp
     \`\`this\`\` from within the constructor.
     '''
 
-    @builtins.staticmethod
-    def __jsii_proxy_class__() -> typing.Type["_IsomorphismProxy"]:
-        return _IsomorphismProxy
-
     def __init__(self) -> None:
         jsii.create(Isomorphism, self, [])
 
@@ -6334,6 +6288,9 @@ class Isomorphism(metaclass=jsii.JSIIAbstractClass, jsii_type="jsii-calc.Isomorp
 
 class _IsomorphismProxy(Isomorphism):
     pass
+
+# Adding a "__jsii_proxy_class__(): typing.Type" function to the abstract class
+typing.cast(typing.Any, Isomorphism).__jsii_proxy_class__ = lambda : _IsomorphismProxy
 
 
 class Issue2638(metaclass=jsii.JSIIMeta, jsii_type="jsii-calc.Issue2638"):
@@ -7542,10 +7499,6 @@ class PartiallyInitializedThisConsumer(
     metaclass=jsii.JSIIAbstractClass,
     jsii_type="jsii-calc.PartiallyInitializedThisConsumer",
 ):
-    @builtins.staticmethod
-    def __jsii_proxy_class__() -> typing.Type["_PartiallyInitializedThisConsumerProxy"]:
-        return _PartiallyInitializedThisConsumerProxy
-
     def __init__(self) -> None:
         jsii.create(PartiallyInitializedThisConsumer, self, [])
 
@@ -7579,6 +7532,9 @@ class _PartiallyInitializedThisConsumerProxy(PartiallyInitializedThisConsumer):
         :param ev: -
         '''
         return typing.cast(builtins.str, jsii.invoke(self, "consumePartiallyInitializedThis", [obj, dt, ev]))
+
+# Adding a "__jsii_proxy_class__(): typing.Type" function to the abstract class
+typing.cast(typing.Any, PartiallyInitializedThisConsumer).__jsii_proxy_class__ = lambda : _PartiallyInitializedThisConsumerProxy
 
 
 class Polymorphism(metaclass=jsii.JSIIMeta, jsii_type="jsii-calc.Polymorphism"):
@@ -9104,10 +9060,6 @@ class UnaryOperation(
 ):
     '''An operation on a single operand.'''
 
-    @builtins.staticmethod
-    def __jsii_proxy_class__() -> typing.Type["_UnaryOperationProxy"]:
-        return _UnaryOperationProxy
-
     def __init__(self, operand: scope.jsii_calc_lib.NumericValue) -> None:
         '''
         :param operand: -
@@ -9124,6 +9076,9 @@ class _UnaryOperationProxy(
     UnaryOperation, jsii.proxy_for(scope.jsii_calc_lib.Operation) # type: ignore[misc]
 ):
     pass
+
+# Adding a "__jsii_proxy_class__(): typing.Type" function to the abstract class
+typing.cast(typing.Any, UnaryOperation).__jsii_proxy_class__ = lambda : _UnaryOperationProxy
 
 
 @jsii.data_type(
@@ -9346,10 +9301,6 @@ class VoidCallback(
     - Verify that \`\`methodWasCalled\`\` is \`\`true\`\`.
     '''
 
-    @builtins.staticmethod
-    def __jsii_proxy_class__() -> typing.Type["_VoidCallbackProxy"]:
-        return _VoidCallbackProxy
-
     def __init__(self) -> None:
         jsii.create(VoidCallback, self, [])
 
@@ -9372,6 +9323,9 @@ class _VoidCallbackProxy(VoidCallback):
     @jsii.member(jsii_name="overrideMe")
     def _override_me(self) -> None:
         return typing.cast(None, jsii.invoke(self, "overrideMe", []))
+
+# Adding a "__jsii_proxy_class__(): typing.Type" function to the abstract class
+typing.cast(typing.Any, VoidCallback).__jsii_proxy_class__ = lambda : _VoidCallbackProxy
 
 
 class WithPrivatePropertyInConstructor(
@@ -9398,10 +9352,6 @@ class AbstractClass(
     metaclass=jsii.JSIIAbstractClass,
     jsii_type="jsii-calc.AbstractClass",
 ):
-    @builtins.staticmethod
-    def __jsii_proxy_class__() -> typing.Type["_AbstractClassProxy"]:
-        return _AbstractClassProxy
-
     def __init__(self) -> None:
         jsii.create(AbstractClass, self, [])
 
@@ -9432,6 +9382,9 @@ class _AbstractClassProxy(
         :param name: -
         '''
         return typing.cast(builtins.str, jsii.invoke(self, "abstractMethod", [name]))
+
+# Adding a "__jsii_proxy_class__(): typing.Type" function to the abstract class
+typing.cast(typing.Any, AbstractClass).__jsii_proxy_class__ = lambda : _AbstractClassProxy
 
 
 class Add(BinaryOperation, metaclass=jsii.JSIIMeta, jsii_type="jsii-calc.Add"):
@@ -9668,9 +9621,7 @@ class IFriendlyRandomGenerator(
     scope.jsii_calc_lib.IFriendly,
     typing_extensions.Protocol,
 ):
-    @builtins.staticmethod
-    def __jsii_proxy_class__() -> typing.Type["_IFriendlyRandomGeneratorProxy"]:
-        return _IFriendlyRandomGeneratorProxy
+    pass
 
 
 class _IFriendlyRandomGeneratorProxy(
@@ -9680,6 +9631,9 @@ class _IFriendlyRandomGeneratorProxy(
     __jsii_type__: typing.ClassVar[str] = "jsii-calc.IFriendlyRandomGenerator"
     pass
 
+# Adding a "__jsii_proxy_class__(): typing.Type" function to the interface
+typing.cast(typing.Any, IFriendlyRandomGenerator).__jsii_proxy_class__ = lambda : _IFriendlyRandomGeneratorProxy
+
 
 @jsii.interface(jsii_type="jsii-calc.IInterfaceThatShouldNotBeADataType")
 class IInterfaceThatShouldNotBeADataType(
@@ -9687,10 +9641,6 @@ class IInterfaceThatShouldNotBeADataType(
     typing_extensions.Protocol,
 ):
     '''Even though this interface has only properties, it is disqualified from being a datatype because it inherits from an interface that is not a datatype.'''
-
-    @builtins.staticmethod
-    def __jsii_proxy_class__() -> typing.Type["_IInterfaceThatShouldNotBeADataTypeProxy"]:
-        return _IInterfaceThatShouldNotBeADataTypeProxy
 
     @builtins.property # type: ignore[misc]
     @jsii.member(jsii_name="otherValue")
@@ -9710,13 +9660,12 @@ class _IInterfaceThatShouldNotBeADataTypeProxy(
     def other_value(self) -> builtins.str:
         return typing.cast(builtins.str, jsii.get(self, "otherValue"))
 
+# Adding a "__jsii_proxy_class__(): typing.Type" function to the interface
+typing.cast(typing.Any, IInterfaceThatShouldNotBeADataType).__jsii_proxy_class__ = lambda : _IInterfaceThatShouldNotBeADataTypeProxy
+
 
 @jsii.interface(jsii_type="jsii-calc.IJSII417Derived")
 class IJSII417Derived(IJSII417PublicBaseOfBase, typing_extensions.Protocol):
-    @builtins.staticmethod
-    def __jsii_proxy_class__() -> typing.Type["_IJSII417DerivedProxy"]:
-        return _IJSII417DerivedProxy
-
     @builtins.property # type: ignore[misc]
     @jsii.member(jsii_name="property")
     def property(self) -> builtins.str:
@@ -9748,6 +9697,9 @@ class _IJSII417DerivedProxy(
     @jsii.member(jsii_name="baz")
     def baz(self) -> None:
         return typing.cast(None, jsii.invoke(self, "baz", []))
+
+# Adding a "__jsii_proxy_class__(): typing.Type" function to the interface
+typing.cast(typing.Any, IJSII417Derived).__jsii_proxy_class__ = lambda : _IJSII417DerivedProxy
 
 
 @jsii.implements(IPublicInterface2)
@@ -10168,10 +10120,6 @@ class CompositeOperation(
 ):
     '''Abstract operation composed from an expression of other operations.'''
 
-    @builtins.staticmethod
-    def __jsii_proxy_class__() -> typing.Type["_CompositeOperationProxy"]:
-        return _CompositeOperationProxy
-
     def __init__(self) -> None:
         jsii.create(CompositeOperation, self, [])
 
@@ -10250,6 +10198,9 @@ class _CompositeOperationProxy(
         Must be implemented by derived classes.
         '''
         return typing.cast(scope.jsii_calc_lib.NumericValue, jsii.get(self, "expression"))
+
+# Adding a "__jsii_proxy_class__(): typing.Type" function to the abstract class
+typing.cast(typing.Any, CompositeOperation).__jsii_proxy_class__ = lambda : _CompositeOperationProxy
 
 
 __all__ = [
@@ -10589,7 +10540,7 @@ import typing_extensions
 
 from .._jsii import *
 
-__all__: List[typing.Any] = []
+__all__: typing.List[typing.Any] = []
 
 publication.publish()
 
@@ -10806,7 +10757,7 @@ import typing_extensions
 
 from .._jsii import *
 
-__all__: List[typing.Any] = []
+__all__: typing.List[typing.Any] = []
 
 publication.publish()
 
@@ -10993,10 +10944,6 @@ from .._jsii import *
 
 @jsii.interface(jsii_type="jsii-calc.module2700.IFoo")
 class IFoo(typing_extensions.Protocol):
-    @builtins.staticmethod
-    def __jsii_proxy_class__() -> typing.Type["_IFooProxy"]:
-        return _IFooProxy
-
     @builtins.property # type: ignore[misc]
     @jsii.member(jsii_name="baz")
     def baz(self) -> jsii.Number:
@@ -11018,6 +10965,9 @@ class _IFooProxy:
     @jsii.member(jsii_name="bar")
     def bar(self) -> builtins.str:
         return typing.cast(builtins.str, jsii.invoke(self, "bar", []))
+
+# Adding a "__jsii_proxy_class__(): typing.Type" function to the interface
+typing.cast(typing.Any, IFoo).__jsii_proxy_class__ = lambda : _IFooProxy
 
 
 @jsii.implements(IFoo)
@@ -11116,12 +11066,46 @@ class Class3(metaclass=jsii.JSIIMeta, jsii_type="jsii-calc.module2702.Class3"):
         return typing.cast(None, jsii.invoke(self, "iBaseInterface", []))
 
 
+@jsii.interface(jsii_type="jsii-calc.module2702.IBaz")
+class IBaz(scope.jsii_calc_base.IBaseInterface, typing_extensions.Protocol):
+    @jsii.member(jsii_name="bazMethod")
+    def baz_method(self) -> None:
+        ...
+
+
+class _IBazProxy(
+    jsii.proxy_for(scope.jsii_calc_base.IBaseInterface) # type: ignore[misc]
+):
+    __jsii_type__: typing.ClassVar[str] = "jsii-calc.module2702.IBaz"
+
+    @jsii.member(jsii_name="bazMethod")
+    def baz_method(self) -> None:
+        return typing.cast(None, jsii.invoke(self, "bazMethod", []))
+
+# Adding a "__jsii_proxy_class__(): typing.Type" function to the interface
+typing.cast(typing.Any, IBaz).__jsii_proxy_class__ = lambda : _IBazProxy
+
+
+@jsii.interface(jsii_type="jsii-calc.module2702.IConstruct")
+class IConstruct(typing_extensions.Protocol):
+    @jsii.member(jsii_name="constructMethod")
+    def construct_method(self) -> None:
+        ...
+
+
+class _IConstructProxy:
+    __jsii_type__: typing.ClassVar[str] = "jsii-calc.module2702.IConstruct"
+
+    @jsii.member(jsii_name="constructMethod")
+    def construct_method(self) -> None:
+        return typing.cast(None, jsii.invoke(self, "constructMethod", []))
+
+# Adding a "__jsii_proxy_class__(): typing.Type" function to the interface
+typing.cast(typing.Any, IConstruct).__jsii_proxy_class__ = lambda : _IConstructProxy
+
+
 @jsii.interface(jsii_type="jsii-calc.module2702.IFoo")
 class IFoo(scope.jsii_calc_base.IBaseInterface, typing_extensions.Protocol):
-    @builtins.staticmethod
-    def __jsii_proxy_class__() -> typing.Type["_IFooProxy"]:
-        return _IFooProxy
-
     @builtins.property # type: ignore[misc]
     @jsii.member(jsii_name="iBaseInterface")
     def i_base_interface(self) -> builtins.str:
@@ -11138,12 +11122,114 @@ class _IFooProxy(
     def i_base_interface(self) -> builtins.str:
         return typing.cast(builtins.str, jsii.get(self, "iBaseInterface"))
 
+# Adding a "__jsii_proxy_class__(): typing.Type" function to the interface
+typing.cast(typing.Any, IFoo).__jsii_proxy_class__ = lambda : _IFooProxy
+
+
+@jsii.interface(jsii_type="jsii-calc.module2702.IResource")
+class IResource(IConstruct, typing_extensions.Protocol):
+    @jsii.member(jsii_name="resourceMethod")
+    def resource_method(self) -> None:
+        ...
+
+
+class _IResourceProxy(
+    jsii.proxy_for(IConstruct) # type: ignore[misc]
+):
+    __jsii_type__: typing.ClassVar[str] = "jsii-calc.module2702.IResource"
+
+    @jsii.member(jsii_name="resourceMethod")
+    def resource_method(self) -> None:
+        return typing.cast(None, jsii.invoke(self, "resourceMethod", []))
+
+# Adding a "__jsii_proxy_class__(): typing.Type" function to the interface
+typing.cast(typing.Any, IResource).__jsii_proxy_class__ = lambda : _IResourceProxy
+
+
+@jsii.interface(jsii_type="jsii-calc.module2702.IVpc")
+class IVpc(IResource, typing_extensions.Protocol):
+    @jsii.member(jsii_name="vpcMethod")
+    def vpc_method(self) -> None:
+        ...
+
+
+class _IVpcProxy(
+    jsii.proxy_for(IResource) # type: ignore[misc]
+):
+    __jsii_type__: typing.ClassVar[str] = "jsii-calc.module2702.IVpc"
+
+    @jsii.member(jsii_name="vpcMethod")
+    def vpc_method(self) -> None:
+        return typing.cast(None, jsii.invoke(self, "vpcMethod", []))
+
+# Adding a "__jsii_proxy_class__(): typing.Type" function to the interface
+typing.cast(typing.Any, IVpc).__jsii_proxy_class__ = lambda : _IVpcProxy
+
+
+@jsii.implements(IBaz)
+class Baz(Class3, metaclass=jsii.JSIIMeta, jsii_type="jsii-calc.module2702.Baz"):
+    def __init__(self) -> None:
+        jsii.create(Baz, self, [])
+
+    @jsii.member(jsii_name="bazMethod")
+    def baz_method(self) -> None:
+        return typing.cast(None, jsii.invoke(self, "bazMethod", []))
+
+
+@jsii.implements(IConstruct)
+class Construct(metaclass=jsii.JSIIMeta, jsii_type="jsii-calc.module2702.Construct"):
+    def __init__(self) -> None:
+        jsii.create(Construct, self, [])
+
+    @jsii.member(jsii_name="constructMethod")
+    def construct_method(self) -> None:
+        return typing.cast(None, jsii.invoke(self, "constructMethod", []))
+
+
+@jsii.implements(IResource)
+class Resource(
+    Construct,
+    metaclass=jsii.JSIIAbstractClass,
+    jsii_type="jsii-calc.module2702.Resource",
+):
+    def __init__(self) -> None:
+        jsii.create(Resource, self, [])
+
+    @jsii.member(jsii_name="resourceMethod")
+    def resource_method(self) -> None:
+        return typing.cast(None, jsii.invoke(self, "resourceMethod", []))
+
+
+class _ResourceProxy(Resource):
+    pass
+
+# Adding a "__jsii_proxy_class__(): typing.Type" function to the abstract class
+typing.cast(typing.Any, Resource).__jsii_proxy_class__ = lambda : _ResourceProxy
+
+
+@jsii.implements(IVpc)
+class Vpc(Resource, metaclass=jsii.JSIIMeta, jsii_type="jsii-calc.module2702.Vpc"):
+    def __init__(self) -> None:
+        jsii.create(Vpc, self, [])
+
+    @jsii.member(jsii_name="vpcMethod")
+    def vpc_method(self) -> None:
+        return typing.cast(None, jsii.invoke(self, "vpcMethod", []))
+
 
 __all__ = [
+    "Baz",
     "Class1",
     "Class2",
     "Class3",
+    "Construct",
+    "IBaz",
+    "IConstruct",
     "IFoo",
+    "IResource",
+    "IVpc",
+    "Resource",
+    "Vpc",
 ]
 
 publication.publish()
@@ -11163,7 +11249,7 @@ import typing_extensions
 
 from .._jsii import *
 
-__all__: List[typing.Any] = []
+__all__: typing.List[typing.Any] = []
 
 publication.publish()
 
@@ -11333,10 +11419,6 @@ class ClassWithSelfKwarg(
 
 @jsii.interface(jsii_type="jsii-calc.PythonSelf.IInterfaceWithSelf")
 class IInterfaceWithSelf(typing_extensions.Protocol):
-    @builtins.staticmethod
-    def __jsii_proxy_class__() -> typing.Type["_IInterfaceWithSelfProxy"]:
-        return _IInterfaceWithSelfProxy
-
     @jsii.member(jsii_name="method")
     def method(self_, self: jsii.Number) -> builtins.str:
         '''
@@ -11354,6 +11436,9 @@ class _IInterfaceWithSelfProxy:
         :param self: -
         '''
         return typing.cast(builtins.str, jsii.invoke(self_, "method", [self]))
+
+# Adding a "__jsii_proxy_class__(): typing.Type" function to the interface
+typing.cast(typing.Any, IInterfaceWithSelf).__jsii_proxy_class__ = lambda : _IInterfaceWithSelfProxy
 
 
 @jsii.data_type(
@@ -11840,10 +11925,6 @@ class Namespaced(
     metaclass=jsii.JSIIAbstractClass,
     jsii_type="jsii-calc.submodule.nested_submodule.Namespaced",
 ):
-    @builtins.staticmethod
-    def __jsii_proxy_class__() -> typing.Type["_NamespacedProxy"]:
-        return _NamespacedProxy
-
     @builtins.property # type: ignore[misc]
     @jsii.member(jsii_name="definedAt")
     def defined_at(self) -> builtins.str:
@@ -11861,6 +11942,9 @@ class _NamespacedProxy(Namespaced):
     @jsii.member(jsii_name="goodness")
     def goodness(self) -> _Goodness_2df26737:
         return typing.cast(_Goodness_2df26737, jsii.get(self, "goodness"))
+
+# Adding a "__jsii_proxy_class__(): typing.Type" function to the abstract class
+typing.cast(typing.Any, Namespaced).__jsii_proxy_class__ = lambda : _NamespacedProxy
 
 
 __all__ = [
@@ -11889,10 +11973,6 @@ from ...._jsii import *
     jsii_type="jsii-calc.submodule.nested_submodule.deeplyNested.INamespaced"
 )
 class INamespaced(typing_extensions.Protocol):
-    @builtins.staticmethod
-    def __jsii_proxy_class__() -> typing.Type["_INamespacedProxy"]:
-        return _INamespacedProxy
-
     @builtins.property # type: ignore[misc]
     @jsii.member(jsii_name="definedAt")
     def defined_at(self) -> builtins.str:
@@ -11906,6 +11986,9 @@ class _INamespacedProxy:
     @jsii.member(jsii_name="definedAt")
     def defined_at(self) -> builtins.str:
         return typing.cast(builtins.str, jsii.get(self, "definedAt"))
+
+# Adding a "__jsii_proxy_class__(): typing.Type" function to the interface
+typing.cast(typing.Any, INamespaced).__jsii_proxy_class__ = lambda : _INamespacedProxy
 
 
 __all__ = [

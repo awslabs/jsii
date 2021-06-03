@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.30.0](https://github.com/aws/jsii/compare/v1.29.0...v1.30.0) (2021-05-27)
+
+
+### Features
+
+* **rosetta:** JSII_ROSETTA_MAX_WORKER_COUNT limits max workers ([#2816](https://github.com/aws/jsii/issues/2816)) ([c478da4](https://github.com/aws/jsii/commit/c478da482e688f763ecccf6bff52cded3758ad53))
+
+
+### Bug Fixes
+
+* **docs:** correct the "source version" in Python version mapping ([47a40f1](https://github.com/aws/jsii/commit/47a40f15195c00368c55bb9d08eded063d970dec))
+* update lineMap after altering source.text ([#2837](https://github.com/aws/jsii/issues/2837)) ([82f5d5f](https://github.com/aws/jsii/commit/82f5d5f34dee083e617f7194f7c326ff82f2cd90)), closes [#2680](https://github.com/aws/jsii/issues/2680)
+* **pacmak:** fails when package path contains space ([#2758](https://github.com/aws/jsii/issues/2758)) ([0fbba6b](https://github.com/aws/jsii/commit/0fbba6bc1af09cbab19acdabaea14e5eb1681ae3)), closes [#2748](https://github.com/aws/jsii/issues/2748)
+* **python:** classes do not correctly implement interfaces ([#2809](https://github.com/aws/jsii/issues/2809)) ([0769347](https://github.com/aws/jsii/commit/07693478ff85142cc79691539d72ce5a4169eb9d)), closes [aws/aws-cdk#13474](https://github.com/aws/aws-cdk/issues/13474)
+* **python:** module import fails: NameError: name 'List' is not defined ([#2851](https://github.com/aws/jsii/issues/2851)) ([b7b9e5f](https://github.com/aws/jsii/commit/b7b9e5f75d09543e0e48f31bcde0ee770599fe04))
+
 ## [1.29.0](https://github.com/aws/jsii/compare/v1.28.0...v1.29.0) (2021-04-21)
 
 

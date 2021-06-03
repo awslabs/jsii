@@ -14968,6 +14968,42 @@
         }
       ]
     },
+    "jsii-calc.module2702.Baz": {
+      "assembly": "jsii-calc",
+      "base": "jsii-calc.module2702.Class3",
+      "docs": {
+        "stability": "stable"
+      },
+      "fqn": "jsii-calc.module2702.Baz",
+      "initializer": {
+        "docs": {
+          "stability": "stable"
+        }
+      },
+      "interfaces": [
+        "jsii-calc.module2702.IBaz"
+      ],
+      "kind": "class",
+      "locationInModule": {
+        "filename": "lib/module2702/index.ts",
+        "line": 70
+      },
+      "methods": [
+        {
+          "docs": {
+            "stability": "stable"
+          },
+          "locationInModule": {
+            "filename": "lib/module2702/index.ts",
+            "line": 71
+          },
+          "name": "bazMethod",
+          "overrides": "jsii-calc.module2702.IBaz"
+        }
+      ],
+      "name": "Baz",
+      "namespace": "module2702"
+    },
     "jsii-calc.module2702.Class1": {
       "assembly": "jsii-calc",
       "base": "@scope/jsii-calc-base.Base",
@@ -15084,6 +15120,98 @@
       "name": "Class3",
       "namespace": "module2702"
     },
+    "jsii-calc.module2702.Construct": {
+      "assembly": "jsii-calc",
+      "docs": {
+        "stability": "stable"
+      },
+      "fqn": "jsii-calc.module2702.Construct",
+      "initializer": {
+        "docs": {
+          "stability": "stable"
+        }
+      },
+      "interfaces": [
+        "jsii-calc.module2702.IConstruct"
+      ],
+      "kind": "class",
+      "locationInModule": {
+        "filename": "lib/module2702/index.ts",
+        "line": 48
+      },
+      "methods": [
+        {
+          "docs": {
+            "stability": "stable"
+          },
+          "locationInModule": {
+            "filename": "lib/module2702/index.ts",
+            "line": 49
+          },
+          "name": "constructMethod",
+          "overrides": "jsii-calc.module2702.IConstruct"
+        }
+      ],
+      "name": "Construct",
+      "namespace": "module2702"
+    },
+    "jsii-calc.module2702.IBaz": {
+      "assembly": "jsii-calc",
+      "docs": {
+        "stability": "stable"
+      },
+      "fqn": "jsii-calc.module2702.IBaz",
+      "interfaces": [
+        "@scope/jsii-calc-base.IBaseInterface"
+      ],
+      "kind": "interface",
+      "locationInModule": {
+        "filename": "lib/module2702/index.ts",
+        "line": 66
+      },
+      "methods": [
+        {
+          "abstract": true,
+          "docs": {
+            "stability": "stable"
+          },
+          "locationInModule": {
+            "filename": "lib/module2702/index.ts",
+            "line": 67
+          },
+          "name": "bazMethod"
+        }
+      ],
+      "name": "IBaz",
+      "namespace": "module2702"
+    },
+    "jsii-calc.module2702.IConstruct": {
+      "assembly": "jsii-calc",
+      "docs": {
+        "stability": "stable"
+      },
+      "fqn": "jsii-calc.module2702.IConstruct",
+      "kind": "interface",
+      "locationInModule": {
+        "filename": "lib/module2702/index.ts",
+        "line": 36
+      },
+      "methods": [
+        {
+          "abstract": true,
+          "docs": {
+            "stability": "stable"
+          },
+          "locationInModule": {
+            "filename": "lib/module2702/index.ts",
+            "line": 37
+          },
+          "name": "constructMethod"
+        }
+      ],
+      "name": "IConstruct",
+      "namespace": "module2702"
+    },
     "jsii-calc.module2702.IFoo": {
       "assembly": "jsii-calc",
       "docs": {
@@ -15117,6 +15245,139 @@
           }
         }
       ]
+    },
+    "jsii-calc.module2702.IResource": {
+      "assembly": "jsii-calc",
+      "docs": {
+        "stability": "stable"
+      },
+      "fqn": "jsii-calc.module2702.IResource",
+      "interfaces": [
+        "jsii-calc.module2702.IConstruct"
+      ],
+      "kind": "interface",
+      "locationInModule": {
+        "filename": "lib/module2702/index.ts",
+        "line": 40
+      },
+      "methods": [
+        {
+          "abstract": true,
+          "docs": {
+            "stability": "stable"
+          },
+          "locationInModule": {
+            "filename": "lib/module2702/index.ts",
+            "line": 41
+          },
+          "name": "resourceMethod"
+        }
+      ],
+      "name": "IResource",
+      "namespace": "module2702"
+    },
+    "jsii-calc.module2702.IVpc": {
+      "assembly": "jsii-calc",
+      "docs": {
+        "stability": "stable"
+      },
+      "fqn": "jsii-calc.module2702.IVpc",
+      "interfaces": [
+        "jsii-calc.module2702.IResource"
+      ],
+      "kind": "interface",
+      "locationInModule": {
+        "filename": "lib/module2702/index.ts",
+        "line": 44
+      },
+      "methods": [
+        {
+          "abstract": true,
+          "docs": {
+            "stability": "stable"
+          },
+          "locationInModule": {
+            "filename": "lib/module2702/index.ts",
+            "line": 45
+          },
+          "name": "vpcMethod"
+        }
+      ],
+      "name": "IVpc",
+      "namespace": "module2702"
+    },
+    "jsii-calc.module2702.Resource": {
+      "abstract": true,
+      "assembly": "jsii-calc",
+      "base": "jsii-calc.module2702.Construct",
+      "docs": {
+        "stability": "stable"
+      },
+      "fqn": "jsii-calc.module2702.Resource",
+      "initializer": {
+        "docs": {
+          "stability": "stable"
+        }
+      },
+      "interfaces": [
+        "jsii-calc.module2702.IResource"
+      ],
+      "kind": "class",
+      "locationInModule": {
+        "filename": "lib/module2702/index.ts",
+        "line": 54
+      },
+      "methods": [
+        {
+          "docs": {
+            "stability": "stable"
+          },
+          "locationInModule": {
+            "filename": "lib/module2702/index.ts",
+            "line": 55
+          },
+          "name": "resourceMethod",
+          "overrides": "jsii-calc.module2702.IResource"
+        }
+      ],
+      "name": "Resource",
+      "namespace": "module2702"
+    },
+    "jsii-calc.module2702.Vpc": {
+      "assembly": "jsii-calc",
+      "base": "jsii-calc.module2702.Resource",
+      "docs": {
+        "stability": "stable"
+      },
+      "fqn": "jsii-calc.module2702.Vpc",
+      "initializer": {
+        "docs": {
+          "stability": "stable"
+        }
+      },
+      "interfaces": [
+        "jsii-calc.module2702.IVpc"
+      ],
+      "kind": "class",
+      "locationInModule": {
+        "filename": "lib/module2702/index.ts",
+        "line": 60
+      },
+      "methods": [
+        {
+          "docs": {
+            "stability": "stable"
+          },
+          "locationInModule": {
+            "filename": "lib/module2702/index.ts",
+            "line": 61
+          },
+          "name": "vpcMethod",
+          "overrides": "jsii-calc.module2702.IVpc"
+        }
+      ],
+      "name": "Vpc",
+      "namespace": "module2702"
     },
     "jsii-calc.nodirect.sub1.TypeFromSub1": {
       "assembly": "jsii-calc",
@@ -15874,5 +16135,5 @@
     }
   },
   "version": "3.20.120",
-  "fingerprint": "ezY52AR44agRJClz62BLSJU4fF1Dhh+7vRL5LX9Fcgc="
+  "fingerprint": "Ouku0wagXKUVN9v9Ud7ocXYRaRl10KuCazRDvU/7iNk="
 }
