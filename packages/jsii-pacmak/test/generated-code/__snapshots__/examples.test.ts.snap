@@ -1147,7 +1147,7 @@ testpkg.FooBar=example.test.demo.FooBar
 
 exports[`diamond-struct-parameter.ts: <outDir>/python/pyproject.toml 1`] = `
 [build-system]
-requires = ["setuptools~=56.0.0", "wheel~=0.36.2"]
+requires = ["setuptools~=56.1.0", "wheel~=0.36.2"]
 build-backend = "setuptools.build_meta"
 
 `;
@@ -2447,7 +2447,7 @@ testpkg.Namespace2.Foo.Final=example.test.demo.Namespace2$Foo.Final
 
 exports[`nested-types.ts: <outDir>/python/pyproject.toml 1`] = `
 [build-system]
-requires = ["setuptools~=56.0.0", "wheel~=0.36.2"]
+requires = ["setuptools~=56.1.0", "wheel~=0.36.2"]
 build-backend = "setuptools.build_meta"
 
 `;
