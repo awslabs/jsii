@@ -48,3 +48,11 @@ confidential information out.
 
 [1]: https://gist.github.com
 -->
+
+<!-- 
+NOTE: If your bug is meets one of the following criteria, and is not recieving proper attention, please notify the team directly by commenting @TEAM-MEMBER, or messaging @TEAM-MEMBER on our [Slack](https://cdk.dev/):
+
+* Potential security violation
+* Bug impacts large number of users
+* Bug impacts performance of all JSII
+-->
