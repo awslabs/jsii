@@ -7,6 +7,7 @@ export * from './erasures';
 export * from './nested-class';
 export * from './stability';
 export * from './submodules';
+export * from './container-types';
 
 export * as submodule from './submodule';
 export * as onlystatic from './only-static';

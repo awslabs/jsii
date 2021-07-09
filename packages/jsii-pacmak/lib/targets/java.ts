@@ -1709,7 +1709,7 @@ class JavaGenerator extends Generator {
         fieldName: this.code.toCamelCase(
           JavaGenerator.safeJavaPropertyName(param.name),
         ),
-        javaType: this.toJavaType(param.type, { covariant: true }),
+        javaType: this.toJavaType(param.type),
       }));
 
     const builtType = this.toJavaType(cls);
