@@ -152,13 +152,16 @@ function sidelineImports(source: string): {
     ScriptKind.TS,
   );
   for (const statement of sourceFile.statements) {
-    switch (statement.kind) {
-      case SyntaxKind.ImportDeclaration:
-      case SyntaxKind.ImportEqualsDeclaration:
-        imports += statement.getFullText(sourceFile);
-        break;
-      default:
-        statements += statement.getFullText(sourceFile);
+    if (
+      statement.kind === SyntaxKind.ImportDeclaration ||
+      statement.kind === SyntaxKind.ImportEqualsDeclaration ||
+      (statement.kind === SyntaxKind.VariableStatement &&
+        statement.getChildAt(0).getChildAt(0).kind ===
+          SyntaxKind.DeclareKeyword)
+    ) {
+      imports += statement.getFullText(sourceFile);
+    } else {
+      statements += statement.getFullText(sourceFile);
     }
   }
 
