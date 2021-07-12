@@ -1,4 +1,4 @@
 mkdocs~=1.2.1
 mkdocs-awesome-pages-plugin~=2.5.0
-mkdocs-material~=7.1.9
+mkdocs-material~=7.1.10
 mkdocs-git-revision-date-plugin~=0.3.1
