@@ -100,7 +100,7 @@ header bar:
 ## How to contribute
 
 The [*jsii project*](https://github.com/aws/jsii) welcomes all kind of contributions. You can refer to the
-[Contribution Guide](https://github.com/aws/jsii/trees/main/CONTRIBUTING.md) on GitHub to get more information about how
+[Contribution Guide](https://github.com/aws/jsii/blob/main/CONTRIBUTING.md) on GitHub to get more information about how
 to contribute to the project in general.
 
 !!! tip
